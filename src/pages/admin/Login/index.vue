@@ -2,9 +2,9 @@
   <div class="aa">
     <div class="adminLogin">
       <h1>登录</h1>
-      <input type="text" /> <br />
-      <input type="password" /><br />
-      <button>登录</button>
+      <input type="text" v-model="user_name"/> <br />
+      <input type="password" v-model="password"/><br />
+      <button @click="adminlogin">登录</button>
     </div>
   </div>
 </template>
@@ -12,7 +12,21 @@
 <script>
 export default {
   name: "adminLogin",
+  
+  data(){
+     return{
+         user_name:"",
+         password:"",
+     }
+  },
+  methods:{
+    adminlogin(){
+          
+    }
+  }
+
 };
+
 </script >
 
 <style lang='less' scoped>
