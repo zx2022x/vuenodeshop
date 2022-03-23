@@ -11,7 +11,7 @@ module.exports = defineConfig({
       '/api': {
         //提供数据的服务器地址
         target: 'http://localhost:3000',
-        // pathRewrite: { '^/api': 'http://localhost:3000' },
+        pathRewrite: { '^/api': '' },
 
       }
     }

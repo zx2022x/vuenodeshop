@@ -20,8 +20,18 @@ export default {
      }
   },
   methods:{
-    adminlogin(){
-          
+    
+    async adminlogin(){
+      try {
+        const{user_name,password}=this//
+        
+        user_name&&password&&(await this.$store.dispatch('adminUserLogin',{user_name,password}))
+          // this.$store.dipatch('')
+      } catch (error) {
+        
+         alert("前台"+error.message)
+      }
+     
     }
   }
 
