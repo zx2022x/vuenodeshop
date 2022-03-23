@@ -2,19 +2,19 @@
   <div id="app">
     
    
-    <adminLogin />
+    <AdminLogin />
     
   </div>
 </template>
 
 <script>
 
-import adminLogin from '@/pages/admin/login'
+import AdminLogin from '@/pages/admin/Login'
 
 export default {
   name: 'App',
   components: {
-    adminLogin,
+    AdminLogin,
   }
 }
 </script>
