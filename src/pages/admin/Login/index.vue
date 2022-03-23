@@ -26,6 +26,8 @@ export default {
         const{user_name,password}=this//
         
         user_name&&password&&(await this.$store.dispatch('adminUserLogin',{user_name,password}))
+        
+        this.$router.push('/adminHome')
           // this.$store.dipatch('')
       } catch (error) {
         
