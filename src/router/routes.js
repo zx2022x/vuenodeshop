@@ -2,7 +2,7 @@ export default [
     {
         //默认位置
         path: '/',
-        component: () => import('@/pages/admin/Login')
+        component: () => import('@/pages/admin/adminHome')
     },
     //管理员登录
     {
