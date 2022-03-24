@@ -16,7 +16,7 @@
       >
      
       </el-input>
-      <el-input placeholder="请输入密码" v-model="password"  maxlength="10" show-password prefix-icon="el-icon-coordinate"></el-input>
+      <el-input placeholder="请输入密码" v-model="password"  maxlength="11" show-password prefix-icon="el-icon-coordinate"></el-input>
        <!-- <el-button type="primary" plain @click="adminlogi">主要按钮</el-button> -->
          <el-button type="primary" round  @click="adminlogin">主要按钮</el-button>
     </div>
@@ -37,6 +37,7 @@ export default {
     async adminlogin() {
       try {
         const { user_name, password } = this; //
+        console.log(user_name+password)
 
         user_name &&
           password &&
@@ -44,8 +45,9 @@ export default {
             user_name,
             password,
           }));
-
+        // console.log(this.$store.state.user.token)
         this.$router.push("/adminHome");
+
         // this.$store.dipatch('')
       } catch (error) {
         alert("管理员登录" + error.message);

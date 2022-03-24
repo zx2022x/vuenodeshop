@@ -1,14 +1,14 @@
 import { reqUserLogin } from '@/api'
 import {setToken} from '@/utils/token'
 const state = {
-    adminInfo: {},
+    token: {},
     
 }
 const mutations = {
     //用户登录
 
     ADMINUSERLOGIN(state, adminInfo) {
-         state.adminInfo = adminInfo
+         state.token = adminInfo.token
         setToken(adminInfo.token)
         
     }

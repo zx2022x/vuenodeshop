@@ -13,7 +13,7 @@
       </el-form-item>
       <!-- 数量框 -->
       <div class="numInp">
-        <span>价格</span
+        <span class="wont">价格</span
         ><el-input-number
           v-model="price"
           :min="1"
@@ -22,7 +22,7 @@
         ></el-input-number>
       </div>
       <div class="numInp">
-        <span>数量</span>
+        <span class="wont">数量</span>
         <el-input-number
           v-model="num"
           :min="1"
@@ -31,10 +31,12 @@
         ></el-input-number>
       </div>
 
-      <el-form-item label="商品详细">
+      <el-form-item label="详细信息">
         <el-input type="textarea" v-model="form.desc"></el-input>
       </el-form-item>
-      <!-- 商品图片上传 -->
+      <!-- 商品图片上传 start -->
+       <span class="wont wopload">上传图片</span>
+       <div class="upld">
       <el-upload
         action="http://localhost:3000/goods/upload"
         list-type="picture-card"
@@ -43,13 +45,14 @@
       >
         <i class="el-icon-plus"></i>
       </el-upload>
-      <el-dialog :visible.sync="dialogVisible">
+      <el-dialog :visible.sync="dialogVisible" class="tcon">
         <img width="100%" :src="dialogImageUrl" alt="" />
       </el-dialog>
-
+      </div>
+  <!-- 商品图片上传 end-->
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">立即创建</el-button>
-        <el-button>取消</el-button>
+        <el-button type="primary" @click="onSubmit">完成</el-button>
+        
       </el-form-item>
     </el-form>
   </div>
@@ -97,13 +100,7 @@ export default {
 </script>
 <style scoped lang="less">
 .uploadShop {
-  .priceInput {
-    width: 75px;
-  }
-  .numInp {
-    margin: 23px 0 23px 10px;
-
-    span {
+  .wont{
       font-size: 14px;
       margin-right: 9px;
       font-family: "Helvetica Neue", Helvetica, "PingFang SC",
@@ -111,6 +108,29 @@ export default {
       font-weight: normal;
       color: #606266;
     }
+  .priceInput {
+    width: 75px;
   }
+
+  .numInp {
+    margin: 23px 0 23px 10px;
+    .wont;
+    .el-input-number{
+      margin-left:34px;
+    }
+   
+  }
+  .wopload{
+      display: block;
+      margin:5px 3px 13px 10px;
+  }
+ .el-icon-plus{
+   margin:50px 50px 50px 50px ;
+ }
+  .upld{
+    margin:15px 0 20px 78px;
+  }
+  
+
 }
 </style>
