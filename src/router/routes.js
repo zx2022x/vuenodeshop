@@ -1,8 +1,9 @@
+
 export default [
     {
         //默认位置
         path: '/',
-        component: () => import('@/pages/admin/adminHome')
+        redirect: '/adminLogin'
     },
     //管理员登录
     {
