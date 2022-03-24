@@ -4,38 +4,59 @@
     <div>
       <el-row class="tac">
         <el-col :span="12">
+          <!-- :default-active="$route.path"  绑定路由-->
           <el-menu
-            default-active="2"
             class="el-menu-vertical-demo"
             @open="handleOpen"
             @close="handleClose"
             background-color="#545c64"
             text-color="#fff"
             active-text-color="#ffd04b"
+            router
           >
-            <el-menu-item index="2" class="eit">
-              <i class="el-icon-menu"></i>
-              <span slot="title">商品管理</span>
-            </el-menu-item>
-            <el-menu-item index="2" class="eit">
+           
+            <el-submenu class="eit" index='f-2'>
+              <template slot="title">
+                <i class="el-icon-menu"></i>
+                <span>商品管理</span>
+              </template>
+              <el-menu-item-group>
+                <template slot="title">分组一</template>
+                <el-menu-item index="/uploadshop">商品上传</el-menu-item>
+                <el-menu-item index="1-2">修改商品</el-menu-item>
+              </el-menu-item-group>
+              <el-menu-item-group title="分组2">
+                <el-menu-item index="1-3">商品列表</el-menu-item>
+              </el-menu-item-group>
+             
+            </el-submenu>
+
+            <el-menu-item index="/orderInfo" class="eit">
               <i class="el-icon-menu"></i>
               <span slot="title">订单管理</span>
             </el-menu-item>
-            <el-menu-item index="2" class="eit">
+            <el-menu-item index="3" class="eit">
               <i class="el-icon-menu"></i>
               <span slot="title">用户管理</span>
+            </el-menu-item>
+            <!-- 补全缺陷 -->
+            <el-menu-item index="4" class="eit last-eit">
+              <span slot="title"></span>
             </el-menu-item>
           </el-menu>
         </el-col>
       </el-row>
 
-      <div class="rightPanel">
-        <OrderInfo />
-      </div>
+       <el-main class="rightPanel">
+         <!-- 路由的出口，子组件显示的地方，因为要在主页面显示，所以要用子路由 -->
+
+        <router-view></router-view>
+       </el-main>
     </div>
   </div>
 </template>
 <script>
+//订单信息
 import OrderInfo from "@/pages/admin/adminHome/orderInfo";
 export default {
   methods: {
@@ -50,9 +71,9 @@ export default {
     OrderInfo,
   },
 
-  mounted() {
-    this.$router.push("/adminHome");
-  },
+  // mounted() {
+  //   this.$router.push("/adminHome");
+  // },
 };
 </script>
 
@@ -68,13 +89,15 @@ export default {
   .tac {
     float: left;
     width: 200px;
-    .eit{
+    .eit {
       width: 200px;
+    }
+    .last-eit {
+      height: 539px;
     }
   }
   .rightPanel {
     float: left;
-    
   }
 }
 </style>
