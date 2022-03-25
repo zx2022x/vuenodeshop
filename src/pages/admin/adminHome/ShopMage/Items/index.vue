@@ -16,37 +16,40 @@
       </el-table-column>
       <el-table-column prop="goods_detail" label="详细信息" width="350">
       </el-table-column>
-      <!-- <el-table-column prop="goods_img" label="图片" width="200"> -->
-        <!-- 图片框 start
+    
+        <!-- 图片框 start -->
+          <!-- <el-table-column prop="goods_img" label="图片" width="200">
         <div class="demo-image">
           <div class="block">
             <el-image style="width: 60px; height: 60px" :src="url"></el-image>
 
             　　　 　
           </div>
-        </div> -->
+        </div>
+         </el-table-column> -->
         <!-- 图片框 start -->
         
-      <el-table-column align="left" label="操作" width="400">
+     <el-table-column align="left" label="操作" width="400">
      
       <template slot-scope="scope">
         <el-button
           size="mini"
           type="primary"
           @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-          </template>
+          
        
            <!-- <el-button
           size="mini"
           type="danger"
           @click="handleDelete(scope.$index, scope.row)">上架</el-button> -->
-            <template slot-scope="scope">
+           
+
            <el-button
           size="mini"
           type="warning"
           @click="handleDelete(scope.$index, scope.row)">下架</el-button>
-            </template>
-             <template slot-scope="scope">
+          
+            
           <el-button
           size="mini"
           type="danger"
@@ -70,7 +73,7 @@ export default {
       //图片数据
       // fits: "fill",
 
-      // url: `http://localhost:3000/upload_dfc41cf38a6a2ec23427586df27ffd76.jpeg`,
+      url: `http://localhost:3000/upload_dfc41cf38a6a2ec23427586df27ffd76.jpeg`,
 
       //图片数据 end
       totalCount: 100, //一共有多少条信息
@@ -100,11 +103,12 @@ export default {
         this.$message.error(error.message);
       }
     },
-      handleEdit() {
-
-        this.$router.push()
+      handleEdit(index, row) {
+      console.log("编辑")
+      console.log(row)
       },
       handleDelete(index, row) {
+
         console.log(index, row);
       }
   },
