@@ -1,19 +1,22 @@
 import { reqUserLogin } from '@/api'
-import {setToken} from '@/utils/token'
+import {setToken,getToken} from '@/utils/token'
 const state = {
-    token: {},
+    token:getToken(),
     
 }
 const mutations = {
     //用户登录
 
     ADMINUSERLOGIN(state, adminInfo) {
-         state.token = adminInfo.token
+         
         setToken(adminInfo.token)
+       
+        
         
     }
 }
 const actions = {
+    
     //用户登录
     async adminUserLogin({commit},data) {
         try {
@@ -33,7 +36,7 @@ const actions = {
             console.log(error)
         }
 
-    }
+    },
 }
 const getters = {}
 export default {

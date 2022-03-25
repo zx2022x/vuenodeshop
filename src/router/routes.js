@@ -25,7 +25,14 @@ export default [
                 name:'upload',
                 path:'/uploadshop',
                 component:()=>import('@/pages/admin/adminHome/ShopMage/UploadShop')
-            }
+            },
+            //商品列表
+            {
+                name:'items',
+                path:'/items',
+                component:()=>import('@/pages/admin/adminHome/ShopMage/Items')
+            },
+            
         ]
     },
     //订单列表

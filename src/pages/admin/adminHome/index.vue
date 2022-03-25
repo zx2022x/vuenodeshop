@@ -21,13 +21,11 @@
                 <span>商品管理</span>
               </template>
               <el-menu-item-group>
-                <template slot="title">分组一</template>
+               
                 <el-menu-item index="/uploadshop">商品上传</el-menu-item>
-                <el-menu-item index="1-2">修改商品</el-menu-item>
+                <el-menu-item index="/items">商品列表</el-menu-item>
               </el-menu-item-group>
-              <el-menu-item-group title="分组2">
-                <el-menu-item index="1-3">商品列表</el-menu-item>
-              </el-menu-item-group>
+              
              
             </el-submenu>
 

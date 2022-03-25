@@ -25,7 +25,12 @@ requests.interceptors.request.use((config) => {
 //   }
   //需要携带token带给服务器
   if(store.state.user.token){
-    config.headers.token = store.state.user.token;
+   
+    config.headers.Authorization = store.state.user.token;
+   
+    // console.log('请求头token:')
+
+    // console.log(config.headers.token)
     
   }
   nprogress.start();
