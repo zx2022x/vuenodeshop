@@ -5,3 +5,5 @@ export const reqUserLogin=(data)=>requests({url:`/users/login/`,data, method:'po
 export const reqSpImgUpload=(data)=>requests({url:"/goods/upload",data,method:'post'})
 //商品上传
 export const reqSpUpload=(data)=>requests({url:`/goods/`,data,method:'post'})
+//获取商品列表
+export const reqSpListInfo=(pageNum,pageSize)=>requests({url:`goods?pageNum=${pageNum}&pageSize=${pageSize}`,method:'get'})

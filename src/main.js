@@ -8,7 +8,7 @@ import store from '@/store'
 import router from '@/router'
 //按需引入elementui
 import {Row,Col,Menu,Submenu,MenuItem,Table,TableColumn,MenuItemGroup,Main,Form,
-  FormItem,Input,Button,Option,Select,InputNumber,Upload,Dialog} from 'element-ui'
+  FormItem,Input,Button,Option,Select,InputNumber,Upload,Dialog,Popover,Tag,Pagination,Image,Message} from 'element-ui'
 Vue.use(Row)
 Vue.use(Col)
 Vue.use(Menu)
@@ -28,6 +28,11 @@ Vue.use(Button)
 Vue.use(InputNumber)
 Vue.use(Upload)
 Vue.use(Dialog)
+Vue.use(Popover),
+Vue.use(Tag),
+Vue.use(Pagination)
+Vue.use(Image)
+Vue.prototype.$message = Message;
 new Vue({
   render: h => h(App),
   store,

@@ -1,6 +1,7 @@
-import {reqSpImgUpload,reqSpUpload} from '@/api'
+import {reqSpImgUpload,reqSpUpload,reqSpListInfo} from '@/api'
 const state={
-    
+    //商品泪飙信息
+    SpListInfo:{},
 }
 const actions={
     //商品图片上传
@@ -32,15 +33,39 @@ const actions={
          }
        
 
+    },
+    //获取商品列表
+    async getSpListInfo({commit},{pageNum,pageSize}){
+
+        let res=await reqSpListInfo(pageNum,pageSize)
+        
+        if(res.code==0){
+            commit("GETSPLISTINFO",res.result)
+            // this.$message({
+            //     message:message,
+            //     type: 'success'
+            //   });
+            return res.message
+        }
+        else{
+            return Promise.reject(new Error(res.message))
+        }
+
     }
 
 
 }
 const mutations={
+       //获取商品列表
+       GETSPLISTINFO(state,result){
+           state.SpListInfo=result
+       }
 
 }
 const getters={
-
+    SpListInfo(state){
+       return state.SpListInfo ||[]
+    }
 }
 
 export default{
