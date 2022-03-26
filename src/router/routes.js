@@ -32,6 +32,18 @@ export default [
                 path:'/items',
                 component:()=>import('@/pages/admin/adminHome/ShopMage/Items')
             },
+            //编辑商品
+            {
+                name:'edititem',
+                path:'/edititem/:goods_name/:goods_price/:goods_num/:goods_img/:goods_fm',
+                component:()=>import('@/pages/admin/adminHome/ShopMage/EditItem')
+            },
+            //上架商品
+            {
+                name:'validitem',
+                path:'/validitem',
+                component:()=>import('@/pages/admin/adminHome/ShopMage/ItemsValid')
+            }
             
         ]
     },

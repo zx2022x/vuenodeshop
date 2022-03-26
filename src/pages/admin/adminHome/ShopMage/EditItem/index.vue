@@ -6,9 +6,9 @@
       </el-form-item>
       <el-form-item label="商品类别">
         <el-select v-model.number="goods_fm" placeholder="请选择活动区域">
-          <el-option label="水果" value="1"></el-option>
-          <el-option label="肉类" value="2"></el-option>
-          <el-option label="粗粮" value="3"></el-option>
+          <el-option label="水果" value=1></el-option>
+          <el-option label="肉类" value=2></el-option>
+          <el-option label="粗粮" value=3></el-option>
         </el-select>
       </el-form-item>
       <!-- 数量框 -->
@@ -51,17 +51,9 @@
         </el-dialog>
       </div>
       <!-- 商品图片上传 end-->
-      <form
-        action="http://localhost:3000/goods/upload"
-        method="post"
-        enctype="multipart/form-data"
-      >
-        <input ref="file" type="file" name="file" @change="upload()" />
-        <button type="submit">上传</button>
-      </form>
-
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">完成</el-button>
+        <el-button type="primary" @click="onSubmit">提交修改</el-button>
+        
       </el-form-item>
     </el-form>
   </div>
@@ -74,7 +66,7 @@ export default {
       goods_name: "",
       goods_price: "",
       goods_num: 1,
-      goods_fm: "", //复选框
+      goods_fm:"", //复选框
       goods_detail: "",
       //商品详细信息
       form: {
@@ -91,20 +83,31 @@ export default {
   methods: {
     async onSubmit() {
       try {
-        const goods_img = "upload_dfc41cf38a6a2ec23427586df27ffd76.jpeg";
-        const { goods_name, goods_price, goods_num, goods_detail, goods_fm } =
-          this;
+       const goods_img="upload_dfc41cf38a6a2ec23427586df27ffd76.jpeg"
+        const {
+          goods_name,
+          goods_price,
+          goods_num,
+          goods_detail,
+          goods_fm,
 
+        } = this;
+        
         await this.$store.dispatch("SpUpload", {
           goods_name,
           goods_price,
           goods_num,
           goods_detail,
           goods_fm,
-          goods_img,
+          goods_img
         });
+         
+         
+
+
       } catch (error) {
-        console.log("didkd" + error);
+        console.log('didkd'+error)
+        
       }
     },
     //文件上传方法 start
@@ -116,25 +119,6 @@ export default {
       this.dialogImageUrl = file.url;
       this.dialogVisible = true;
     },
-
-   async upload() {
-      try {
-        let input1 = this.$refs.file;
-        // 输出的是input.value 文件路径名
-        //输input.files  上传的文件
-        console.log(input1.files);
-         
-        await this.$store.dispatch('SpImgUpload',input1.files)
-        
-        
-
-      } catch (error) {
-         console.log("上传图片")
-         console.log(error)
-      }
-     
-    },
-
     //文件上传方法 end
   },
 };

@@ -24,6 +24,7 @@
                
                 <el-menu-item index="/uploadshop">商品上传</el-menu-item>
                 <el-menu-item index="/items">商品列表</el-menu-item>
+                <el-menu-item index="/validitem">商品上架</el-menu-item>
               </el-menu-item-group>
               
              

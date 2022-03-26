@@ -4,7 +4,7 @@
 
     <el-button :plain="true" @click="open4">错误</el-button> -->
     <!-- <el-table :data="SpListInfo.list" stripe style="width: 100%"> -->
-    <el-table :data="SpListInfo.list" stripe style="width: 100%">
+    <el-table :data="UnSpList" stripe style="width: 100%">
       <el-table-column prop="goods_name" label="名称" width="180">
       </el-table-column>
 
@@ -17,39 +17,28 @@
       <el-table-column prop="goods_detail" label="详细信息" width="350">
       </el-table-column>
 
-      <el-table-column label="图片" width="80">
+      <!-- 图片框 start -->
+      
+        <el-table-column  label="图片" width="150">
+          <template slot-scope="scope">
+            <el-image style="width: 60px; height: 60px" :src="(api+scope.row.goods_img)"></el-image>
+            
+          </template>
+       
+         </el-table-column> 
+      <!-- 图片框 start -->
+
+      
+    <el-table-column align="left" label="操作" width="100">
         <template slot-scope="scope">
-          <el-image
-            style="width: 60px; height: 60px"
-            :src="api + scope.row.goods_img"
-          ></el-image>
-        </template>
-      </el-table-column>
-
-      <el-table-column align="left" label="操作" width="400">
-        <template slot-scope="scope">
-          <el-button
-            size="mini"
-            type="primary"
-            @click="handleEdit(scope.$index, scope.row)"
-            >编辑
-          </el-button>
-
-          <el-button
-            size="mini"
-            type="warning"
-            @click="handleXiaJia(scope.$index, scope.row)"
-            >下架
-          </el-button>
-
           <el-button
             size="mini"
             type="danger"
             @click="handleDelete(scope.$index, scope.row)"
-            >删除
-          </el-button>
+            >上架</el-button
+          >
         </template>
-      </el-table-column>
+      </el-table-column> 
     </el-table>
 
     <el-pagination background layout="prev, pager, next" :total="totalCount">
@@ -65,18 +54,22 @@ export default {
       // tableData: [],
       api: "http://localhost:3000/",
       //图片数据
-      fits: "fill",
+      // fits: "fill",
+
+     
 
       //图片数据 end
       totalCount: 100, //一共有多少条信息
       pageNum: 1,
       pageSize: 7,
       urla: 1,
+      getUnvali: [],
     };
   },
   mounted() {
     //获取数据
     this.getdata();
+   
   },
   methods: {
     async getdata() {
@@ -104,44 +97,15 @@ export default {
       this.$router.push({ name: "edititem", params: pm });
       console.log(row);
     },
-    async handleDelete(index, row) {
-      try {
-        const id = row.id;
-        const message = await this.$store.dispatch("SpDelete", id);
-        this.$message({
-          message: message,
-          type: "success",
-        });
-         this.getdata();
-      } catch (error) {
-        this.$message.error(error.message);
-      }
+    handleDelete(index, row) {
+      console.log(index, row);
     },
-    async handleXiaJia(index, row) {
-      try {
-        const id = row.id;
-        const message = await this.$store.dispatch("spXiaJia", id);
-
-        this.$message({
-          message: message,
-          type: "success",
-        });
-        this.getdata();
-      } catch (error) {
-        this.$message.error(error.message);
-      }
-    },
+    
   },
   computed: {
     //mapGetters里面的写法：传递的数组，因为getters计算是没有划分模块【home,search】
     // ...mapGetters(["SpListInfo"]),
-    ...mapGetters(["SpListInfo"]),
-    // tableData:SpListInfo.list,
-    // tableData:SpListInfo.list
-    //  SpListInfo(){
-    //     const urla=SpListInfo.list.goods_img
-    //     const
-    //  }
+    ...mapGetters(["SpListInfo", "UnSpList"]),
   },
 };
 </script>
