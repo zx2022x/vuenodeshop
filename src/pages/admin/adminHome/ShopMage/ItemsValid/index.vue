@@ -12,7 +12,12 @@
       </el-table-column>
       <el-table-column prop="goods_num" label="数量" width="80">
       </el-table-column>
-      <el-table-column prop="goods_fm" label="类目" width="80">
+      <el-table-column  label="类目" width="80">
+         <template slot-scope="scope">
+          <!-- <div :handleFm="handleFm(scope.$index, scope.row)"> -->
+            <span>{{changeValue(scope.row.goods_fm)}}</span>
+          <!-- </div> -->
+        </template>
       </el-table-column>
       <el-table-column prop="goods_detail" label="详细信息" width="350">
       </el-table-column>
@@ -99,6 +104,26 @@ export default {
     },
     handleDelete(index, row) {
       console.log(index, row);
+    },
+     changeValue(row){
+      let a ='dmd'
+        switch(row){
+           case 1:
+            a="水果";
+             break;
+            case 2:
+              a="肉类";
+              break;
+            case 3:
+              a="粗粮";
+
+              break;
+             
+            
+
+        }
+        return a
+
     },
     
   },

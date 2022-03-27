@@ -11,3 +11,6 @@ export const reqSpListInfo=(pageNum,pageSize)=>requests({url:`goods?pageNum=${pa
 export const reqSpXiaJia=(id)=>requests({url:`/goods/${id}/off`,method:'post'})
 //删除商品
 export const reqSpDelete=(id)=>requests({url:`/goods/${id}`,method:'delete'})
+//获取用户列表
+export const reqGetUserList=(pageNum,pageSize)=>requests({url:`/users?pageNum=${pageNum}&pageSize=${pageSize}`,method:'get'})
+

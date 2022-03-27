@@ -37,12 +37,14 @@
       <!-- 商品图片上传 start -->
       <span class="wont wopload">上传图片</span>
       <div class="upld">
-        <el-upload
-          action="http://localhost:3000/goods/upload"
+        <el-upload 
+          action="/api/goods/upload"
           list-type="picture-card"
           :on-preview="handlePictureCardPreview"
           :on-remove="handleRemove"
+          :on-success="upLoadSu"
           :with-credentials="true"
+         
         >
           <i class="el-icon-plus"></i>
         </el-upload>
@@ -51,14 +53,14 @@
         </el-dialog>
       </div>
       <!-- 商品图片上传 end-->
-      <form
+      <!-- <form
         action="http://localhost:3000/goods/upload"
         method="post"
         enctype="multipart/form-data"
       >
         <input ref="file" type="file" name="file" @change="upload()" />
         <button type="submit">上传</button>
-      </form>
+      </form> -->
 
       <el-form-item>
         <el-button type="primary" @click="onSubmit">完成</el-button>
@@ -91,11 +93,13 @@ export default {
   methods: {
     async onSubmit() {
       try {
-        const goods_img = "upload_dfc41cf38a6a2ec23427586df27ffd76.jpeg";
+        const goods_img = localStorage.getItem('goods_img')
+        console.log("tijao")
+        console.log(goods_img)
         const { goods_name, goods_price, goods_num, goods_detail, goods_fm } =
           this;
 
-        await this.$store.dispatch("SpUpload", {
+       const message= await this.$store.dispatch("SpUpload", {
           goods_name,
           goods_price,
           goods_num,
@@ -103,8 +107,13 @@ export default {
           goods_fm,
           goods_img,
         });
+          this.$message({
+          message: message,
+          type: "success",
+        });
+        
       } catch (error) {
-        console.log("didkd" + error);
+        this.$message.error(error.message);
       }
     },
     //文件上传方法 start
@@ -113,27 +122,35 @@ export default {
     },
     handlePictureCardPreview(file) {
       console.log(file);
+
       this.dialogImageUrl = file.url;
       this.dialogVisible = true;
     },
+    //文件上传成功后
+     upLoadSu(response, file, fileList){
+        const goods_img=response.result.goods_img
+         console.log('response')
+         localStorage.setItem('goods_img',goods_img)
+        
+     },
 
-   async upload() {
-      try {
-        let input1 = this.$refs.file;
-        // 输出的是input.value 文件路径名
-        //输input.files  上传的文件
-        console.log(input1.files);
+  //  async upload() {
+  //     try {
+  //       let input1 = this.$refs.file;
+  //       // 输出的是input.value 文件路径名
+  //       //输input.files  上传的文件
+  //       console.log(input1.files);
          
-        await this.$store.dispatch('SpImgUpload',input1.files)
+  //       await this.$store.dispatch('SpImgUpload',input1.files)
         
         
 
-      } catch (error) {
-         console.log("上传图片")
-         console.log(error)
-      }
+  //     } catch (error) {
+  //        console.log("上传图片")
+  //        console.log(error)
+  //     }
      
-    },
+  //   },
 
     //文件上传方法 end
   },

@@ -2,7 +2,7 @@
   <div class="uploadShop">
     <el-form ref="form" :model="form" label-width="80px">
       <el-form-item label="商品名称">
-        <el-input v-model="goods_name"></el-input>
+        <el-input v-model="goods_name">{{"dkidkd"}}</el-input>
       </el-form-item>
       <el-form-item label="商品类别">
         <el-select v-model.number="goods_fm" placeholder="请选择活动区域">
@@ -121,6 +121,10 @@ export default {
     },
     //文件上传方法 end
   },
+  mounted(){
+     console.log("route")
+    console.log(this.$route)
+  }
 };
 </script>
 <style scoped lang="less">

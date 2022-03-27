@@ -1,7 +1,8 @@
-import {reqSpImgUpload,reqSpUpload,reqSpListInfo,reqSpXiaJia, reqSpDelete} from '@/api'
+import {reqSpImgUpload,reqSpUpload,reqSpListInfo,reqSpXiaJia, reqSpDelete,reqGetUserList} from '@/api'
 const state={
-    //商品泪飙信息
+    //商品列表信息
     SpListInfo:{},
+    UserInfo:{},
 }
 const actions={
     //商品图片上传
@@ -85,8 +86,18 @@ const actions={
 
        }
 
+    },
+    //获取用户列表
+    async getUserList({commit},{pageNum,pageSize}){
+         const res= await reqGetUserList(pageNum,pageSize)
+         if(res.code==0){
+             commit('GETUSERLIST',res.result)
+             return res.message
+         }
+         else{
+             return Promise(new Error(res.message))
+         }
     }
-
 
 
 }
@@ -94,6 +105,10 @@ const mutations={
        //获取商品列表
        GETSPLISTINFO(state,result){
            state.SpListInfo=result
+       },
+       //获取用户列表
+       GETUSERLIST(state,result){
+            state.UserInfo=result
        }
 
 }
@@ -104,15 +119,18 @@ const getters={
     UnSpList(state){
 
       return state.SpListInfo.list
-    //  const b=[]
-    //  for(let i=0;i<a.length;i++){
-    //      if(!a[i].deletedAt){
-    //          b.push=a[i]
-    //      }
-    //  }
-    //  return b;
+  
     
-    }
+    },
+     //获取用户信息
+     getUser(state){
+         return state.UserInfo
+     },
+     //获取用户列表
+     getUserList(state){
+        return state.UserInfo.list
+     }
+
 }
 
 export default{

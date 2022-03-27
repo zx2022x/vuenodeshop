@@ -34,7 +34,7 @@
               <i class="el-icon-menu"></i>
               <span slot="title">订单管理</span>
             </el-menu-item>
-            <el-menu-item index="3" class="eit">
+            <el-menu-item index="/usermage" class="eit">
               <i class="el-icon-menu"></i>
               <span slot="title">用户管理</span>
             </el-menu-item>

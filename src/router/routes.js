@@ -43,7 +43,15 @@ export default [
                 name:'validitem',
                 path:'/validitem',
                 component:()=>import('@/pages/admin/adminHome/ShopMage/ItemsValid')
+            },
+            //用户列表
+            {
+                name:'usermage',
+                path:'/usermage',
+                component:()=>import('@/pages/admin/adminHome/UserMage')
             }
+
+
             
         ]
     },
