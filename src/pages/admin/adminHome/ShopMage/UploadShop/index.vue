@@ -37,6 +37,7 @@
       <!-- 商品图片上传 start -->
       <span class="wont wopload">上传图片</span>
       <div class="upld">
+        
         <el-upload 
           action="/api/goods/upload"
           list-type="picture-card"

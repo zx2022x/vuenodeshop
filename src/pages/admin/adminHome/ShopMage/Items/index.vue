@@ -106,9 +106,9 @@ export default {
       const { goods_name, goods_price, goods_num, goods_img, goods_fm } = row;
       const pm = { goods_name, goods_price, goods_num, goods_img, goods_fm };
 
-      console.log(pm);
+      
       this.$router.push({ name: "edititem", params: pm });
-      console.log(row);
+      
     },
     async handleDelete(index, row) {
       try {

@@ -30,6 +30,16 @@
       label="更新时间"
       width="250">
     </el-table-column>
+     <el-table-column align="left" label="操作" width="100">
+        <template slot-scope="scope">
+          <el-button
+            size="mini"
+            type="warning"
+            @click="handleDelete(scope.$index, scope.row)"
+            >修改密码</el-button
+          >
+        </template>
+      </el-table-column> 
   </el-table>
 </template>
 
