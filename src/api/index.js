@@ -13,4 +13,11 @@ export const reqSpXiaJia=(id)=>requests({url:`/goods/${id}/off`,method:'post'})
 export const reqSpDelete=(id)=>requests({url:`/goods/${id}`,method:'delete'})
 //获取用户列表
 export const reqGetUserList=(pageNum,pageSize)=>requests({url:`/users?pageNum=${pageNum}&pageSize=${pageSize}`,method:'get'})
+//管理员修改用户名密码
+export const reqChangeUserPw=(data)=>requests({url:`/users/adpa`,data,method:'patch'})
 
+
+//获取软删除列表
+export const reqGetRuGoodsList=(pageNum,pageSize)=>requests({url:`/goods/ru?pageNum=${pageNum}&pageSize=${pageSize}`,method:'get'})
+//上架商品
+export const reqSangJia=(id)=>requests({url:`/goods/${id}/on`,method:'post'})

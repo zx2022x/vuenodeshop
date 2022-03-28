@@ -10,7 +10,7 @@
     </el-table-column>
     <el-table-column
       prop="user_name"
-      label="名称"
+      label="用户名"
       width="180">
     </el-table-column>
     <el-table-column
@@ -35,7 +35,7 @@
           <el-button
             size="mini"
             type="warning"
-            @click="handleDelete(scope.$index, scope.row)"
+            @click="handleChangepw(scope.$index, scope.row)"
             >修改密码</el-button
           >
         </template>
@@ -54,6 +54,12 @@ import {mapGetters} from 'vuex'
     },
     mounted(){
         this.$store.dispatch('getUserList',{pageNum:1,pageSize:10})
+    },
+    methods:{
+       handleChangepw(index,row){
+        const {id,user_name} =row
+        this.$router.push({name:'changepw',params:{id,user_name}})
+       }
     },
     computed:{
         ...mapGetters(['getUser','getUserList'])

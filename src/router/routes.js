@@ -49,6 +49,12 @@ export default [
                 name:'usermage',
                 path:'/usermage',
                 component:()=>import('@/pages/admin/adminHome/UserMage')
+            },
+            //修改用户的密码
+            {
+                name:'changepw',
+                path:'/changepw/:id/:user_name',
+                component:()=>import('@/pages/admin/adminHome/UserMage/Changepw')
             }
 
 

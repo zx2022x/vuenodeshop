@@ -1,8 +1,17 @@
-import {reqSpImgUpload,reqSpUpload,reqSpListInfo,reqSpXiaJia, reqSpDelete,reqGetUserList} from '@/api'
+import {reqSpImgUpload,
+        reqSpUpload,
+        reqSpListInfo,
+        reqSpXiaJia, 
+        reqSpDelete,
+        reqGetUserList,
+        reqGetRuGoodsList,
+        reqSangJia,
+        reqChangeUserPw} from '@/api'
 const state={
     //商品列表信息
     SpListInfo:{},
     UserInfo:{},
+    rugoodslist:{}
 }
 const actions={
     //商品图片上传
@@ -63,6 +72,19 @@ const actions={
         }
 
     },
+
+    //获取软删除商品列表
+    async getRuGoodsList({commit},{pageNum,pageSize}){
+         const res =  await reqGetRuGoodsList(pageNum,pageSize)
+         if(res.code==0){
+             commit('GETRUGOODSLIST',res.result)
+             return res.message
+         }
+         else{
+             return Promise.reject(new Error(res.message))
+         }
+
+    },
     //商品下架
     async spXiaJia({commit},id){
          const res=await reqSpXiaJia(id)
@@ -87,6 +109,16 @@ const actions={
        }
 
     },
+    //上架商品
+    async sangJia({commit},id){
+         const res =await reqSangJia(id)
+         if(res.code==0){
+             return res.message
+         }
+         else{
+             return Promise.reject(new Error(res.message))
+         }
+    },
     //获取用户列表
     async getUserList({commit},{pageNum,pageSize}){
          const res= await reqGetUserList(pageNum,pageSize)
@@ -97,6 +129,22 @@ const actions={
          else{
              return Promise(new Error(res.message))
          }
+    },
+    //管理员更改用户密码
+    async changeUserPw({commit},{id,password}){
+
+     try {
+        const res= await reqChangeUserPw({id,password})
+        if(res.code==0){
+            return res.message
+        }
+        else{
+            return Promise.reject(new Error(res.message))
+        }
+     } catch (error) {
+         console.log(error)
+     }
+      
     }
 
 
@@ -109,6 +157,9 @@ const mutations={
        //获取用户列表
        GETUSERLIST(state,result){
             state.UserInfo=result
+       },
+       GETRUGOODSLIST(state,result){
+           state.rugoodslist=result
        }
 
 }
@@ -129,7 +180,12 @@ const getters={
      //获取用户列表
      getUserList(state){
         return state.UserInfo.list
+     },
+     //获取软删除列表
+     getRuGoodsList(state){
+         return state.rugoodslist.list
      }
+     
 
 }
 

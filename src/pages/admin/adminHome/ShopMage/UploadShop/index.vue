@@ -95,7 +95,7 @@ export default {
     async onSubmit() {
       try {
         const goods_img = localStorage.getItem('goods_img')
-        console.log("tijao")
+        
         console.log(goods_img)
         const { goods_name, goods_price, goods_num, goods_detail, goods_fm } =
           this;

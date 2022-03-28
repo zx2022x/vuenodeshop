@@ -4,7 +4,7 @@
 
     <el-button :plain="true" @click="open4">错误</el-button> -->
     <!-- <el-table :data="SpListInfo.list" stripe style="width: 100%"> -->
-    <el-table :data="UnSpList" stripe style="width: 100%">
+    <el-table :data="getRuGoodsList" stripe style="width: 100%">
       <el-table-column prop="goods_name" label="名称" width="180">
       </el-table-column>
 
@@ -39,7 +39,7 @@
           <el-button
             size="mini"
             type="danger"
-            @click="handleDelete(scope.$index, scope.row)"
+            @click="handleSj(scope.$index, scope.row)"
             >上架</el-button
           >
         </template>
@@ -81,7 +81,7 @@ export default {
       try {
         const { pageNum, pageSize } = this;
 
-        const message = await this.$store.dispatch("getSpListInfo", {
+        const message = await this.$store.dispatch("getRuGoodsList", {
           pageNum,
           pageSize,
         });
@@ -89,22 +89,26 @@ export default {
           message: message,
           type: "success",
         });
+        
       } catch (error) {
         this.$message.error(error.message);
       }
     },
-    handleEdit(index, row) {
-      console.log(row);
-      const { goods_name, goods_price, goods_num, goods_img, goods_fm } = row;
-      const pm = { goods_name, goods_price, goods_num, goods_img, goods_fm };
+    async handleSj(index,row){
+        try {
+        const message=await this.$store.dispatch('sangJia',row.id)
+          this.getdata()
+          this.$message({
+          message: message,
+          type: "success",
+        });
+        } catch (error) {
+           this.$message.error(error.message);
+        }
+        
 
-      console.log(pm);
-      this.$router.push({ name: "edititem", params: pm });
-      console.log(row);
     },
-    handleDelete(index, row) {
-      console.log(index, row);
-    },
+  
      changeValue(row){
       let a ='dmd'
         switch(row){
@@ -130,7 +134,7 @@ export default {
   computed: {
     //mapGetters里面的写法：传递的数组，因为getters计算是没有划分模块【home,search】
     // ...mapGetters(["SpListInfo"]),
-    ...mapGetters(["SpListInfo", "UnSpList"]),
+    ...mapGetters(["getRuGoodsList"]),
   },
 };
 </script>
