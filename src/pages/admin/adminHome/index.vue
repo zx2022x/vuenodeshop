@@ -43,9 +43,7 @@
               <span slot="title">修改密码</span>
             </el-menu-item>
             <!-- 补全缺陷 -->
-            <el-menu-item index="4" class="eit last-eit">
-              <span slot="title"></span>
-            </el-menu-item>
+          
           </el-menu>
         </el-col>
       </el-row>
@@ -82,16 +80,22 @@ export default {
 
 <style lang='less' scoped>
 .adminHome {
+  display:relative;
   header {
+   
     padding-left: 10px;
     color: white;
     height: 46px;
+    width: 100vw;
     background-color: #545c64;
     line-height: 46px;
   }
   .tac {
+    
     float: left;
     width: 200px;
+    height:93.8vh;
+    background-color: #545c64;
     .eit {
       width: 200px;
     }

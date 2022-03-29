@@ -12,7 +12,8 @@ const state={
     //商品列表信息
     SpListInfo:{},
     UserInfo:{},
-    rugoodslist:{}
+    rugoodslist:{},
+
 }
 const actions={
     //商品图片上传
@@ -194,7 +195,11 @@ const getters={
      //获取软删除列表
      getRuGoodsList(state){
          return state.rugoodslist.list
-     }
+     },
+     //获取软删除列表总数
+     getRuGoodsInfo(state){
+        return state.rugoodslist.total
+    }
      
 
 }

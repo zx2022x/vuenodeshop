@@ -45,15 +45,17 @@
         </template>
       </el-table-column> 
     </el-table>
-
-    <el-pagination background layout="prev, pager, next" :total="totalCount">
-    </el-pagination>
+     <div class="pa">
+    <Pagination :total="getRuGoodsInfo" />
+    </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import Pagination from "@/pages/admin/Pagination"
 export default {
+
   data() {
     return {
       // tableData: [],
@@ -65,8 +67,7 @@ export default {
 
       //图片数据 end
       totalCount: 100, //一共有多少条信息
-      pageNum: 1,
-      pageSize: 7,
+     
       urla: 1,
       getUnvali: [],
     };
@@ -77,9 +78,9 @@ export default {
    
   },
   methods: {
-    async getdata() {
+    async getdata(pageNum=1,pageSize=6){
       try {
-        const { pageNum, pageSize } = this;
+       
 
         const message = await this.$store.dispatch("getRuGoodsList", {
           pageNum,
@@ -91,7 +92,9 @@ export default {
         });
         
       } catch (error) {
+
         this.$message.error(error.message);
+      
       }
     },
     async handleSj(index,row){
@@ -134,16 +137,23 @@ export default {
   computed: {
     //mapGetters里面的写法：传递的数组，因为getters计算是没有划分模块【home,search】
     // ...mapGetters(["SpListInfo"]),
-    ...mapGetters(["getRuGoodsList"]),
+    ...mapGetters(["getRuGoodsList","getRuGoodsInfo"]),
   },
+  components:{
+     Pagination,
+  }
 };
 </script>
 
 <style lang='less' scoped>
-.el-pagination {
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 20px;
+
+  .pa {
+
+
+  margin-top:30px;
+  margin-left:454px
+  // transform: translateX(-50%);
+  
 }
+
 </style>

@@ -1,4 +1,5 @@
 <template>
+<div>
   <el-table
     :data="getUserList"
     stripe
@@ -41,11 +42,18 @@
         </template>
       </el-table-column> 
   </el-table>
+   <div class="pa">
+    <Pagination :total="getUser.total" />
+    </div>
+    </div>
 </template>
 
 <script>
+
 import {mapGetters} from 'vuex'
+import Pagination from "@/pages/admin/Pagination"
   export default {
+
 
     data() {
       return {
@@ -65,6 +73,19 @@ import {mapGetters} from 'vuex'
     },
     computed:{
         ...mapGetters(['getUser','getUserList'])
+    },
+    components:{
+         Pagination
     }
   }
 </script>
+<style scoped lang='less'>
+ .pa {
+
+
+  margin-top:30px;
+  margin-left:454px
+  // transform: translateX(-50%);
+  
+}
+</style>
