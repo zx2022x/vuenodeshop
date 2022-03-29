@@ -6,7 +6,8 @@ import {reqSpImgUpload,
         reqGetUserList,
         reqGetRuGoodsList,
         reqSangJia,
-        reqChangeUserPw} from '@/api'
+        reqChangeUserPw,
+        reqChangeMyselfPw} from '@/api'
 const state={
     //商品列表信息
     SpListInfo:{},
@@ -145,8 +146,17 @@ const actions={
          console.log(error)
      }
       
-    }
-
+    },
+    //修改自己的密码
+    async changeMyselfPw({commit},{user_name,password}){
+         const res =await reqChangeMyselfPw(user_name,password)
+         if(res.code==0){
+             return res.message
+         }
+         else{
+             return Promise.reject(new Error(res.message))
+         }
+    },
 
 }
 const mutations={

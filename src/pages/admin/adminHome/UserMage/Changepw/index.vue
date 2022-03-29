@@ -77,7 +77,7 @@ export default {
             const {ruleForm} = this;
            
             const password = ruleForm.pass;
-            const  id  = this.$route.params.id;
+            const {id,mark}  = this.$route.params;
             console.log(id,password)
             const message = await this.$store.dispatch("changeUserPw", {id,password});
             
@@ -85,7 +85,14 @@ export default {
               message: message,
               type: "success",
             });
-            this.$router.push("/usermage");
+            if(mark==0){
+              this.$router.push("/usermage");
+            }else{
+              this.$router.push('/')
+            }
+
+          //  
+            
           } catch (error) {
             this.$message.error(error.message);
           }

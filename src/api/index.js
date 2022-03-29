@@ -15,7 +15,8 @@ export const reqSpDelete=(id)=>requests({url:`/goods/${id}`,method:'delete'})
 export const reqGetUserList=(pageNum,pageSize)=>requests({url:`/users?pageNum=${pageNum}&pageSize=${pageSize}`,method:'get'})
 //管理员修改用户名密码
 export const reqChangeUserPw=(data)=>requests({url:`/users/adpa`,data,method:'patch'})
-
+//修改自己密码接口
+export const reqChangeMyselfPw=(data)=>requests({url:`/users`,data,method:'patch'})
 
 //获取软删除列表
 export const reqGetRuGoodsList=(pageNum,pageSize)=>requests({url:`/goods/ru?pageNum=${pageNum}&pageSize=${pageSize}`,method:'get'})

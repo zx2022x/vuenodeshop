@@ -38,6 +38,10 @@
               <i class="el-icon-menu"></i>
               <span slot="title">用户管理</span>
             </el-menu-item>
+            <el-menu-item index="/changepw" :route="{name:'changepw',params:{id:2,user_name:'admin',mark:1}}" class="eit">
+              <i class="el-icon-menu"></i>
+              <span slot="title">修改密码</span>
+            </el-menu-item>
             <!-- 补全缺陷 -->
             <el-menu-item index="4" class="eit last-eit">
               <span slot="title"></span>

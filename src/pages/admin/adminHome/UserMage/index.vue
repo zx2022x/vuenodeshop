@@ -58,7 +58,9 @@ import {mapGetters} from 'vuex'
     methods:{
        handleChangepw(index,row){
         const {id,user_name} =row
-        this.$router.push({name:'changepw',params:{id,user_name}})
+        
+        this.$router.push({name:'changepw',params:{id,user_name,mark:0}})
+
        }
     },
     computed:{

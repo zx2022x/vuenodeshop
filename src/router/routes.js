@@ -53,7 +53,7 @@ export default [
             //修改用户的密码
             {
                 name:'changepw',
-                path:'/changepw/:id/:user_name',
+                path:'/changepw/:id/:user_name/:mark',
                 component:()=>import('@/pages/admin/adminHome/UserMage/Changepw')
             }
 
