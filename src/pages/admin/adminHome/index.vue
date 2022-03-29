@@ -51,7 +51,7 @@
        <el-main class="rightPanel">
          <!-- 路由的出口，子组件显示的地方，因为要在主页面显示，所以要用子路由 -->
 
-        <router-view></router-view>
+        <router-view v-if="isRouterAlive"></router-view>
        </el-main>
     </div>
   </div>
@@ -60,7 +60,25 @@
 //订单信息
 import OrderInfo from "@/pages/admin/adminHome/orderInfo";
 export default {
+  data(){
+    return{
+      isRouterAlive:true,
+    }
+  },
+  // 刷新页面
+   provide() {
+      return {
+        reload: this.reload
+      }
+    },
   methods: {
+    // 刷新页面
+    reload() {
+        this.isRouterAlive = false
+        this.$nextTick(function() {
+          this.isRouterAlive = true
+        })
+    },
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
     },

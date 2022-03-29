@@ -6,9 +6,9 @@
       </el-form-item>
       <el-form-item label="商品类别">
         <el-select v-model.number="goods_fm" placeholder="请选择活动区域">
-          <el-option label="水果" value="1"></el-option>
-          <el-option label="肉类" value="2"></el-option>
-          <el-option label="粗粮" value="3"></el-option>
+          <el-option label="水果" :value="1"></el-option>
+          <el-option label="肉类" :value="2"></el-option>
+          <el-option label="粗粮" :value="3"></el-option>
         </el-select>
       </el-form-item>
       <!-- 数量框 -->
@@ -45,7 +45,7 @@
           :on-remove="handleRemove"
           :on-success="upLoadSu"
           :with-credentials="true"
-         
+          :limit="1"
         >
           <i class="el-icon-plus"></i>
         </el-upload>
@@ -79,6 +79,7 @@ export default {
       goods_num: 1,
       goods_fm: "", //复选框
       goods_detail: "",
+
       //商品详细信息
       form: {
         delivery: false,
@@ -91,12 +92,15 @@ export default {
       //文件上传参数 end
     };
   },
+  //使用刷新
+  inject:['reload'],
   methods: {
     async onSubmit() {
+
       try {
         const goods_img = localStorage.getItem('goods_img')
         
-        console.log(goods_img)
+        
         const { goods_name, goods_price, goods_num, goods_detail, goods_fm } =
           this;
 
@@ -112,6 +116,8 @@ export default {
           message: message,
           type: "success",
         });
+        this.reload()
+      
         
       } catch (error) {
         this.$message.error(error.message);

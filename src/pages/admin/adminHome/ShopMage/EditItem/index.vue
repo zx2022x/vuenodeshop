@@ -2,13 +2,13 @@
   <div class="uploadShop">
     <el-form ref="form" :model="form" label-width="80px">
       <el-form-item label="商品名称">
-        <el-input v-model="goods_name">{{"dkidkd"}}</el-input>
+        <el-input   :model="goods_name"></el-input>
       </el-form-item>
       <el-form-item label="商品类别">
         <el-select v-model.number="goods_fm" placeholder="请选择活动区域">
-          <el-option label="水果" value=1></el-option>
-          <el-option label="肉类" value=2></el-option>
-          <el-option label="粗粮" value=3></el-option>
+          <el-option label="水果" :value="1"></el-option>
+          <el-option label="肉类" :value="2"></el-option>
+          <el-option label="粗粮" :value="3"></el-option>
         </el-select>
       </el-form-item>
       <!-- 数量框 -->
@@ -68,6 +68,7 @@ export default {
       goods_num: 1,
       goods_fm:"", //复选框
       goods_detail: "",
+
       //商品详细信息
       form: {
         delivery: false,
@@ -90,7 +91,7 @@ export default {
           goods_num,
           goods_detail,
           goods_fm,
-
+          
         } = this;
         
         await this.$store.dispatch("SpUpload", {
@@ -120,10 +121,26 @@ export default {
       this.dialogVisible = true;
     },
     //文件上传方法 end
+      getSpInFo(){
+      //  const {goods_name,goods_price,goods_num,goods_fm,goods_detail,goods_img}=this.$route.params
+      //  this.goods_name=goods_name
+        // this.$set(this.goods_name,"goods_name",goods_name)
+        // this.$set(this.goods_price,"goods_price",goods_price)
+        // this.$set(this.goods_num,"goods_num",goods_num)
+        // this.$set(this.goods_fm,"goods_fm",goods_fm)
+        // this.$set(this.goods_detail,"goods_detail",goods_detail)
+        // this.$set(this.goods_fm,"goods_fm",goods_fm)
+      
+
+      
+    }
   },
   mounted(){
-     console.log("route")
-    console.log(this.$route)
+     
+   this.getSpInFo()
+  },
+  computed:{
+  
   }
 };
 </script>

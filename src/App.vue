@@ -13,11 +13,13 @@
 
 export default {
   name: 'App',
-  components: {
-    
-    // AdminHome,
-  }
+  
+   
+ 
+ 
+
 }
+
 </script>
 
 <style>
