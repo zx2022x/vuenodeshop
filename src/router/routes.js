@@ -3,7 +3,7 @@ export default [
     {
         //默认位置
         path: '/',
-        redirect: '/adminLogin'
+        redirect: '/home'
     },
     //管理员登录
     {
@@ -61,7 +61,14 @@ export default [
             
         ]
     },
-    //订单列表
+    //首页
+   {
+       name:'home',
+       path:'/home',
+       component:()=>import('@/pages/Home')
+   }
+    
+
     
 ]
     //admin后台路由

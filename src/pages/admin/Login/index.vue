@@ -51,7 +51,7 @@ export default {
 
         // this.$store.dipatch('')
       } catch (error) {
-        alert("管理员登录" + error.message);
+        alert(error.message);
       }
     },
   },

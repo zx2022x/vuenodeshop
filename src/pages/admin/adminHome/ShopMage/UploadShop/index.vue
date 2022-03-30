@@ -138,7 +138,7 @@ export default {
         const goods_img=response.result.goods_img
          console.log('response')
          localStorage.setItem('goods_img',goods_img)
-        
+         
      },
 
   //  async upload() {

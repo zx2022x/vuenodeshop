@@ -2,7 +2,7 @@
   <div class="uploadShop">
     <el-form ref="form" :model="form" label-width="80px">
       <el-form-item label="商品名称">
-        <el-input   :model="goods_name"></el-input>
+        <el-input   v-model="goods_name"></el-input>
       </el-form-item>
       <el-form-item label="商品类别">
         <el-select v-model.number="goods_fm" placeholder="请选择活动区域">
@@ -38,13 +38,16 @@
       <span class="wont wopload">上传图片</span>
       <div class="upld">
         <el-upload
-          action="http://localhost:3000/goods/upload"
+          action="api/goods/upload"
           list-type="picture-card"
           :on-preview="handlePictureCardPreview"
           :on-remove="handleRemove"
           :with-credentials="true"
+          :on-success="upLoadSu"
         >
-          <i class="el-icon-plus"></i>
+       
+        <img v-if="imageUrl" :src="api1+imageUrl" class="avatar">
+           <i v-else class="el-icon-plus avatar-uploader-icon"></i>
         </el-upload>
         <el-dialog :visible.sync="dialogVisible" class="tcon">
           <img width="100%" :src="dialogImageUrl" alt="" />
@@ -63,12 +66,14 @@
 export default {
   data() {
     return {
+
       goods_name: "",
       goods_price: "",
       goods_num: 1,
       goods_fm:"", //复选框
       goods_detail: "",
-
+      imageUrl:'',
+      api1:'http://localhost:3000/',
       //商品详细信息
       form: {
         delivery: false,
@@ -84,7 +89,10 @@ export default {
   methods: {
     async onSubmit() {
       try {
-       const goods_img="upload_dfc41cf38a6a2ec23427586df27ffd76.jpeg"
+       const goods_img=localStorage.getItem('goods_img')
+       console.log("mjsmd")
+        console.log(goods_img)
+
         const {
           goods_name,
           goods_price,
@@ -93,8 +101,8 @@ export default {
           goods_fm,
           
         } = this;
-        
-        await this.$store.dispatch("SpUpload", {
+        console.log(goods_fm);
+     const  message=  await this.$store.dispatch("SpUpload", {
           goods_name,
           goods_price,
           goods_num,
@@ -102,7 +110,10 @@ export default {
           goods_fm,
           goods_img
         });
-         
+          this.$message({
+          message: "修改商品成功",
+          type: "success",
+        });
          
 
 
@@ -121,9 +132,35 @@ export default {
       this.dialogVisible = true;
     },
     //文件上传方法 end
-      getSpInFo(){
-      //  const {goods_name,goods_price,goods_num,goods_fm,goods_detail,goods_img}=this.$route.params
-      //  this.goods_name=goods_name
+
+    //文件上传成功后
+  upLoadSu(response, file, fileList){
+        const goods_img=response.result.goods_img
+         console.log('response')
+         localStorage.setItem('goods_img',goods_img)
+          this.imageUrl=null
+     },
+    
+  },
+  mounted(){
+     
+   this.getSpInFo;
+  },
+  computed:{
+    getSpInFo(){
+
+       const {goods_name,goods_price,goods_num,goods_fm,goods_detail,goods_img}=this.$route.params
+       this.goods_name=goods_name
+       this.goods_price=goods_price
+       this.goods_num=goods_num
+       this.goods_fm=goods_fm
+       this.goods_detail=goods_detail
+         
+      this.imageUrl=goods_img
+      //  this.dialogVisible = true;
+
+
+
         // this.$set(this.goods_name,"goods_name",goods_name)
         // this.$set(this.goods_price,"goods_price",goods_price)
         // this.$set(this.goods_num,"goods_num",goods_num)
@@ -134,13 +171,6 @@ export default {
 
       
     }
-  },
-  mounted(){
-     
-   this.getSpInFo()
-  },
-  computed:{
-  
   }
 };
 </script>
@@ -174,6 +204,10 @@ export default {
   }
   .upld {
     margin: 15px 0 20px 78px;
+    .avatar{
+       width: 146px;
+       height: 146px;
+    }
   }
 }
 </style>
