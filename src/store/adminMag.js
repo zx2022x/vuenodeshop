@@ -13,6 +13,7 @@ const state={
     SpListInfo:{},
     UserInfo:{},
     rugoodslist:{},
+    
 
 }
 const actions={

@@ -4,15 +4,18 @@
       <div class="leftBox">
          <ul>
              <li>
-            <router-link class="link">登录</router-link>
+            <router-link class="link" to="/">登录</router-link>
              </li>
              <li class="shu"></li>
              <li>
-             <router-link class="link">注册</router-link>
+             <router-link class="link" to="/">注册</router-link>
              </li>
              <li class="shu"></li>
              <li>
-              <router-link>购物车</router-link>
+              <router-link class="link" to="/" >后台管理</router-link>
+             </li>
+             <li>
+              <router-link class="link" to="/" >购物车</router-link>
              </li>
          </ul>
       </div>
@@ -42,11 +45,12 @@ export default {
                right:0;
                width: 343px;
                height: 100%;
-              background-color:rgb(31, 88, 88);
+           
                li{
+               
                    list-style:none;
                    height: 50px;
-                   width: 30px;
+                  
                    float:left;
                    
                  
@@ -56,11 +60,28 @@ export default {
                    height: 16px;
                    width: 1px;
                    background-color: #3c423f;
+                   margin:18px 7px 7px 7px;
                }
                .link{
                    color:#b0b0b0;
+                   line-height:50px;
 
                }
+               li:nth-child(1){
+                   width: 33px;
+               }
+                li:nth-child(3){
+                   width: 33px;
+               }
+                li:nth-child(5){
+                   margin-right:31px;
+               }
+                li:nth-child(6){
+                  width: 152px;
+                  background-color: #424242;
+                  padding-left:40px;
+               }
+
          }
     }
 }
