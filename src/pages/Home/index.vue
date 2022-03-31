@@ -1,8 +1,9 @@
 <template>
   <div class="home">
-
+  
   <Header/>
   <div class="body">
+   <Search/>
 
   </div>
   </div>
@@ -10,6 +11,7 @@
 
 <script>
 import Header from '@/components/Header'
+import Search from '@/pages/Search'
 export default {
   data(){
       return {
@@ -18,6 +20,7 @@ export default {
   },
   components:{
       Header,
+      Search,
   }
 }
 </script>
@@ -33,6 +36,8 @@ export default {
     height: 600px;
     margin:0 auto;
     background-color: aqua;
+   
+    
     }
     
 }

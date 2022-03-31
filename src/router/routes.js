@@ -61,12 +61,20 @@ export default [
             
         ]
     },
+   
     //首页
    {
        name:'home',
        path:'/home',
        component:()=>import('@/pages/Home')
-   }
+   },
+   //用户登录
+   {
+      name:"userlogin",
+      path:'/userlogin',
+      component:()=>import('@/pages/Login')
+},
+
     
 
     

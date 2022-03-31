@@ -1,4 +1,4 @@
-import { reqUserLogin } from '@/api'
+import { reqUserLogin,reqRegister } from '@/api'
 import {setToken,getToken} from '@/utils/token'
 const state = {
     token:getToken(),
@@ -13,11 +13,12 @@ const mutations = {
        
         
         
-    }
+    },
+    
 }
 const actions = {
     
-    //用户登录
+    //管理员登录
     async adminUserLogin({commit},data) {
         try {
            
@@ -37,6 +38,31 @@ const actions = {
         }
 
     },
+    //用户名注册
+    async userRegister({commit},{user_name,password}){
+        try {
+            
+            const res= await reqRegister({user_name,password})
+
+             console.log(password);
+            
+
+                   return {
+
+                      code: res.code,
+                      message: res.message
+                      
+                   }
+               
+    
+
+        } catch (error) {
+            console.log(error)
+            
+        }
+
+               
+}
 }
 const getters = {}
 export default {

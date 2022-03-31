@@ -22,3 +22,5 @@ export const reqChangeMyselfPw=(data)=>requests({url:`/users`,data,method:'patch
 export const reqGetRuGoodsList=(pageNum,pageSize)=>requests({url:`/goods/ru?pageNum=${pageNum}&pageSize=${pageSize}`,method:'get'})
 //上架商品
 export const reqSangJia=(id)=>requests({url:`/goods/${id}/on`,method:'post'})
+//用户注册
+export const reqRegister=(data)=>requests({url:`/users/register`,data,method:'post'})

@@ -4,7 +4,7 @@
       <div class="leftBox">
          <ul>
              <li>
-            <router-link class="link" to="/">登录</router-link>
+            <router-link class="link" to="/userlogin">登录</router-link>
              </li>
              <li class="shu"></li>
              <li>
