@@ -72,8 +72,17 @@ export default [
    {
       name:"userlogin",
       path:'/userlogin',
-      component:()=>import('@/pages/Login')
+      component:()=>import('@/pages/Login'),
+      children:[
+          //用户登录内部
+          {
+              name:'loginInner',
+              path:'/loginInner/:user_name/:password',
+              component:()=>import('@/pages/Login/LoginInner')
+          }
+      ]
 },
+
 
     
 

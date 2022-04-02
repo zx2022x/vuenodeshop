@@ -17,13 +17,6 @@
         autocomplete="off"
       ></el-input>
     </el-form-item>
-    <el-form-item label="确认密码" prop="checkPass">
-      <el-input
-        type="password"
-        v-model="ruleForm.checkPass"
-        autocomplete="off"
-      ></el-input>
-    </el-form-item>
 
     <el-form-item>
       <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
@@ -34,7 +27,6 @@
 
 <script>
 export default {
-
   data() {
     var checkName = (rule, value, callback) => {
       if (!value) {
@@ -45,31 +37,20 @@ export default {
     var validatePass = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请输入密码"));
-      } else {
-        if (this.ruleForm.checkPass !== "") {
-          this.$refs.ruleForm.validateField("checkPass");
-        }
-        callback();
       }
+
+      callback();
     };
-    var validatePass2 = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("请再次输入密码"));
-      } else if (value !== this.ruleForm.pass) {
-        callback(new Error("两次输入密码不一致!"));
-      } else {
-        callback();
-      }
-    };
+
     return {
       ruleForm: {
         pass: "",
-        checkPass: "",
+
         user_name: "",
       },
       rules: {
         pass: [{ validator: validatePass, trigger: "blur" }],
-        checkPass: [{ validator: validatePass2, trigger: "blur" }],
+
         user_name: [{ validator: checkName, trigger: "blur" }],
       },
     };
@@ -77,45 +58,40 @@ export default {
   methods: {
     submitForm(formName) {
       this.$refs[formName].validate(async (valid) => {
-      
-
         if (valid) {
-          
-          const { checkPass, user_name } = this.ruleForm;
-          
-          const  code  = await this.$store.dispatch("userRegister", {
-            password: checkPass,
-            user_name,
-          });
-          console.log(code)
-          if(code==0){
+          const { pass, user_name } = this.ruleForm;
 
-            console.log('dsmdmd')
+          const  code  = await this.$store.dispatch("userLogin", {user_name,password: pass});
 
-            this.$router.push({name:'loginInner',params:{user_name, password:checkPass}})
-            this.$bus.$emit('goLoginIn')
+          if (code == 0) {
+            this.$router.push("/home");
           }
-         
+
         } else {
           console.log("参数错误");
           return false;
         }
-      
-      
-      
-      }
-      
-      
-      );
+      });
     },
 
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
   },
- 
+  mounted(){
+       
+       const {user_name,password}=this.$route.params
+       this.ruleForm.user_name=user_name
+       this.ruleForm.pass=password
+
+
+  }
+  
 };
 </script>
 
-<style>
+<style scoped lang='less'>
+// .el-form {
+ 
+// }
 </style>

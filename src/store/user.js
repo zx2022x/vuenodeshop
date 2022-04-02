@@ -1,4 +1,4 @@
-import { reqUserLogin,reqRegister } from '@/api'
+import { reqUserLogin,reqRegister} from '@/api'
 import {setToken,getToken} from '@/utils/token'
 const state = {
     token:getToken(),
@@ -40,29 +40,17 @@ const actions = {
     },
     //用户名注册
     async userRegister({commit},{user_name,password}){
-        try {
-            
-            const res= await reqRegister({user_name,password})
-
-             console.log(password);
-            
-
-                   return {
-
-                      code: res.code,
-                      message: res.message
-                      
-                   }
+      
+          
+                const res= await reqRegister({user_name,password})
                
-    
-
-        } catch (error) {
-            console.log(error)
-            
-        }
-
-               
-}
+                return res.code  
+    },
+    //用户登录
+    async userLogin({commit},{user_name,password}){
+        const res=await reqUserLogin({user_name,password})
+        return res.code
+    }
 }
 const getters = {}
 export default {

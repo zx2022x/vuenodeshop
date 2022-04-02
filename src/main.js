@@ -36,8 +36,16 @@ Vue.use(Image)
 Vue.use(Tabs)
 Vue.use(TabPane)
 Vue.prototype.$message = Message;
+
 new Vue({
+  beforeCreate() {
+    //此处的this就是这个new Vue()对象
+    //网络有很多bus通信总结，原理相同，换汤不换药
+    Vue.prototype.$bus = this
+  },
   render: h => h(App),
+  
+
   store,
   router,
 }).$mount('#app')

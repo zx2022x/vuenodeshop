@@ -7,6 +7,9 @@ import nprogress from "nprogress";
 import "nprogress/nprogress.css";
 // import {getToken} from '@/utils/token'
 import store from '@/store';
+//引入消息
+import { Message } from 'element-ui'
+// Vue.prototype.$message = Message;
 //底下的代码也是创建axios实例
 let requests = axios.create({
   //基础路径
@@ -42,13 +45,23 @@ requests.interceptors.response.use(
   (res) => {
     //进度条结束
     nprogress.done();
+    Message({
+			message:res.data.message,
+			type: 'success',
+		})
     //相应成功做的事情
     return res.data;
   },
   (err) => {
-    alert("服务器响应数据失败"+err);
+   
+    Message({
+			message:err.response.data.message,
+			type: 'error',
+		})
+    return err.response.data
   }
-);
+
+  );
 //最终需要对外暴露（不对外暴露外面模块没办法使用）
 //这里的代码是暴露一个axios实例
 export default requests;

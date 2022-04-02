@@ -5,12 +5,14 @@
       <div class="centerBo">
 
   <el-tabs v-model="activeName" @tab-click="handleClick" class="fl">
-    <el-tab-pane label="登录" name="first">
-        
+    <el-tab-pane label="登录" name="first" class="form1">
+
+        <router-view></router-view>
+          <!-- <LoginInner/> -->
     </el-tab-pane>
     <el-tab-pane label="注册" name="second" class="form2">
     
-          <Resigster/>
+      <Resigster/>
          
 
     </el-tab-pane>
@@ -24,6 +26,7 @@
 
 <script>
 import Resigster from '@/pages/Resigster'
+
 export default {
     data() {
       return {
@@ -37,7 +40,15 @@ export default {
     },
     components:{
        Resigster,
-    }
+      
+    },
+     mounted(){
+
+    this.$bus.$on('goLoginIn',()=>{
+      this.activeName='first'
+    })
+
+  }
 
 }
 </script>
@@ -68,7 +79,10 @@ export default {
       height: 524px;
       padding:45px 45px 0 45px;
       background-color: #f9f9f9;
-      
+      .form1{
+        margin-top:90px;
+        margin-left:-30px;
+      }
       .form2{
           margin-left:-30px;
       }
