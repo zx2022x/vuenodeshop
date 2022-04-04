@@ -21,11 +21,17 @@
       
       >
     </el-table-column>
+ 
+
      <el-table-column
       prop="createdAt"
       label="注册时间"
       width="250">
+       <!-- <template slot-scope="scope">
+         {{}}
+       </template> -->
     </el-table-column>
+    
      <el-table-column
       prop="updatedAt"
       label="更新时间"
@@ -43,7 +49,7 @@
       </el-table-column> 
   </el-table>
    <div class="pa">
-    <Pagination :total="getUser.total" />
+    <Pagination :total="getUser.total" @changePnum='changePnum' :pageSize="8"/>
     </div>
     </div>
 </template>
@@ -61,15 +67,27 @@ import Pagination from "@/pages/admin/Pagination"
       }
     },
     mounted(){
-        this.$store.dispatch('getUserList',{pageNum:1,pageSize:10})
+       this.getdata();
     },
     methods:{
+
+      getdata(pageNum=1,pageSize=8){
+
+        this.$store.dispatch('getUserList',{pageNum,pageSize})
+         
+      },
+
        handleChangepw(index,row){
         const {id,user_name} =row
         
         this.$router.push({name:'changepw',params:{id,user_name,mark:0}})
 
-       }
+       },
+
+        changePnum(val){
+       
+        this.getdata(val)
+    }
     },
     computed:{
         ...mapGetters(['getUser','getUserList'])

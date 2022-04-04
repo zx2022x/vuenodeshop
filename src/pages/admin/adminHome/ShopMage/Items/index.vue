@@ -63,7 +63,7 @@
     <!-- <el-pagination background layout="prev, pager, next" :total="totalCount" @current-change="changePage">
     </el-pagination> -->
     <div class="pa">
-     <Pagination :total="SpListInfo.total"/>
+     <Pagination :total="SpListInfo.total" :pageSize="6" @changePnum='changePnum'/>
     </div>
   </div>
 </template>
@@ -99,18 +99,18 @@ export default {
           pageNum,
           pageSize,
         });
-        this.$message({
-          message: message,
-          type: "success",
-        });
+        // this.$message({
+        //   message: message,
+        //   type: "success",
+        // });
       } catch (error) {
         this.$message.error(error.message);
       }
     },
     handleEdit(index, row) {
       console.log(row);
-      const { goods_name, goods_price, goods_num, goods_img, goods_fm } = row;
-      const pm = { goods_name, goods_price, goods_num, goods_img, goods_fm };
+      const { goods_name, goods_price, goods_num, goods_img, goods_fm,goods_detail } = row;
+      const pm = { goods_name, goods_price, goods_num, goods_img, goods_fm,goods_detail };
 
       
       this.$router.push({ name: "edititem", params: pm });
@@ -120,10 +120,7 @@ export default {
       try {
         const id = row.id;
         const message = await this.$store.dispatch("SpDelete", id);
-        this.$message({
-          message: message,
-          type: "success",
-        });
+       
          this.getdata();
       } catch (error) {
         this.$message.error(error.message);
@@ -134,10 +131,7 @@ export default {
         const id = row.id;
         const message = await this.$store.dispatch("spXiaJia", id);
 
-        this.$message({
-          message: message,
-          type: "success",
-        });
+        
         this.getdata();
       } catch (error) {
         this.$message.error(error.message);
@@ -163,10 +157,9 @@ export default {
         return a
 
     },
-    //改变页码时
-    changePage(val){
-      
-       this.getdata(val);
+      changePnum(val){
+       
+        this.getdata(val,6)
     }
     
   },

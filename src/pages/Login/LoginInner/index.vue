@@ -19,7 +19,7 @@
     </el-form-item>
 
     <el-form-item>
-      <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
+      <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
       <el-button @click="resetForm('ruleForm')">重置</el-button>
     </el-form-item>
   </el-form>
@@ -77,14 +77,21 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
+
   },
   mounted(){
-       
+
+      this.$bus.$on('goLoginIn',()=>{
        const {user_name,password}=this.$route.params
        this.ruleForm.user_name=user_name
        this.ruleForm.pass=password
+    })
+       
 
 
+  },
+  watch:{
+      
   }
   
 };

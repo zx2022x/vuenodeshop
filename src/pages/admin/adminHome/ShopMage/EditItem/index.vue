@@ -154,6 +154,7 @@ export default {
        this.goods_price=goods_price
        this.goods_num=goods_num
        this.goods_fm=goods_fm
+       
        this.goods_detail=goods_detail
          
       this.imageUrl=goods_img

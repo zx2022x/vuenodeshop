@@ -12,7 +12,7 @@ export default {
 
 <style>
 .search{
-    height: 126px;
+    height: 112px;
     background-color: rgb(211, 224, 189);
 }
 

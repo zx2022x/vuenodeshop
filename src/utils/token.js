@@ -7,4 +7,9 @@ export const setToken=(token)=>{
 
 }
 //得到token
-export const getToken=()=>localStorage.getItem('TOKEN')
+export const getToken=()=>{
+    console.log('更新token')
+   return  localStorage.getItem('TOKEN')
+
+}
+

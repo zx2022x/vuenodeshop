@@ -5,6 +5,8 @@
     <el-button :plain="true" @click="open4">错误</el-button> -->
     <!-- <el-table :data="SpListInfo.list" stripe style="width: 100%"> -->
     <el-table :data="getRuGoodsList" stripe style="width: 100%">
+       <el-table-column prop="id" label="ID" width="100">
+      </el-table-column>
       <el-table-column prop="goods_name" label="名称" width="180">
       </el-table-column>
 
@@ -46,7 +48,7 @@
       </el-table-column> 
     </el-table>
      <div class="pa">
-    <Pagination :total="getRuGoodsInfo" />
+    <Pagination :total="getRuGoodsInfo" target="getRuGoodsList" @changePnum='changePnum' :pageSize="6"/>
     </div>
   </div>
 </template>
@@ -86,14 +88,14 @@ export default {
           pageNum,
           pageSize,
         });
-        this.$message({
-          message: message,
-          type: "success",
-        });
+        // this.$message({
+        //   message: message,
+        //   type: "success",
+        // });
         
       } catch (error) {
 
-        this.$message.error(error.message);
+        // this.$message.error(error.message);
       
       }
     },
@@ -101,12 +103,12 @@ export default {
         try {
         const message=await this.$store.dispatch('sangJia',row.id)
           this.getdata()
-          this.$message({
-          message: message,
-          type: "success",
-        });
+        //   this.$message({
+        //   message: message,
+        //   type: "success",
+        // });
         } catch (error) {
-           this.$message.error(error.message);
+          //  this.$message.error(error.message);
         }
         
 
@@ -132,6 +134,11 @@ export default {
         return a
 
     },
+
+    changePnum(val){
+       
+        this.getdata(val,6)
+    }
     
   },
   computed: {

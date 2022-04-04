@@ -9,8 +9,8 @@ import router from '@/router'
 //按需引入elementui
 import {Row,Col,Menu,Submenu,MenuItem,Table,TableColumn,MenuItemGroup,Main,Form,
 FormItem,Input,Button,Option,Select,InputNumber,Upload,Dialog,Popover,
-Tag,Pagination,Image,Message,Tabs,TabPane} from 'element-ui'
-Vue.use(Row)
+Tag,Pagination,Image,Message,Tabs,TabPane,Carousel,CarouselItem} from 'element-ui'
+Vue.use(Row); Vue.use(Carousel);Vue.use(CarouselItem)
 Vue.use(Col)
 Vue.use(Menu)
 Vue.use(Submenu)
@@ -36,6 +36,8 @@ Vue.use(Image)
 Vue.use(Tabs)
 Vue.use(TabPane)
 Vue.prototype.$message = Message;
+//引入swiper
+
 
 new Vue({
   beforeCreate() {

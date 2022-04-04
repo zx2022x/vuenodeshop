@@ -4,15 +4,15 @@
       <div class="leftBox">
          <ul>
              <li>
-            <router-link class="link" to="/userlogin">登录</router-link>
+            <router-link class="link" :to="{name:'userlogin',params:{mark:1}}">登录</router-link>
              </li>
              <li class="shu"></li>
              <li>
-             <router-link class="link" to="/">注册</router-link>
+             <router-link class="link" :to="{name:'userlogin',params:{mark:2}}">注册</router-link>
              </li>
              <li class="shu"></li>
              <li>
-              <router-link class="link" to="/" >后台管理</router-link>
+              <router-link class="link" to="/adminLogin" >后台管理</router-link>
              </li>
              <li>
               <router-link class="link" to="/" >购物车</router-link>

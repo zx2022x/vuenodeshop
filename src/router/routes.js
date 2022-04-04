@@ -35,7 +35,7 @@ export default [
             //编辑商品
             {
                 name:'edititem',
-                path:'/edititem/:goods_name/:goods_price/:goods_num/:goods_img/:goods_fm',
+                path:'/edititem/:goods_name/:goods_price/:goods_num/:goods_img/:goods_fm/:goods_detail',
                 component:()=>import('@/pages/admin/adminHome/ShopMage/EditItem')
             },
             //上架商品
@@ -71,7 +71,7 @@ export default [
    //用户登录
    {
       name:"userlogin",
-      path:'/userlogin',
+      path:'/userlogin/:mark',
       component:()=>import('@/pages/Login'),
       children:[
           //用户登录内部
@@ -79,7 +79,13 @@ export default [
               name:'loginInner',
               path:'/loginInner/:user_name/:password',
               component:()=>import('@/pages/Login/LoginInner')
-          }
+          },
+          //用户注册
+        //   {
+        //       name:'resiger',
+        //       path:'/resiger',
+        //       conponent:()=>import('@/pages/Resigster')
+        //   }
       ]
 },
 

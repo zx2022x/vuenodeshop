@@ -116,7 +116,7 @@ export default {
           message: message,
           type: "success",
         });
-        this.reload()
+        // this.reload()
       
         
       } catch (error) {
