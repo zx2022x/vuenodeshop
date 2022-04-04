@@ -176,8 +176,13 @@ const mutations={
 
 }
 const getters={
+     //获取商品信息
     SpListInfo(state){
        return state.SpListInfo || {}
+    },
+    //获取商品列表
+    SpList(){
+        return state.SpListInfo.list
     },
     UnSpList(state){
 
