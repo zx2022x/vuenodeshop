@@ -88,7 +88,14 @@ export default [
         //   }
       ]
 },
+ 
 
+    //最具体的商品分类列表
+    {
+        name:'FenedItemList',
+        path:'/FenedItemList',
+        component: ()=>import('@/pages/Home/FenedItemList')
+    }
 
     
 

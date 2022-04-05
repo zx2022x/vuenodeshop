@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="w">
-    <Header />
+    <!-- <Header /> -->
     <Search />
     <div class="xiong">
       <div class="leftbord">
@@ -71,6 +71,7 @@ export default {
   margin: 0 auto;
 }
 .home {
+  background-color:#f5f5f5;
   .xiong {
     
 

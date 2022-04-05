@@ -10,7 +10,8 @@ import router from '@/router'
 import {Row,Col,Menu,Submenu,MenuItem,Table,TableColumn,MenuItemGroup,Main,Form,
 FormItem,Input,Button,Option,Select,InputNumber,Upload,Dialog,Popover,
 Tag,Pagination,Image,Message,Tabs,TabPane,Carousel,CarouselItem} from 'element-ui'
-Vue.use(Row); Vue.use(Carousel);Vue.use(CarouselItem)
+
+Vue.use(Row); Vue.use(Carousel);Vue.use(CarouselItem);
 Vue.use(Col)
 Vue.use(Menu)
 Vue.use(Submenu)

@@ -26,3 +26,6 @@ export const reqSangJia=(id)=>requests({url:`/goods/${id}/on`,method:'post'})
 export const reqRegister=(data)=>requests({url:`/users/register`,data,method:'post'})
 //用户登录
 export const reqUserLogin=(data)=>requests({url:`/users/login/`,data, method:'post'})
+
+//获取分类过后的商品列表
+export const reqGetItemList=(pageNum,pageSize,goods_fm)=>requests({url:`/goods/item?pageNum=${pageNum}&pageSize=${pageSize}&goods_fm=${goods_fm}`,method:'get'})

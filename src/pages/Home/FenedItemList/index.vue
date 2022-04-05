@@ -1,14 +1,9 @@
 <template>
   <div>
+    <Header />
     <div class="item">
       <div class="itemHeader">
         <h1>水果</h1>
-        <div class="more">
-          <!-- <router-view to="/FenedItemList">查看更多</router-view> -->
-          <router-link to="/FenedItemList" class="goDetail"
-            >查看更多</router-link
-          >
-        </div>
       </div>
       <div class="itemlist">
         <ul>
@@ -26,66 +21,12 @@
         </ul>
       </div>
     </div>
-
-     <div class="item">
-      <div class="itemHeader">
-        <h1>肉类</h1>
-        <div class="more">
-          <!-- <router-view to="/FenedItemList">查看更多</router-view> -->
-          <router-link to="/FenedItemList" class="goDetail"
-            >查看更多</router-link
-          >
-        </div>
-      </div>
-      <div class="itemlist">
-        <ul>
-          <li v-for="(item, index) in getItemList2" :key="item.id">
-            <el-image
-              style="width: 160px; height: 160px"
-              :src="api1 + item.goods_img"
-              fit="fill"
-              class="imgli"
-            >
-            </el-image>
-            <span>¥{{ item.goods_price }}</span>
-            <h1>{{ item.goods_detail }}</h1>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-     <div class="item">
-      <div class="itemHeader">
-        <h1>粗粮</h1>
-        <div class="more">
-          <!-- <router-view to="/FenedItemList">查看更多</router-view> -->
-          <router-link to="/FenedItemList" class="goDetail"
-            >查看更多</router-link
-          >
-        </div>
-      </div>
-      <div class="itemlist">
-        <ul>
-          <li v-for="(item, index) in getItemList3" :key="item.id">
-            <el-image
-              style="width: 160px; height: 160px"
-              :src="api1 + item.goods_img"
-              fit="fill"
-              class="imgli"
-            >
-            </el-image>
-            <span>¥{{ item.goods_price }}</span>
-            <h1>{{ item.goods_detail }}</h1>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <Footer />
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-
 export default {
   data() {
     return {
@@ -94,8 +35,8 @@ export default {
   },
   mounted() {
     this.getData(1, 10, 1, "getItemList1");
-    this.getData(1, 10, 2, "getItemList2");
-    this.getData(1, 10, 3, "getItemList3");
+    // this.getData(1, 10, 2, "getItemList2");
+    // this.getData(1, 10, 3, "getItemList3");
     //  this.getData(1,10,3)
   },
   methods: {
@@ -110,7 +51,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["getItemList1","getItemList2","getItemList3"]),
+    ...mapGetters(["getItemList1", "getItemList2", "getItemList3"]),
   },
 };
 </script>
@@ -155,27 +96,27 @@ export default {
     font-family: "SimSun";
     font-weight: normal;
   }
-  .more {
-    float: right;
-    height: 30px;
-    width: 119px;
-    color: #424242;
+  //   .more {
+  //     float: right;
+  //     height: 30px;
+  //     width: 119px;
+  //     color: #424242;
 
-    font-size: 20px;
-    .goDetail {
-      display: block;
-      color: #424242;
+  //     font-size: 20px;
+  //     .goDetail {
+  //       display: block;
+  //       color: #424242;
 
-      &:hover {
-        color: #ff6700;
-      }
-      &::after {
-        padding-left: 18px;
-        content: "\e634";
-        font-family: "iconfont";
-      }
-    }
-  }
+  //       &:hover {
+  //         color: #ff6700;
+  //       }
+  //       &::after {
+  //         padding-left: 18px;
+  //         content: "\e634";
+  //         font-family: "iconfont";
+  //       }
+  //     }
+  //   }
 
   .itemlist {
     .clearfix;
