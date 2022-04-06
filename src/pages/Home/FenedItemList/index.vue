@@ -3,7 +3,7 @@
     <Header />
     <div class="item">
       <div class="itemHeader">
-        <h1>水果</h1>
+        <h1>{{title}}</h1>
       </div>
       <div class="itemlist">
         <ul>
@@ -21,27 +21,38 @@
         </ul>
       </div>
     </div>
+    <div class="pagination">
+    <Pagination  :total='getItemListTotal' :pageSize="10" @changePnum="changePnum"/>
+    </div>
     <Footer />
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import Pagination from '@/pages/admin/Pagination'
 export default {
+  name:'FenedItemList',
   data() {
     return {
+      title:'',
       api1: "http://localhost:3000/",
     };
   },
   mounted() {
-    this.getData(1, 10, 1, "getItemList1");
+    
+    this.getData();
+    this.getTitle();
     // this.getData(1, 10, 2, "getItemList2");
     // this.getData(1, 10, 3, "getItemList3");
     //  this.getData(1,10,3)
+    
   },
   methods: {
-    async getData(pageNum = 1, pageSize = 10, goods_fm, actionTarget) {
-      await this.$store.dispatch(actionTarget, {
+
+    async getData(pageNum = 1, pageSize = 10) {
+       const goods_fm=this.$route.params.goods_fm
+      await this.$store.dispatch('getItemList1', {
         pageNum,
         pageSize,
         goods_fm,
@@ -49,10 +60,47 @@ export default {
       //  await this.$store.dispatch('getItemList',pageNum,pageSize,goods_fm)
       //  await this.$store.dispatch('getItemList',pageNum,pageSize,goods_fm)
     },
+    //拿到传来的参数
+    // getRoute(){
+    //   const goods_fm=this.$route.params.goods_fm
+    //   return goods_fm
+    // },
+    getTitle(){
+       const goods_fm=this.$route.params.goods_fm;
+   
+       let a='';
+       switch(goods_fm){
+         case 1: 
+         a='水果';
+         break;
+         case 2: 
+         a='肉类';
+         break;
+         case 3: 
+         a='粗粮';
+         break;
+         default: 
+         a='数据错误';
+         break;
+
+       }
+       this.title=a
+    },
+    changePnum(val){
+       
+      this.getData(val,10)
+    }
   },
   computed: {
-    ...mapGetters(["getItemList1", "getItemList2", "getItemList3"]),
+    
+    ...mapGetters(["getItemList1","getItemListTotal"]),
+
   },
+  components:{
+
+     Pagination,
+
+  }
 };
 </script>
 
@@ -185,5 +233,11 @@ export default {
       -webkit-line-clamp: 2;
     }
   }
+}
+.pagination{
+   position:absolute;
+   top:710px;
+   left:50%;
+   transform:translateX(-50%)
 }
 </style>

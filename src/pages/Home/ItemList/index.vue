@@ -5,7 +5,7 @@
         <h1>水果</h1>
         <div class="more">
           <!-- <router-view to="/FenedItemList">查看更多</router-view> -->
-          <router-link to="/FenedItemList" class="goDetail"
+          <router-link :to="{name:'FenedItemList',params:{goods_fm:1}}" class="goDetail"
             >查看更多</router-link
           >
         </div>
@@ -32,7 +32,7 @@
         <h1>肉类</h1>
         <div class="more">
           <!-- <router-view to="/FenedItemList">查看更多</router-view> -->
-          <router-link to="/FenedItemList" class="goDetail"
+          <router-link :to="{name:'FenedItemList',params:{goods_fm:2}}" class="goDetail"
             >查看更多</router-link
           >
         </div>
@@ -59,7 +59,7 @@
         <h1>粗粮</h1>
         <div class="more">
           <!-- <router-view to="/FenedItemList">查看更多</router-view> -->
-          <router-link to="/FenedItemList" class="goDetail"
+          <router-link :to="{name:'FenedItemList',params:{goods_fm:3}}" class="goDetail"
             >查看更多</router-link
           >
         </div>
