@@ -44,16 +44,14 @@ export default {
   mounted() {
     
     this.getData();
-    this.aa()
+   
     // this.getData(1, 10, 2, "getItemList2");
     // this.getData(1, 10, 3, "getItemList3");
     //  this.getData(1,10,3)
     
   },
   methods: {
-   aa(){
-       console.log('加载')
-   },
+   
 
    async getData(pageNum = 1, pageSize = 10) {
        const goods_name=this.$route.query.goods_name

@@ -102,6 +102,13 @@ export default [
         name:'searchlist',
         path:'/searchlist',
         component:()=>import('@/pages/Home/SearchList')
+    },
+    //商品详细模块
+    {
+        name:'itemdetail',
+        path:'/itemdetail',
+        component:()=>import('@/pages/Home/Itemdetail')
+
     }
 
     

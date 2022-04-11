@@ -12,7 +12,7 @@
       </div>
       <div class="itemlist">
         <ul>
-          <li v-for="(item, index) in getItemList1" :key="item.id">
+          <li v-for="(item, index) in getItemList1" :key="item.id" @click="goDetail(item)">
             <el-image
               style="width: 160px; height: 160px"
               :src="api1 + item.goods_img"
@@ -21,7 +21,7 @@
             >
             </el-image>
             <span>¥{{ item.goods_price }}</span>
-            <h1>{{ item.goods_detail }}</h1>
+            <h1>{{ item.goods_name }}</h1>
           </li>
         </ul>
       </div>
@@ -39,7 +39,7 @@
       </div>
       <div class="itemlist">
         <ul>
-          <li v-for="(item, index) in getItemList2" :key="item.id">
+          <li v-for="(item, index) in getItemList2" :key="item.id" @click="goDetail(item)">
             <el-image
               style="width: 160px; height: 160px"
               :src="api1 + item.goods_img"
@@ -48,7 +48,7 @@
             >
             </el-image>
             <span>¥{{ item.goods_price }}</span>
-            <h1>{{ item.goods_detail }}</h1>
+            <h1>{{ item.goods_name }}</h1>
           </li>
         </ul>
       </div>
@@ -66,7 +66,7 @@
       </div>
       <div class="itemlist">
         <ul>
-          <li v-for="(item, index) in getItemList3" :key="item.id">
+          <li v-for="(item, index) in getItemList3" :key="item.id" @click="goDetail(item)">
             <el-image
               style="width: 160px; height: 160px"
               :src="api1 + item.goods_img"
@@ -75,7 +75,7 @@
             >
             </el-image>
             <span>¥{{ item.goods_price }}</span>
-            <h1>{{ item.goods_detail }}</h1>
+            <h1>{{ item.goods_name }}</h1>
           </li>
         </ul>
       </div>
@@ -108,6 +108,9 @@ export default {
       //  await this.$store.dispatch('getItemList',pageNum,pageSize,goods_fm)
       //  await this.$store.dispatch('getItemList',pageNum,pageSize,goods_fm)
     },
+    goDetail(item){
+      this.$router.push({path:'/itemdetail',query:item})
+    }
   },
   computed: {
     ...mapGetters(["getItemList1","getItemList2","getItemList3"]),
