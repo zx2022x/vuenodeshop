@@ -4,12 +4,14 @@ import Vuex from "vuex";
 import Vue from "vue";
 import user from '@/store/user'
 import adminMag from '@/store/adminMag'
+import homeGoods from '@/store/homeGoods'
 //使用插件
 Vue.use(Vuex);
 export default new Vuex.Store({
   modules:{
       user,
-      adminMag
+      adminMag,
+      homeGoods,
 
   }
     

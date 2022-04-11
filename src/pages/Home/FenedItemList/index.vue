@@ -1,4 +1,5 @@
 <template>
+<div class="w">
   <div>
     <Header />
     <div class="item">
@@ -25,6 +26,7 @@
     <Pagination  :total='getItemListTotal' :pageSize="10" @changePnum="changePnum"/>
     </div>
     <Footer />
+  </div>
   </div>
 </template>
 
@@ -131,7 +133,14 @@ export default {
     *zoom: 1;
   }
 }
+.w {
+
+  width: 1290px;
+
+  margin: 0 auto;
+}
 .item {
+  
   margin-top: 20px;
   width: 100%;
   .itemHeader {
@@ -144,27 +153,7 @@ export default {
     font-family: "SimSun";
     font-weight: normal;
   }
-  //   .more {
-  //     float: right;
-  //     height: 30px;
-  //     width: 119px;
-  //     color: #424242;
-
-  //     font-size: 20px;
-  //     .goDetail {
-  //       display: block;
-  //       color: #424242;
-
-  //       &:hover {
-  //         color: #ff6700;
-  //       }
-  //       &::after {
-  //         padding-left: 18px;
-  //         content: "\e634";
-  //         font-family: "iconfont";
-  //       }
-  //     }
-  //   }
+ 
 
   .itemlist {
     .clearfix;

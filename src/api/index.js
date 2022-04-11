@@ -29,3 +29,5 @@ export const reqUserLogin=(data)=>requests({url:`/users/login/`,data, method:'po
 
 //获取分类过后的商品列表
 export const reqGetItemList=(pageNum,pageSize,goods_fm)=>requests({url:`/goods/item?pageNum=${pageNum}&pageSize=${pageSize}&goods_fm=${goods_fm}`,method:'get'})
+//获取搜索商品列表
+export const reqGetSearchInfo=(pageNum,pageSize,goods_name)=>requests({url:`/goods/search?pageNum=${pageNum}&pageSize=${pageSize}&goods_name=${goods_name}`,method:'get'})

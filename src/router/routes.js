@@ -95,9 +95,14 @@ export default [
         name:'FenedItemList',
         path:'/FenedItemList/:goods_fm',
         component: ()=>import('@/pages/Home/FenedItemList')
-    }
+    },
 
-    //
+    //搜索的商品信息列表
+    {
+        name:'searchlist',
+        path:'/searchlist',
+        component:()=>import('@/pages/Home/SearchList')
+    }
 
     
 
