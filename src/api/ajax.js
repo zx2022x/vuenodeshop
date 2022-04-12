@@ -30,7 +30,8 @@ requests.interceptors.request.use((config) => {
   if(store.state.user.token){
    
     config.headers.Authorization = store.state.user.token;
-   
+    // console.log('token是是是是是是')
+    //  console.log('token'+store.state.user.token)
     // console.log('请求头token:')
 
     // console.log(config.headers.token)

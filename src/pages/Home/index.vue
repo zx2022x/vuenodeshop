@@ -1,5 +1,8 @@
 <template>
+
+   
   <div class="home">
+    <Header />
     <div class="w">
     <!-- <Header /> -->
     <Search />
@@ -23,6 +26,7 @@
     </div>
     <ItemList />
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -31,6 +35,8 @@ import Header from "@/components/Header";
 import Search from "@/pages/Search";
 import Swiper from "@/pages/Home/Swiper";
 import ItemList from "@/pages/Home/ItemList";
+
+import Footer from "@/components/Footer"
 export default {
   data() {
     return {};
@@ -40,6 +46,8 @@ export default {
     Search,
     Swiper,
     ItemList,
+    Header,
+    Footer 
   },
 };
 </script>

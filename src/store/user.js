@@ -5,7 +5,7 @@ const state = {
     
 }
 const mutations = {
-    //用户登录
+    //管理员登录
 
     ADMINUSERLOGIN(state, adminInfo) {
          
@@ -14,7 +14,10 @@ const mutations = {
         
         
     },
-    
+     //用户登录
+    USERLOGIN(state,userInfo){
+        setToken(userInfo.token)
+    }
 }
 const actions = {
     
@@ -49,6 +52,9 @@ const actions = {
     //用户登录
     async userLogin({commit},{user_name,password}){
         const res=await reqUserLogin({user_name,password})
+        if(res.code==0){
+            commit('USERLOGIN',res.result)
+        }
         return res.code
     }
 }
