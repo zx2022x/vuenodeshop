@@ -7,8 +7,8 @@
             用户管理<i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>个人信息</el-dropdown-item>
-            <el-dropdown-item>收货信息</el-dropdown-item>
+            <el-dropdown-item @click.native="goChangeUserInfo">修改信息</el-dropdown-item>
+            
              <el-dropdown-item @click.native="exitLogin">退出登录</el-dropdown-item>
            
           </el-dropdown-menu>
@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import {clearToken} from '@/utils/token'
+import {clearToken,getToken} from '@/utils/token'
 export default {
  data(){
      return{
@@ -83,25 +83,43 @@ mounted(){
          
      },
      changeDisplay(){
-         const token =this.$store.state.user.token
-        
+         const token =getToken()
+ 
+          
          if(token){
              this.leftbox=true
              this.rightbox=false
               console.log('执行了'+token)
          }
+     
+         
+     },
+     goChangeUserInfo(){
+
+       this.$router.push('/userinfo')
+
      }
  },
  
  watch:{
 
-      $route(to,form){
-          console.log("当前路由"+to.path)
+      // $route(to,form){
+      //     console.log("当前路由"+to.path)
            
         
         
-          this.changeDisplay()
+      //     this.changeDisplay()
+      // }
+     '$store.state.user.token':function(){
+       
+           this.changeDisplay()
+ 
+
+
       }
+
+            
+      
  }
 }
 

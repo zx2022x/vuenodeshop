@@ -109,6 +109,12 @@ export default [
         path:'/itemdetail',
         component:()=>import('@/pages/Home/Itemdetail')
 
+    },
+
+    {
+       name:'userinfo',
+       path:'/userinfo',
+       component:()=>import('@/pages/Home/changeUserInFo')
     }
 
     

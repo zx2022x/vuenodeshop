@@ -2,7 +2,7 @@
 
    
   <div class="home">
-    <Header />
+
     <div class="w">
     <!-- <Header /> -->
     <Search />
@@ -26,7 +26,7 @@
     </div>
     <ItemList />
     </div>
-    <Footer />
+   
   </div>
 </template>
 
