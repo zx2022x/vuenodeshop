@@ -15,8 +15,8 @@ export const reqSpDelete=(id)=>requests({url:`/goods/${id}`,method:'delete'})
 export const reqGetUserList=(pageNum,pageSize)=>requests({url:`/users?pageNum=${pageNum}&pageSize=${pageSize}`,method:'get'})
 //管理员修改用户名密码
 export const reqChangeUserPw=(data)=>requests({url:`/users/adpa`,data,method:'patch'})
-//修改自己密码接口
-export const reqChangeMyselfPw=(data)=>requests({url:`/users`,data,method:'patch'})
+// //修改自己密码接口
+// export const reqChangeMyselfPw=(data)=>requests({url:`/users`,data,method:'patch'})
 
 //获取软删除列表
 export const reqGetRuGoodsList=(pageNum,pageSize)=>requests({url:`/goods/ru?pageNum=${pageNum}&pageSize=${pageSize}`,method:'get'})
@@ -31,3 +31,6 @@ export const reqUserLogin=(data)=>requests({url:`/users/login/`,data, method:'po
 export const reqGetItemList=(pageNum,pageSize,goods_fm)=>requests({url:`/goods/item?pageNum=${pageNum}&pageSize=${pageSize}&goods_fm=${goods_fm}`,method:'get'})
 //获取搜索商品列表
 export const reqGetSearchInfo=(pageNum,pageSize,goods_name)=>requests({url:`/goods/search?pageNum=${pageNum}&pageSize=${pageSize}&goods_name=${goods_name}`,method:'get'})
+//修改用户密码
+export const reqChangeMyPd=(data)=>requests({url:`/users`,data,method:'patch'})
+export const reqGetAccrptInFo=()=>requests({url:`/address`,method:'get'})

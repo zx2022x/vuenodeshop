@@ -64,6 +64,7 @@ export default {
 // 	},
 mounted(){
      this.changeDisplay()
+    //  this.exitLogin()
 },
 // updated(){
 //      this.changeDisplay()
@@ -85,11 +86,12 @@ mounted(){
      changeDisplay(){
          const token =getToken()
  
-          
+          // console.log('首先执行了'+token)
+          // console.log(token)
          if(token){
              this.leftbox=true
              this.rightbox=false
-              console.log('执行了'+token)
+              // console.log('执行了'+token)
          }
      
          
@@ -110,13 +112,17 @@ mounted(){
         
       //     this.changeDisplay()
       // }
-     '$store.state.user.token':function(){
-       
+     '$route':{
+      
+      
+      handler(nV,oV){
+          
            this.changeDisplay()
  
 
 
       }
+     }
 
             
       

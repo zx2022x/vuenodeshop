@@ -1,82 +1,105 @@
 <template>
   <div>
     <div class="w">
-       <div class="userInFo">
+      <div class="userInFo">
         <div class="Info">
-        <div class="title">
-          登录手机
-          <div class="f">
-             <el-form :model="ruleForm1" status-icon :rules="rules1" ref="ruleForm1" label-width="100px" class="demo-ruleForm">
-  
-                  <el-form-item label="年龄" prop="age">
-                    <el-input v-model.number="ruleForm1.age"></el-input>
-                  </el-form-item>
-                  <el-form-item>
-                    <el-button type="primary" @click="submitFormNam('ruleForm1')">提交</el-button>
-                    <el-button @click="resetForm('ruleForm1')">重置</el-button>
-                  </el-form-item>
-            </el-form>
-          </div>
-          
+          <div class="title">
+            登录手机
+            <div class="f">
+              <el-form
+                :model="ruleForm"
+                status-icon
+                :rules="rules"
+                ref="ruleForm"
+                label-width="100px"
+                class="demo-ruleForm"
+              >
+                <el-form-item label="新密码" prop="pass">
+                  <el-input
+                    type="password"
+                    v-model="ruleForm.pass"
+                    autocomplete="off"
+                  >
+                  </el-input>
+                </el-form-item>
+                <el-form-item label="确认密码" prop="checkPass">
+                  <el-input
+                    type="password"
+                    v-model="ruleForm.checkPass"
+                    autocomplete="off"
+                  ></el-input>
+                </el-form-item>
+
+                <el-form-item>
+                  <el-button type="primary" @click="submitForm('ruleForm')"
+                    >提交</el-button
+                  >
+                  <el-button @click="resetForm('ruleForm')">重置</el-button>
+                </el-form-item>
+              </el-form>
+            </div>
           </div>
         </div>
+      </div>
 
       <div class="userInFo">
         <div class="Info">
-        <div class="title">
-          登录手机
-          <div class="f">
-            <el-form
-              :model="ruleForm"
-              status-icon
-              :rules="rules"
-              ref="ruleForm"
-              label-width="100px"
-              class="demo-ruleForm"
-            >
-              <el-form-item label="新密码" prop="pass">
-                <el-input
-                  type="password"
-                  v-model="ruleForm.pass"
-                  autocomplete="off"
-                >
-                </el-input>
-              </el-form-item>
-              <el-form-item label="确认密码" prop="checkPass">
-                <el-input
-                  type="password"
-                  v-model="ruleForm.checkPass"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-
-              <el-form-item>
-                <el-button type="primary" @click="submitForm('ruleForm')"
-                  >提交</el-button
-                >
-                <el-button @click="resetForm('ruleForm')">重置</el-button>
-              </el-form-item>
-            </el-form>
-          </div>
+          <div class="title">
+            登录手机
+            <div class="f1">
+              <el-descriptions
+                class="margin-top"
+                :column="2"
+                :size="size"
+                border
+              >
+                <template slot="extra">
+                    <el-button type="info" size="small">选择</el-button>
+                  </template>
+               <template slot="extra">
+                    <el-button type="warning" size="small">编辑</el-button>
+                  </template>
+                
+         
+                  <template slot="extra">
+                    <el-button type="danger" size="small">删除</el-button>
+                  </template>
+                <el-descriptions-item>
+                  <template slot="label">
+                    <i class="el-icon-user"></i>
+                    用户名
+                  </template>
+                  kooriookami
+                </el-descriptions-item>
+                <el-descriptions-item>
+                  <template slot="label">
+                    <i class="el-icon-mobile-phone"></i>
+                    手机号
+                  </template>
+                  18100000000
+                </el-descriptions-item>
+               
+                 
+               
+                <el-descriptions-item>
+                  <template slot="label">
+                    <i class="el-icon-office-building"></i>
+                    联系地址
+                  </template>
+                  江苏省苏州市吴中区吴中大道 1188 号
+                </el-descriptions-item>
+              </el-descriptions>
+            </div>
           </div>
         </div>
-        
       </div>
-
-      
     </div>
-  </div>
   </div>
 </template>
 
 <script>
 export default {
   data() {
-    var checkAge = (rule, value, callback) => {
-        if (!value) {
-          return callback(new Error('年龄不能为空'));
-        }
-    }
     var validatePass = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请输入密码"));
@@ -100,77 +123,26 @@ export default {
       ruleForm: {
         pass: "",
         checkPass: "",
-        
       },
-       ruleForm1: {
-       
-        age: '',
-      },
-       rules1:{
-         age: [
-            { validator: checkAge, trigger: 'blur' }
-          ]
-       },
+      size: "",
 
       rules: {
         pass: [{ validator: validatePass, trigger: "blur" }],
         checkPass: [{ validator: validatePass2, trigger: "blur" }],
-         
       },
     };
   },
   methods: {
-     submitFormName(formName1) {
-      this.$refs[formName1].validate(async (valid) => {
-
-        if (valid) {
-    
-            
-
-            this.$message({
-              message: message,
-              type: "success",
-            });
-           
-
-            //
-         
-          
-        } else {
-          console.log("error submit!!");
-          return false;
-        }
-
-      });
-    },
     submitForm(formName) {
       this.$refs[formName].validate(async (valid) => {
         if (valid) {
-          try {
-            const { ruleForm } = this;
+          const { ruleForm } = this;
 
-            const password = ruleForm.pass;
-            const { id, mark } = this.$route.params;
-            
-            const message = await this.$store.dispatch("changeUserPw", {
-              id,
-              password,
-            });
+          const password = ruleForm.pass;
 
-            this.$message({
-              message: message,
-              type: "success",
-            });
-            if (mark == 0) {
-              this.$router.push("/usermage");
-            } else {
-              this.$router.push("/");
-            }
+          await this.$store.dispatch("changeMyPd", { password });
 
-            //
-          } catch (error) {
-            this.$message.error(error.message);
-          }
+          //
         } else {
           console.log("error submit!!");
           return false;
@@ -180,12 +152,18 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
+    getData(){
+      this.$store.dispatch('getAccrptInFo')
+    }
   },
   computed: {
     getUsername() {
       return this.$route.params.user_name;
     },
   },
+  mounted(){
+     this.getData()
+  }
 };
 </script>
 
@@ -226,6 +204,9 @@ export default {
   .f {
     margin-top: 15px;
     width: 300px;
+  }
+  .f1 {
+    padding-top: 15px;
   }
 }
 </style>
