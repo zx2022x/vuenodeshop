@@ -114,7 +114,14 @@ export default [
     {
        name:'userinfo',
        path:'/userinfo',
-       component:()=>import('@/pages/Home/changeUserInFo')
+       component:()=>import('@/pages/Home/changeUserInFo'),
+       children:[
+            {
+                name:'additem',
+                path:'/userinfo/additem',
+                component:()=>import('@/pages/Home/changeUserInFo/addItem')
+            }
+       ]
     }
 
     

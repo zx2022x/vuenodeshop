@@ -1,11 +1,13 @@
     import { reqUserLogin,
             reqRegister,
             reqChangeMyPd,
-            reqGetAccrptInFo} from '@/api'
+            reqGetAccrptInFo,
+            reqChangeTai,
+            reqAddShJianInFo} from '@/api'
 import {setToken,getToken} from '@/utils/token'
 const state = {
     token:getToken(),
-    acceptInfo:{},
+    acceptInfo:[],
 }
 const mutations = {
     //管理员登录
@@ -87,8 +89,22 @@ const actions = {
              commit('GETACCRPTINFO',res.result)
          }
     },
+    //改变收件人状态
+    async ChangeTai({commit},id){
+         const res = await reqChangeTai(id)
+        
+    },
+    async addShJianInFo({commit},{consignee,phone,address}){
+        const res=await reqAddShJianInFo({consignee,phone,address})
+
+    }
 }
-const getters = {}
+const getters = {
+    //
+    getAInFo(state){
+         return state.acceptInfo || []
+    }
+}
 export default {
     state,
     mutations,

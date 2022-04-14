@@ -4,7 +4,7 @@
       <div class="userInFo">
         <div class="Info">
           <div class="title">
-            登录手机
+            修改密码
             <div class="f">
               <el-form
                 :model="ruleForm"
@@ -45,8 +45,8 @@
       <div class="userInFo">
         <div class="Info">
           <div class="title">
-            登录手机
-            <div class="f1">
+            收货人信息
+            <div class="f1" v-for="(item, index) in getAInFo" :key="item.id">
               <el-descriptions
                 class="margin-top"
                 :column="2"
@@ -54,41 +54,49 @@
                 border
               >
                 <template slot="extra">
-                    <el-button type="info" size="small">选择</el-button>
-                  </template>
-               <template slot="extra">
-                    <el-button type="warning" size="small">编辑</el-button>
-                  </template>
-                
-         
-                  <template slot="extra">
-                    <el-button type="danger" size="small">删除</el-button>
-                  </template>
+                  <el-button :type="item.is_default ? 'success': 'info' " size="small" @click="changeChoice(item.id,item.is_default)">选择</el-button>
+                </template>
+
+                <template slot="extra">
+                  <el-button type="warning" size="small">编辑</el-button>
+                </template>
+
+                <template slot="extra">
+                  <el-button type="danger" size="small">删除</el-button>
+                </template>
+
                 <el-descriptions-item>
                   <template slot="label">
                     <i class="el-icon-user"></i>
-                    用户名
+                    收件人
                   </template>
-                  kooriookami
+                  {{ item.consignee }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                   <template slot="label">
                     <i class="el-icon-mobile-phone"></i>
                     手机号
                   </template>
-                  18100000000
+                  {{ item.phone }}
                 </el-descriptions-item>
-               
-                 
-               
+
                 <el-descriptions-item>
                   <template slot="label">
                     <i class="el-icon-office-building"></i>
                     联系地址
                   </template>
-                  江苏省苏州市吴中区吴中大道 1188 号
+                  {{ item.address }}
                 </el-descriptions-item>
               </el-descriptions>
+              
+            </div>
+            <div class="add" @click="additem">
+              <i class="el-icon-caret-bottom"></i>
+            </div>
+            <div class="additem">
+             
+              
+              <AddItem v-show="addjude" @close="closeAddItem"/>
             </div>
           </div>
         </div>
@@ -98,6 +106,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex"
+import AddItem from "@/pages/Home/changeUserInFo/addItem"
 export default {
   data() {
     var validatePass = (rule, value, callback) => {
@@ -130,6 +140,8 @@ export default {
         pass: [{ validator: validatePass, trigger: "blur" }],
         checkPass: [{ validator: validatePass2, trigger: "blur" }],
       },
+     activeId:1,
+     addjude:false,
     };
   },
   methods: {
@@ -152,17 +164,49 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
-    getData(){
-      this.$store.dispatch('getAccrptInFo')
+    getData() {
+      this.$store.dispatch("getAccrptInFo");
+    },
+    changeChoice(id,is_default){
+           if(!is_default){
+              
+               this.$store.dispatch('ChangeTai',id)
+               
+                this.getData()
+              
+             
+
+           }
+    },
+    //关闭增加收件人
+    closeAddItem(){
+      console.log('关闭')
+        this.addjude=false
+    },
+    //增加收件人
+    additem(){
+      
+      // this.$router.push('/userinfo/additem')
+      this.addjude=true
     }
   },
   computed: {
+    ...mapGetters(["getAInFo"]),
     getUsername() {
       return this.$route.params.user_name;
     },
   },
-  mounted(){
-     this.getData()
+  mounted() {
+    this.getData();
+    this.$bus.$on('getData',(a)=>{
+      console.log(a)
+       this.addjude=a
+       this.getData();
+
+    })
+  },
+  components:{
+     AddItem,
   }
 };
 </script>
@@ -193,6 +237,7 @@ export default {
 
   //   transform:translateX(-50%)
   .Info {
+
   }
 
   .title {
@@ -206,7 +251,19 @@ export default {
     width: 300px;
   }
   .f1 {
+    // height: 300px;
+    // width: 100%;
     padding-top: 15px;
+  
+   
   }
+  .add{
+    margin-left:262px;
+     font-size:68px;
+     
+  }
+        
+ 
+  
 }
 </style>
