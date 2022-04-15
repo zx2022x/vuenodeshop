@@ -41,3 +41,7 @@ export const reqChangeTai=(id)=>requests({url:`/address/${id}`,method:'patch'})
 
 //增加收件人
 export const reqAddShJianInFo=(data)=>requests({url:'/address',data,method:'post'})
+//删除收件人信息
+export const reqDeleteShouJ=(id)=>requests({url:`/address/${id}`,method:'delete'})
+//编辑收件人信息
+export const reqEditItem=(id,data)=>requests({url:`/address/${id}`,data,method:'put'})

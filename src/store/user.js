@@ -3,7 +3,9 @@
             reqChangeMyPd,
             reqGetAccrptInFo,
             reqChangeTai,
-            reqAddShJianInFo} from '@/api'
+            reqAddShJianInFo,
+            reqDeleteShouJ,
+            reqEditItem} from '@/api'
 import {setToken,getToken} from '@/utils/token'
 const state = {
     token:getToken(),
@@ -27,6 +29,8 @@ const mutations = {
     GETACCRPTINFO(state,acceptInfo){
         state.acceptInfo=acceptInfo
     },
+    //收件人
+   
 }
 const actions = {
     
@@ -97,7 +101,21 @@ const actions = {
     async addShJianInFo({commit},{consignee,phone,address}){
         const res=await reqAddShJianInFo({consignee,phone,address})
 
-    }
+    },
+    //删除收件人
+    async deleteShouJ({commit},id){
+         await reqDeleteShouJ(id)
+    },
+    //修改收件人信息
+   
+    async editItem({commit},{id,consignee,phone,address}){
+       
+        // console.log("dsjds"+{consignee,phone,address})
+        await reqEditItem(id,{consignee,phone,address})
+        
+
+    },
+
 }
 const getters = {
     //

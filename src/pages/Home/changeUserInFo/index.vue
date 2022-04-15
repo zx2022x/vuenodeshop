@@ -38,11 +38,13 @@
                 </el-form-item>
               </el-form>
             </div>
+            
           </div>
         </div>
       </div>
 
       <div class="userInFo">
+
         <div class="Info">
           <div class="title">
             收货人信息
@@ -58,11 +60,11 @@
                 </template>
 
                 <template slot="extra">
-                  <el-button type="warning" size="small">编辑</el-button>
+                  <el-button type="warning" size="small" @click="editItem(item.id)">编辑</el-button>
                 </template>
 
                 <template slot="extra">
-                  <el-button type="danger" size="small">删除</el-button>
+                  <el-button type="danger" size="small" @click="deleteShouJ(item.id)">删除</el-button>
                 </template>
 
                 <el-descriptions-item>
@@ -88,7 +90,12 @@
                   {{ item.address }}
                 </el-descriptions-item>
               </el-descriptions>
-              
+              <!-- 这里 -->
+              <EditItem  v-if="editId==item.id ? true : false" 
+              @closeEditItem="closeEditItem(item.id)" :item="item"
+              @closeEIGetData="closeEIGetData"/>
+
+
             </div>
             <div class="add" @click="additem">
               <i class="el-icon-caret-bottom"></i>
@@ -96,10 +103,11 @@
             <div class="additem">
              
               
-              <AddItem v-show="addjude" @close="closeAddItem"/>
+              <AddItem v-if="addjude" @close="closeAddItem"/>
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -108,6 +116,7 @@
 <script>
 import { mapGetters } from "vuex"
 import AddItem from "@/pages/Home/changeUserInFo/addItem"
+import EditItem from "@/pages/Home/changeUserInFo/editItem"
 export default {
   data() {
     var validatePass = (rule, value, callback) => {
@@ -142,6 +151,7 @@ export default {
       },
      activeId:1,
      addjude:false,
+     editId:'',
     };
   },
   methods: {
@@ -180,7 +190,7 @@ export default {
     },
     //关闭增加收件人
     closeAddItem(){
-      console.log('关闭')
+     
         this.addjude=false
     },
     //增加收件人
@@ -188,7 +198,27 @@ export default {
       
       // this.$router.push('/userinfo/additem')
       this.addjude=true
+    },
+    //删除搜索
+    deleteShouJ(id){
+       this.$store.dispatch('deleteShouJ',id)
+       this.getData()
+    },
+    //编辑收件人信息
+    editItem(id){
+        this.editId=id
+    },
+    //关闭编辑页面
+    closeEditItem(){
+        this.editId=-1
+    },
+
+    closeEIGetData(){
+         this.editId=-1
+         this.getData()
+
     }
+
   },
   computed: {
     ...mapGetters(["getAInFo"]),
@@ -207,6 +237,7 @@ export default {
   },
   components:{
      AddItem,
+     EditItem,
   }
 };
 </script>

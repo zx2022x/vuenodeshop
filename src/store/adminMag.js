@@ -8,7 +8,7 @@ import {
     reqGetRuGoodsList,
     reqSangJia,
     reqChangeUserPw,
-    reqChangeMyselfPw,
+    
     reqGetItemList
 } from '@/api'
 const state = {

@@ -63,7 +63,7 @@ export default {
 // 	this.changeDisplay()
 // 	},
 mounted(){
-     this.changeDisplay()
+    //  this.changeDisplay()
     //  this.exitLogin()
 },
 // updated(){
