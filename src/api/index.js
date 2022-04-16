@@ -32,7 +32,7 @@ export const reqGetItemList=(pageNum,pageSize,goods_fm)=>requests({url:`/goods/i
 //获取搜索商品列表
 export const reqGetSearchInfo=(pageNum,pageSize,goods_name)=>requests({url:`/goods/search?pageNum=${pageNum}&pageSize=${pageSize}&goods_name=${goods_name}`,method:'get'})
 //修改用户密码
-export const reqChangeMyPd=(data)=>requests({url:`/users`,data,method:'patch'})
+export const reqChangeMyPd=(password)=>requests({url:`/users`,password,method:'patch'})
 //拿到收件人信息
 export const reqGetAccrptInFo=()=>requests({url:`/address`,method:'get'})
 
@@ -45,3 +45,6 @@ export const reqAddShJianInFo=(data)=>requests({url:'/address',data,method:'post
 export const reqDeleteShouJ=(id)=>requests({url:`/address/${id}`,method:'delete'})
 //编辑收件人信息
 export const reqEditItem=(id,data)=>requests({url:`/address/${id}`,data,method:'put'})
+
+//加入购物车
+export const reqAddShopCart=(data)=>requests({url:`/carts`,data,method:'post'})

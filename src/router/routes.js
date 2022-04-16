@@ -122,7 +122,8 @@ export default [
                 component:()=>import('@/pages/Home/changeUserInFo/addItem')
             }
        ]
-    }
+    },
+   
 
     
 

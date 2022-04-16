@@ -49,7 +49,7 @@ data() {
 <style lang='less' scoped>
 .search{
     height: 112px;
-    background-color: rgb(211, 224, 189);
+    // background-color: rgb(211, 224, 189);
 }
 .el-input{
     margin-top:37px;

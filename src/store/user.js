@@ -5,8 +5,9 @@
             reqChangeTai,
             reqAddShJianInFo,
             reqDeleteShouJ,
-            reqEditItem} from '@/api'
-import {setToken,getToken} from '@/utils/token'
+            reqEditItem,
+            reqAddShopCart} from '@/api'
+import {setToken,getToken,setID} from '@/utils/token'
 const state = {
     token:getToken(),
     acceptInfo:[],
@@ -24,12 +25,14 @@ const mutations = {
      //用户登录
     USERLOGIN(state,userInfo){
         setToken(userInfo.token)
+        setID(userInfo.id)
     },
     //收件人信息
     GETACCRPTINFO(state,acceptInfo){
         state.acceptInfo=acceptInfo
     },
     //收件人
+
    
 }
 const actions = {
@@ -74,12 +77,12 @@ const actions = {
     async changeMyPd({commit},{password}){
          try {
               
-            console.log('错误是'+password)
+            // console.log('错误是'+password)
            await reqChangeMyPd(password)
 
          } catch (error) {
-             console.log('错误是')
-             console.log(error)
+            //  console.log('错误是')
+            //  console.log(error)
          }
       
 
@@ -115,6 +118,11 @@ const actions = {
         
 
     },
+    //加入购物车
+    async addShopCart({commit},{goods_id,user_id,number}){
+        await reqAddShopCart({goods_id,user_id,number})
+       
+    }
 
 }
 const getters = {

@@ -19,4 +19,11 @@ export const clearToken=()=>{
     localStorage.removeItem('TOKEN')
 
 }
+//存储ID
+export const setID=(id)=>{
+    localStorage.setItem('ID',id)
+}
+export const getID=()=>
+    localStorage.getItem('ID')
+
 

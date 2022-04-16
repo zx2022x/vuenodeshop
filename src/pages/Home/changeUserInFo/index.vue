@@ -56,7 +56,7 @@
                 border
               >
                 <template slot="extra">
-                  <el-button :type="item.is_default ? 'success': 'info' " size="small" @click="changeChoice(item.id,item.is_default)">选择</el-button>
+                  <el-button :type="item.is_default ? 'success': 'info' " :class="{}" size="small" @click="changeChoice(item.id,item.is_default)">选择</el-button>
                 </template>
 
                 <template slot="extra">
@@ -152,6 +152,7 @@ export default {
      activeId:1,
      addjude:false,
      editId:'',
+     mark:true,
     };
   },
   methods: {
@@ -178,15 +179,17 @@ export default {
       this.$store.dispatch("getAccrptInFo");
     },
     changeChoice(id,is_default){
+       console.log("is_default值"+is_default)
            if(!is_default){
-              
+               console.log("is_default内部"+is_default)
                this.$store.dispatch('ChangeTai',id)
-               
+               console.log('已经发送请求')
                 this.getData()
               
              
 
            }
+         
     },
     //关闭增加收件人
     closeAddItem(){
@@ -212,11 +215,11 @@ export default {
     closeEditItem(){
         this.editId=-1
     },
-
+ //关闭编辑页面并请求数据
     closeEIGetData(){
          this.editId=-1
          this.getData()
-
+            
     }
 
   },
@@ -225,6 +228,7 @@ export default {
     getUsername() {
       return this.$route.params.user_name;
     },
+  
   },
   mounted() {
     this.getData();
@@ -238,7 +242,20 @@ export default {
   components:{
      AddItem,
      EditItem,
+  },
+  watch:{
+
+    //  getAInFo:{
+    //         handler(oV,nV){
+                
+    //         },
+    //         deep:true,
+    //   }
+    mark(nV,oV){
+       this.getData()
+    }
   }
+
 };
 </script>
 

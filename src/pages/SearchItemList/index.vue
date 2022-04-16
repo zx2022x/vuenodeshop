@@ -7,7 +7,7 @@
       </div>
       <div class="itemlist">
         <ul>
-          <li v-for="(item, index) in getItemList1" :key="item.id">
+          <li v-for="(item, index) in getItemList1" :key="item.id" @click="goDetail(item)">
             <el-image
               style="width: 160px; height: 160px"
               :src="api1 + item.goods_img"
@@ -89,6 +89,9 @@ export default {
     changePnum(val){
        
       this.getData(val,10)
+    },
+    goDetail(item){
+      this.$router.push({path:'/itemdetail',query:item})
     }
   },
   computed: {
