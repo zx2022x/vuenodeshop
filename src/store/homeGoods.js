@@ -1,16 +1,27 @@
 import {
-    reqGetSearchInfo
+    reqGetSearchInfo,
+    reqGetAddShopCart
   } from '@/api/index'
 
 
 const state={
-    searchInfo:{}
+
+    searchInfo:{},
+    shopcartlist:{},
+    shopcartlisttotal:'',
+    shopcartInfo:{},
 }
 const mutations={
     //获取搜索得到商品列表
     GETSEARCHINFO(state,searchInfo){
         state.searchInfo=searchInfo
+    },
+    GETADDSHOPCART(state,shopcartInfo){
+        state.shopcartlist=shopcartInfo.list
+        state.shopcartlisttotal=shopcartInfo.total
+        state.shopcartInfo=shopcartInfo
     }
+    
 }
 const actions={
       //获取搜索得到商品列表
@@ -26,6 +37,13 @@ const actions={
          }
       
        
+     },
+     //获取购物车列表
+     async getAddShopCart({commit},{pageNum,pageSize,user_id}){
+       const res= await reqGetAddShopCart(pageNum,pageSize,user_id)
+       if(res.code==0){
+           commit('GETADDSHOPCART',res.result)
+       }
      }
     
 
@@ -38,7 +56,16 @@ const getters={
 
     getSearchList(state){
         return state.searchInfo.list
-    }
+    },
+    getShopCartList(state){
+        return state.shopcartlist
+    },
+    getShopCartListTotal(state){
+        return state.shopcartlisttotal
+    },
+     getShopCartInfo(state){
+      return  state.shopcartInfo
+  }
 }
 
 export default{

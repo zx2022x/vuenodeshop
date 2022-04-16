@@ -48,3 +48,6 @@ export const reqEditItem=(id,data)=>requests({url:`/address/${id}`,data,method:'
 
 //加入购物车
 export const reqAddShopCart=(data)=>requests({url:`/carts`,data,method:'post'})
+
+//获取购物车列表
+export const reqGetAddShopCart=(pageNum,pageSize,user_id)=>requests({url:`/carts/?pageNum=${pageNum}&pageSize=${pageSize}&user_id=${user_id}`,method:'get'})

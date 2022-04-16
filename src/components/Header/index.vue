@@ -39,8 +39,8 @@
           <li>
             <router-link class="link" to="/adminLogin">后台管理</router-link>
           </li>
-          <li>
-            <router-link class="link" to="/">购物车</router-link>
+          <li @click="goShopCartList">
+            <router-link class="link" to="/" >购物车</router-link>
           </li>
         </ul>
       </div>
@@ -100,6 +100,9 @@ mounted(){
 
        this.$router.push('/userinfo')
 
+     },
+     goShopCartList(){
+       this.$router.push({path:'/shopcartlist'})
      }
  },
  

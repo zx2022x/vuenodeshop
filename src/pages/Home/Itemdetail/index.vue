@@ -63,11 +63,11 @@ export default {
     },
     //
     async addShopCart(){
-       const {id,number}=this
+       const {id,num}=this
        const user_id=parseInt(getID())
        const id1=parseInt(id)
-       console.log('商品ID是'+user_id)
-       await this.$store.dispatch('addShopCart',{goods_id:id1,user_id,number})
+       console.log('输入是'+num)
+       await this.$store.dispatch('addShopCart',{goods_id:id1,user_id,number:num})
        
     }
   },

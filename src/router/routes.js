@@ -123,6 +123,12 @@ export default [
             }
        ]
     },
+    //购物车列表
+    {
+        name:'shopcartlist',
+        path:'/shopcartlist',
+        component:()=>import('@/pages/Home/ShopCartList')
+    }
    
 
     
