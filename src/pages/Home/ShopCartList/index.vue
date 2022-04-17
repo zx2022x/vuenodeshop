@@ -15,8 +15,11 @@
       </el-table-column>
          <el-table-column  label="数量" width="220">
             <template slot-scope="scope" >
-                <div :setNum="setNum(scope.$index, scope.row)">
-            <el-input-number v-model="num" @change="handleChange" :min="1" :max="9999" label="描述文字"></el-input-number>
+                <!-- <div :setNum="setNum(scope.$index, scope.row)"> -->
+                  <div>
+            <!-- <el-input-number v-model="num" @change="handleChange()" :min="1" :max="9999" label="描述文字"></el-input-number> -->
+                <el-input-number v-model="scope.row.number" @change="(value)=>handleChange(value,scope)" :min="1" :max="9999" label="描述文字"></el-input-number> 
+                
                 </div>
             </template>
       </el-table-column>
@@ -25,9 +28,13 @@
 
       </el-table-column> -->
       
-      <el-table-column prop="" label="小计" width="80">
-          <!-- {{goods_price*goods_num}} -->
-          {{getShopCartListTotal}}
+      <el-table-column prop="" label="小计" width="80" >
+         <template slot-scope="scope" >
+           <!-- <div :cacuPrice="cacuPrice(scope.$index, scope.row)"> -->
+             <div>
+             {{xiaoJi}}
+           </div>
+          </template>
       </el-table-column>
 
       
@@ -85,6 +92,7 @@ export default {
       urla: 1,
       num: 1,
       data:[],
+      xiaoJi:'',
     };
   },
   mounted() {
@@ -104,16 +112,38 @@ export default {
      
     },
    
-    handleChange(value) {
-        console.log(value);
-      },
+    // handleChange(value) {
+    //     console.log(value);
+    //   },
      changePnum(val){
        
         this.getdata(val,6)
+
     },
     //设置数字改变框
-    setNum(index,row){
-          this.num=row.number
+    // setNum(index,row){
+    //       this.num=row.number
+
+    // },
+    //小计
+    // cacuPrice(inex,row){
+    //    const {num}=this
+    //    this.xiaoJi=row.goods_info.goods_price*num
+       
+
+    // },
+    //计数器改变
+    handleChange(value,scope){
+
+     
+          const price=parseInt(scope.row.goods_info.goods_price)
+         
+          this.xiaoJi=price*value
+          
+    },
+    caculate(index,row){
+         const {num}=this
+       this.xiaoJi=row.goods_info.goods_price*num
     }
   
   
