@@ -17,7 +17,7 @@ let requests = axios.create({
   //请求不能超过5S
   timeout: 5000,
 });
-
+import {getToken} from '@/utils/token'
 //请求拦截器----在项目中发请求（请求没有发出去）可以做一些事情
 requests.interceptors.request.use((config) => {
   //现在的问题是config是什么?配置对象
@@ -27,9 +27,9 @@ requests.interceptors.request.use((config) => {
 //     config.headers.userTempId = store.state.detail.uuid_token;
 //   }
   //需要携带token带给服务器
-  if(store.state.user.token){
+  if(getToken()){
    
-    config.headers.Authorization = store.state.user.token;
+    config.headers.Authorization = getToken();
     // console.log('token是是是是是是')
     //  console.log('token'+store.state.user.token)
     // console.log('请求头token:')
@@ -46,10 +46,17 @@ requests.interceptors.response.use(
   (res) => {
     //进度条结束
     nprogress.done();
-    Message({
-			message:res.data.message,
-			type: 'success',
-		})
+    const a=res.data.message
+    const a1=a.search("商品列表")
+    const a2=a.search("更新购物车")
+
+    if(!(a1!=-1 || a2!=-1)){
+      Message({
+        message:res.data.message,
+        type: 'success',
+      })
+    }
+   
     //相应成功做的事情
     return res.data;
   },

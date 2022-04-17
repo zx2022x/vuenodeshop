@@ -51,3 +51,7 @@ export const reqAddShopCart=(data)=>requests({url:`/carts`,data,method:'post'})
 
 //获取购物车列表
 export const reqGetAddShopCart=(pageNum,pageSize,user_id)=>requests({url:`/carts/?pageNum=${pageNum}&pageSize=${pageSize}&user_id=${user_id}`,method:'get'})
+//更新购物车数量
+export const reqUpdateShopCart=(id,data)=>requests({url:`/carts/${id}`,data,method:'patch'})
+//删除单个购物车
+export const reqSingeDeleSCL=(data)=>requests({url:`/carts/`,data,method:'delete'})

@@ -6,9 +6,12 @@
     <el-button :plain="true" @click="open4">错误</el-button> -->
     <!-- <el-table :data="SpListInfo.list" stripe style="width: 100%"> -->
     <el-table :data="getShopCartInfo.list" stripe style="width: 100%">
-      <el-table-column prop="id" label="" width="50">
+      <el-table-column  label="" width="50">
+          <template slot-scope="scope">
+          <el-checkbox v-model="scope.row.selected"></el-checkbox>
+          </template>
       </el-table-column>
-      <el-table-column prop="goods_info.goods_name" label="名称" width="180">
+      <el-table-column prop="goods_info.goods_name" label="名称" width="400">
       </el-table-column>
 
       <el-table-column prop="goods_info.goods_price" label="价格" width="100">
@@ -29,20 +32,21 @@
       </el-table-column> -->
       
       <el-table-column prop="" label="小计" width="80" >
+        
          <template slot-scope="scope" >
            <!-- <div :cacuPrice="cacuPrice(scope.$index, scope.row)"> -->
-             <div>
-             {{xiaoJi}}
+             <div :fistXiaoji="fistXiaoji(scope)">
+             {{xiaoJi[scope.row.id]}}
            </div>
           </template>
       </el-table-column>
 
       
-
-      <el-table-column label="图片" width="88">
+     
+      <el-table-column label="图片" width="100" row-class-name='ss'>
         <template slot-scope="scope">
           <el-image
-            style="width: 60px; height: 60px"
+            style="width: 80px; height: 80px"
             :src="api + scope.row.goods_info.goods_img"
           ></el-image>
         </template>
@@ -50,7 +54,7 @@
 
       
 
-     <el-table-column align="left" label="操作" width="350"> 
+     <el-table-column align="left" label="操作" width="70"> 
         <template slot-scope="scope">
        
         
@@ -92,12 +96,14 @@ export default {
       urla: 1,
       num: 1,
       data:[],
-      xiaoJi:'',
+      xiaoJi:[],
+      
     };
   },
   mounted() {
     //获取数据
     this.getdata();
+    
     
   },
   methods: {
@@ -120,33 +126,35 @@ export default {
         this.getdata(val,6)
 
     },
-    //设置数字改变框
-    // setNum(index,row){
-    //       this.num=row.number
-
-    // },
-    //小计
-    // cacuPrice(inex,row){
-    //    const {num}=this
-    //    this.xiaoJi=row.goods_info.goods_price*num
-       
-
-    // },
-    //计数器改变
+   
     handleChange(value,scope){
 
      
           const price=parseInt(scope.row.goods_info.goods_price)
          
-          this.xiaoJi=price*value
+          this.xiaoJi[scope.row.id]=price*value
+          
+          
+          this.$store.dispatch('updateShopCart',{number:value,id:scope.row.id,selected:scope.row.selected})
+          
           
     },
-    caculate(index,row){
-         const {num}=this
-       this.xiaoJi=row.goods_info.goods_price*num
-    }
-  
-  
+    
+  //初始化小计
+   fistXiaoji(scope){
+      const price=parseInt(scope.row.goods_info.goods_price)
+      const number=scope.row.number
+      this.xiaoJi[scope.row.id]=price*number
+   },
+  //购物车单个删除
+ async handleDelete(index,row){
+      const id=row.id
+      const ids=[]
+      ids.push(id)
+      
+     await this.$store.dispatch("singeDeleSCL",ids)
+    //  await this.getdata()
+  },
     
     
   },
@@ -159,6 +167,7 @@ export default {
   components:{
       Pagination,
   }
+
 };
 </script>
 
@@ -171,6 +180,9 @@ export default {
   margin-left:454px
   // transform: translateX(-50%);
   
+}
+.ss{
+   margin-right:105px;
 }
 
 

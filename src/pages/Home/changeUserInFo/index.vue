@@ -181,9 +181,9 @@ export default {
     changeChoice(id,is_default){
        console.log("is_default值"+is_default)
            if(!is_default){
-               console.log("is_default内部"+is_default)
+              
                this.$store.dispatch('ChangeTai',id)
-               console.log('已经发送请求')
+             
                 this.getData()
               
              

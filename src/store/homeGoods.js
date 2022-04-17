@@ -1,6 +1,8 @@
 import {
     reqGetSearchInfo,
-    reqGetAddShopCart
+    reqGetAddShopCart,
+    reqUpdateShopCart,
+    reqSingeDeleSCL
   } from '@/api/index'
 
 
@@ -44,6 +46,22 @@ const actions={
        if(res.code==0){
            commit('GETADDSHOPCART',res.result)
        }
+     },
+     //更新购物车数量
+     async updateShopCart({commit},{number,id,selected}){
+       
+         const data={id,selected}
+         await reqUpdateShopCart(id,data)
+     },
+     //删除单个购物车列表
+     async singeDeleSCL({commit},ids){
+       try {
+        await reqSingeDeleSCL(ids)
+       } catch (error) {
+           console.log('smsms')
+           console.log(error)
+       }
+         
      }
     
 

@@ -9,11 +9,14 @@ import router from '@/router'
 //按需引入elementui
 import {Row,Col,Menu,Submenu,MenuItem,Table,TableColumn,MenuItemGroup,Main,Form,
 FormItem,Input,Button,Option,Select,InputNumber,Upload,Dialog,Popover,
-Tag,Pagination,Image,Message,Tabs,TabPane,Carousel,CarouselItem,Dropdown,DropdownMenu,DropdownItem,Descriptions,DescriptionsItem} from 'element-ui'
+Tag,Pagination,Image,Message,Tabs,TabPane,Carousel,
+CarouselItem,Dropdown,DropdownMenu,DropdownItem,
+Descriptions,DescriptionsItem,Checkbox,
+} from 'element-ui'
 
 Vue.use(Row); Vue.use(Carousel);Vue.use(CarouselItem);Vue.use(Dropdown);Vue.use(DropdownMenu)
 Vue.use(Col);Vue.use(DropdownItem);Vue.use(Descriptions);Vue.use(DescriptionsItem)
-Vue.use(Menu)
+Vue.use(Menu);Vue.use(Checkbox)
 Vue.use(Submenu)
 Vue.use(MenuItem)
 Vue.use(Table)
