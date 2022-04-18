@@ -70,6 +70,10 @@
 
     <!-- <el-pagination background layout="prev, pager, next" :total="totalCount" @current-change="changePage">
     </el-pagination> -->
+    <div class="finalCart">
+        <el-checkbox ></el-checkbox> <span>全选</span> <span>取消全选</span> <span>清理购物车</span>
+        <span>已选择1件商品</span> <span>总价:¥500</span>
+    </div>
     <div class="pa">
      <Pagination :total="getShopCartInfo.total" :pageSize="6" @changePnum='changePnum'/>
     </div>
@@ -151,6 +155,7 @@ export default {
       const id=row.id
       const ids=[]
       ids.push(id)
+      
       
      await this.$store.dispatch("singeDeleSCL",ids)
     //  await this.getdata()

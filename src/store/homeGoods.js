@@ -55,14 +55,12 @@ const actions={
      },
      //删除单个购物车列表
      async singeDeleSCL({commit},ids){
-       try {
+     
         await reqSingeDeleSCL(ids)
-       } catch (error) {
-           console.log('smsms')
-           console.log(error)
-       }
+       
+     },
          
-     }
+     
     
 
 }

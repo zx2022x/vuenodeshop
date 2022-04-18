@@ -117,6 +117,7 @@
 import { mapGetters } from "vuex"
 import AddItem from "@/pages/Home/changeUserInFo/addItem"
 import EditItem from "@/pages/Home/changeUserInFo/editItem"
+import {clearToken} from "@/utils/token"
 export default {
   data() {
     var validatePass = (rule, value, callback) => {
@@ -164,7 +165,8 @@ export default {
           const password = ruleForm.pass;
 
           await this.$store.dispatch("changeMyPd", { password });
-
+          clearToken()
+          this.$router.push({name:'userlogin',params:{mark:1}})
           //
         } else {
           console.log("error submit!!");
