@@ -57,7 +57,7 @@ const actions={
          const data={id,selected}
          await reqUpdateShopCart(id,data)
      },
-     //删除单个购物车列表
+     //删除购物车列表
      async singeDeleSCL({commit},ids){
      
         await reqSingeDeleSCL(ids)
@@ -75,7 +75,8 @@ const actions={
      //设置反选
      async unSetCheckAll({commit}){
          await reqUnSetCheckAll()
-     }
+     },
+    
      
          
      

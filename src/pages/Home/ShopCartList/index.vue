@@ -8,7 +8,10 @@
       <el-table :data="getShopCartInfo.list" stripe style="width: 100%">
         <el-table-column label="" width="50">
           <template slot-scope="scope">
-            <el-checkbox v-model="scope.row.selected" @change="(value)=>updateChecked(value,scope.row.id)"></el-checkbox>
+            <el-checkbox
+              v-model="scope.row.selected"
+              @change="(value) => updateChecked(value, scope.row.id)"
+            ></el-checkbox>
           </template>
         </el-table-column>
         <el-table-column prop="goods_info.goods_name" label="名称" width="400">
@@ -73,26 +76,25 @@
           id="checkBox"
           v-model="allIs_default"
           @change="setCheckAll()"
-          
         ></el-checkbox>
         <!-- :checked="setCheck && getShopCartList.length > 0" -->
         <!-- :setCheck="setCheck(getShopCartInfo.list)" -->
 
-        
-        <span>全选</span> <span class="hov" @click="unSetCheckAll">全不选</span>
-        <span class="hov">删除选中的商品</span
-        ><span class="hov">清空购物车</span>
-        <span id="choseItem">已选择<span>1</span>件商品</span>
-        <span id="zongJia">总价:<span>¥500</span></span>
+        <span>全选</span>
+        <span class="hov" @click="unSetCheckAll">全不选</span>
+        <span class="hov" @click="deleteItem">删除选中的商品</span
+        ><span class="hov" @click="deleteAll">清空购物车</span>
+        <span id="choseItem" :choiceTotal="choiceTotal">已选择<span>{{choiceTotal.count}}</span>件商品</span>
+        <span id="zongJia">总价:<span>¥{{choiceTotal.totalPrice}}</span></span>
         <div class="jieSuan">结算</div>
       </div>
-      <div class="pa">
+      <!-- <div class="pa">
         <Pagination
           :total="getShopCartInfo.total"
           :pageSize="6"
           @changePnum="changePnum"
         />
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -117,8 +119,8 @@ export default {
       data: [],
       xiaoJi: [],
       allIs_default: false,
-      cartList:[]
-    }
+      cartList: [],
+    };
   },
   mounted() {
     //获取数据
@@ -126,7 +128,7 @@ export default {
     // this.all()
   },
   methods: {
-    async getdata(pageNum = 1, pageSize = 6) {
+    async getdata(pageNum = 1, pageSize = 1000) {
       const uid = getID();
       const user_id = parseInt(uid);
 
@@ -172,27 +174,53 @@ export default {
       //  await this.getdata()
     },
     //更新选中状态
-     async updateChecked(value,id){
-        await this.$store.dispatch("updateChecked",{selected:value,id})
+    async updateChecked(value, id) {
+      await this.$store.dispatch("updateChecked", { selected: value, id });
     },
     //设置全选
-    async setCheckAll(){
-          if(!this.allIs_default){
-            this.allIs_default=!this.allIs_default
-          }
+    async setCheckAll() {
+      if (!this.allIs_default) {
+        this.allIs_default = !this.allIs_default;
+      }
       // console.log("skmsk"+this.allIs_default)
-          if(this.allIs_default){
-          await this.$store.dispatch("setCheckAll")
-          await this.getdata()
-          }
-       
+      if (this.allIs_default) {
+        await this.$store.dispatch("setCheckAll");
+        await this.getdata();
+      }
     },
     //全不选
-    async unSetCheckAll(){
-        await this.$store.dispatch("unSetCheckAll")
-        await this.getdata()
+    async unSetCheckAll() {
+      await this.$store.dispatch("unSetCheckAll");
+      await this.getdata();
+    },
+    //删除选中的商品
+    //删除选中的商品
+  async deleteItem() {
+      const list1 = this.getShopCartList;
+      
+      const list = Array.from(list1);
+      const ids=[]
+      list.forEach((item)=>{
+        if(item.selected){
+             ids.push(item.id)
+        }
+      })
+      await this.$store.dispatch('singeDeleSCL',ids)
+      await this.getdata()
+    },
+    //清空购物车
+    async deleteAll(){
+      const list1 = this.getShopCartList;
+      
+      const list = Array.from(list1);
+      const ids=[]
+      list.forEach((item)=>{
+        ids.push(item.id)
+      })
+      await this.$store.dispatch("singeDeleSCL",ids)
+      await this.getdata()
     }
-   
+
   },
   computed: {
     //mapGetters里面的写法：传递的数组，因为getters计算是没有划分模块【home,search】
@@ -207,32 +235,46 @@ export default {
     },
     //查看是否是全选
     setCheck() {
-     
-     
-      const list1=this.getShopCartList
-     const list =Array.from(list1)
-     if(!list){
-       this.allIs_default=false
-     }else{
-        this.allIs_default = list.every((item)=>item.selected==1)
-     }
-      
-   
+      const list1 = this.getShopCartList;
+      const list = Array.from(list1);
+      if (!list.length) {
+        this.allIs_default = false;
+      } else {
+        this.allIs_default = list.every((item) => item.selected == 1);
+      }
 
-    //    list.forEach((item) => {
-    //     if (!item.is_default) {
-    //        this.allIs_default=false
-    //     }else{
-    //        this.allIs_default=true
-    //     }
+      //    list.forEach((item) => {
+      //     if (!item.is_default) {
+      //        this.allIs_default=false
+      //     }else{
+      //        this.allIs_default=true
+      //     }
 
-    //   });
-    //    if(index==-1){
-    //         this.allIs_default=true
-    //    }else{
-    //         this.allIs_default=false
-    //    }
+      //   });
+      //    if(index==-1){
+      //         this.allIs_default=true
+      //    }else{
+      //         this.allIs_default=false
+      //    }
     },
+    //数量和价格总计
+    choiceTotal(){
+        const list1 = this.getShopCartList;
+        const list = Array.from(list1);
+        let totalPrice=0
+        let count=0
+        list.forEach((item)=>{
+           if(item.selected){
+              count+=item.number
+              totalPrice+=item.number*parseInt(item.goods_info.goods_price)
+           }
+        })
+        return{
+             count,
+             totalPrice
+        }
+    }
+    
   },
   components: {
     Pagination,
