@@ -55,3 +55,9 @@ export const reqGetAddShopCart=(pageNum,pageSize,user_id)=>requests({url:`/carts
 export const reqUpdateShopCart=(id,data)=>requests({url:`/carts/${id}`,data,method:'patch'})
 //删除单个购物车
 export const reqSingeDeleSCL=(data)=>requests({url:'/carts',data:{ids:data},method:'delete'})
+//更新购物车状态
+export const reqUpdateChecked=(id,selected)=>requests({url:`/carts/${id}`,data:{selected},method:'patch'})
+//全不选
+export const reqUnSetCheckAll=()=>requests({url:'/carts/unselectAll',method:'post'})
+//全部选择
+export const  reqSetCheckAll=()=>requests({url:'/carts/selectAll',method:'post'})

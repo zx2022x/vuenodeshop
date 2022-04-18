@@ -2,7 +2,11 @@ import {
     reqGetSearchInfo,
     reqGetAddShopCart,
     reqUpdateShopCart,
-    reqSingeDeleSCL
+    reqSingeDeleSCL,
+    reqUpdateChecked,
+    reqSetCheckAll,
+    reqUnSetCheckAll
+
   } from '@/api/index'
 
 
@@ -59,6 +63,20 @@ const actions={
         await reqSingeDeleSCL(ids)
        
      },
+     //更新购物车选中状态
+     async updateChecked({commit},{selected,id}){
+         await reqUpdateChecked(id,selected)
+     },
+     
+      //设置全选
+     async setCheckAll({commit}){
+        await reqSetCheckAll()
+     },
+     //设置反选
+     async unSetCheckAll({commit}){
+         await reqUnSetCheckAll()
+     }
+     
          
      
     

@@ -32,7 +32,7 @@ const mutations = {
         state.acceptInfo=acceptInfo
     },
     //收件人
-
+    
    
 }
 const actions = {
