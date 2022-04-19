@@ -128,6 +128,15 @@ export default [
         name:'shopcartlist',
         path:'/shopcartlist',
         component:()=>import('@/pages/Home/ShopCartList')
+    },
+    //我的订单
+    { 
+
+       
+        name:'myorder',
+        path:'/myorder',
+        component:()=>import("@/pages/Home/MyOrder")
+
     }
    
 

@@ -86,7 +86,7 @@
         ><span class="hov" @click="deleteAll">清空购物车</span>
         <span id="choseItem" :choiceTotal="choiceTotal">已选择<span>{{choiceTotal.count}}</span>件商品</span>
         <span id="zongJia">总价:<span>¥{{choiceTotal.totalPrice}}</span></span>
-        <div class="jieSuan">结算</div>
+        <div class="jieSuan" @click="jieSuan">结算</div>
       </div>
       <!-- <div class="pa">
         <Pagination
@@ -219,7 +219,18 @@ export default {
       })
       await this.$store.dispatch("singeDeleSCL",ids)
       await this.getdata()
+    },
+    async jieSuan(){
+       const list1 =this.getShopCartList
+       const list =Arry.from(list1)
+       const ids=[]
+       list.forEach((item)=>{
+           if(item.selected){
+                
+           }
+       })
     }
+    
 
   },
   computed: {

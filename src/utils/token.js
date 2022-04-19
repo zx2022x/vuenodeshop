@@ -25,5 +25,7 @@ export const setID=(id)=>{
 }
 export const getID=()=>
     localStorage.getItem('ID')
-
+export const clearID=()=>{
+    localStorage.removeItem('ID')
+}
 

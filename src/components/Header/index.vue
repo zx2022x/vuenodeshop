@@ -8,6 +8,7 @@
           </span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item @click.native="goChangeUserInfo">修改信息</el-dropdown-item>
+            <el-dropdown-item @click.native="goMyOrder">我的订单</el-dropdown-item>
             
              <el-dropdown-item @click.native="exitLogin">退出登录</el-dropdown-item>
            
@@ -49,7 +50,7 @@
 </template>
 
 <script>
-import {clearToken,getToken} from '@/utils/token'
+import {clearToken,getToken,clearID} from '@/utils/token'
 export default {
  data(){
      return{
@@ -74,6 +75,7 @@ mounted(){
      exitLogin(){
      
           clearToken();
+          clearID();
           this.$store.state.user.token='';
           
           if(!this.$store.state.user.token){
@@ -103,7 +105,11 @@ mounted(){
      },
      goShopCartList(){
        this.$router.push({path:'/shopcartlist'})
-     }
+     },
+     goMyOrder(){
+        this.$router.push("/myorder")
+     },
+
  },
  
  watch:{
