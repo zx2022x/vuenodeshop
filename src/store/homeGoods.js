@@ -5,7 +5,8 @@ import {
     reqSingeDeleSCL,
     reqUpdateChecked,
     reqSetCheckAll,
-    reqUnSetCheckAll
+    reqUnSetCheckAll,
+    reqJieSuan
 
   } from '@/api/index'
 
@@ -76,6 +77,10 @@ const actions={
      async unSetCheckAll({commit}){
          await reqUnSetCheckAll()
      },
+     //结算
+     async jieSuan({commit},list){
+         await reqJieSuan(list)
+     }
     
      
          

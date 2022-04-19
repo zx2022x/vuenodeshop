@@ -222,13 +222,37 @@ export default {
     },
     async jieSuan(){
        const list1 =this.getShopCartList
-       const list =Arry.from(list1)
-       const ids=[]
-       list.forEach((item)=>{
+       const list2 =Array.from(list1)
+       const list=[]
+       const user_id= getID() 
+       
+       list2.forEach((item)=>{
            if(item.selected){
-                
+            //  const goods_info1={}
+            // const goods_info={}
+            const {id,goods_price,...goods_info1}=item.goods_info
+            
+             const arr={}
+             const goods_num=item.number
+             const total=item.number*parseInt(item.goods_info.goods_price)
+             const order_number = 'PJ' + Date.now()
+            Object.assign(arr,goods_info1)
+            Object.assign(arr,{user_id})
+            Object.assign(arr,{total})
+            Object.assign(arr,{goods_num})
+            Object.assign(arr,{order_number})
+            list.push(arr)
+            //  console.log("数组键")
+            //  console.log(arr)
+           
+              
+
+              
            }
        })
+        console.log("数组键")
+             console.log(list)
+        await this.$store.dispatch("jieSuan",list)
     }
     
 
@@ -254,19 +278,7 @@ export default {
         this.allIs_default = list.every((item) => item.selected == 1);
       }
 
-      //    list.forEach((item) => {
-      //     if (!item.is_default) {
-      //        this.allIs_default=false
-      //     }else{
-      //        this.allIs_default=true
-      //     }
-
-      //   });
-      //    if(index==-1){
-      //         this.allIs_default=true
-      //    }else{
-      //         this.allIs_default=false
-      //    }
+     
     },
     //数量和价格总计
     choiceTotal(){

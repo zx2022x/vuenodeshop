@@ -61,3 +61,5 @@ export const reqUpdateChecked=(id,selected)=>requests({url:`/carts/${id}`,data:{
 export const reqUnSetCheckAll=()=>requests({url:'/carts/unselectAll',method:'post'})
 //全部选择
 export const  reqSetCheckAll=()=>requests({url:'/carts/selectAll',method:'post'})
+//结算
+export const reqJieSuan=(list)=>requests({url:`/orders`,data:{list},method:'post'})
