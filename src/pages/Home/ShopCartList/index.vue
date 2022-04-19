@@ -250,8 +250,8 @@ export default {
               
            }
        })
-        console.log("数组键")
-             console.log(list)
+        // console.log("数组键")
+        //      console.log(list)
         await this.$store.dispatch("jieSuan",list)
     }
     

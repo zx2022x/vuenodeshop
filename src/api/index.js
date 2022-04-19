@@ -63,3 +63,5 @@ export const reqUnSetCheckAll=()=>requests({url:'/carts/unselectAll',method:'pos
 export const  reqSetCheckAll=()=>requests({url:'/carts/selectAll',method:'post'})
 //结算
 export const reqJieSuan=(list)=>requests({url:`/orders`,data:{list},method:'post'})
+//请求订单列表
+export const reqGetOrderList=()=>requests({url:'/orders',method:'get'})

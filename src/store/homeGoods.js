@@ -6,7 +6,8 @@ import {
     reqUpdateChecked,
     reqSetCheckAll,
     reqUnSetCheckAll,
-    reqJieSuan
+    reqJieSuan,
+    reqGetOrderList
 
   } from '@/api/index'
 
@@ -17,6 +18,7 @@ const state={
     shopcartlist:{},
     shopcartlisttotal:'',
     shopcartInfo:{},
+    orderInfo:{}
 }
 const mutations={
     //获取搜索得到商品列表
@@ -27,6 +29,9 @@ const mutations={
         state.shopcartlist=shopcartInfo.list
         state.shopcartlisttotal=shopcartInfo.total
         state.shopcartInfo=shopcartInfo
+    },
+    GETORDERLIST(state,orderInfo){
+        state.orderInfo=orderInfo
     }
     
 }
@@ -80,6 +85,13 @@ const actions={
      //结算
      async jieSuan({commit},list){
          await reqJieSuan(list)
+     },
+     //获取订单列表 未发货
+     async getOrderList({commit}){
+         const res=await reqGetOrderList()
+         if(res.code==0){
+             commit('GETORDERLIST',res.result)
+         }
      }
     
      
@@ -105,7 +117,14 @@ const getters={
     },
      getShopCartInfo(state){
       return  state.shopcartInfo
-  }
+  },
+     getOrderTotal(state){
+         return state.orderInfo.total
+     },
+     getOrderInfo(state){
+         return state.orderInfo
+     }
+
 }
 
 export default{
