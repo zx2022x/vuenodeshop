@@ -5,26 +5,29 @@
     <el-button :plain="true" @click="open4">错误</el-button> -->
     <!-- <el-table :data="SpListInfo.list" stripe style="width: 100%"> -->
     <el-table :data="getOrderInfo.list" stripe style="width: 100%">
-       <el-table-column prop="id" label="用户ID" width="100">
+       <el-table-column prop="user_id" label="用户ID" width="70">
       </el-table-column>
-       <el-table-column prop="order_number" label="订单号" width="80">
+       <el-table-column prop="order_number" label="订单号" width="120">
          
       </el-table-column>
       <el-table-column prop="goods_name" label="名称" width="180">
       </el-table-column>
 
-      <el-table-column prop="goods_price" label="总价" width="100">
+      <el-table-column prop="total" label="总价" width="100">
       </el-table-column>
       <el-table-column prop="goods_num" label="数量" width="80">
       </el-table-column>
       <el-table-column prop="address.consignee" label="收件人" width="80">
       </el-table-column>
-      <el-table-column prop="address.phone" label="电话号码" width="80">
+      <el-table-column prop="address.phone" label="电话号码" width="120">
       </el-table-column>
-      <el-table-column prop="address.address" label="地址" width="80">
+      <el-table-column prop="address.address" label="地址" width="120">
       </el-table-column>
      
-      <el-table-column prop="createdAt" label="下单时间" width="350">
+      <el-table-column prop="createdAt" label="下单时间" width="180">
+           <template slot-scope="scope">
+          <span>{{ handelUaTime(scope.$index, scope.row) }}</span>
+        </template>
       </el-table-column>
 
       <!-- 图片框 start -->
@@ -106,31 +109,18 @@ export default {
 
     },
   
-     changeValue(row){
-      let a ='dmd'
-        switch(row){
-           case 1:
-            a="水果";
-             break;
-            case 2:
-              a="肉类";
-              break;
-            case 3:
-              a="粗粮";
-
-              break;
-             
-            
-
-        }
-        return a
-
-    },
 
     changePnum(val){
        
         this.getdata(val,6)
-    }
+    },
+     //处理时间
+    handelUaTime(index, row) {
+      const { updatedAt } = row;
+      const upTime = updatedAt.replace("T", " ").replace(".000Z", "");
+
+      return upTime;
+    },
     
   },
   computed: {

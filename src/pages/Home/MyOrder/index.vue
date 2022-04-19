@@ -29,6 +29,7 @@ export default {
   },
   methods: {
     handleClick(tab, event) {},
+    
   },
   components: {
     DaiFaHuo,
@@ -37,6 +38,7 @@ export default {
     activeName: {
       handler(nV, oV) {
         if (nV.search("second")) {
+          
           this.isOpen1 = true;
         }
         if (nV.search("third")) {
