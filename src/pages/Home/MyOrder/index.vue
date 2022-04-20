@@ -4,7 +4,7 @@
       <el-tabs v-model="activeName" @tab-click="handleClick" class="tabPlane">
         <el-tab-pane label="待发货" name="first" class="tabPlane">
           <div class="tab">
-          <DaiFaHuo />
+          <DaiFaHuo :mark="0"/>
           </div>
           
 
@@ -13,10 +13,17 @@
         </el-tab-pane>
         <el-tab-pane label="代收货" name="second">
           <div class="tab">
-          <DaiFaHuo v-if="isOpen1" />
+          <DaiFaHuo v-if="isOpen1" :mark="2"/>
           </div>
         </el-tab-pane>
-        <el-tab-pane label="已取消订单" name="third">
+      
+          <el-tab-pane label="已完成订单" name="four">
+           <div class="tab">
+          <DaiFaHuo v-if="isOpen3" />
+           </div>
+        </el-tab-pane>
+
+          <el-tab-pane label="已取消订单" name="third">
            <div class="tab">
           <DaiFaHuo v-if="isOpen2" />
            </div>
@@ -35,6 +42,7 @@ export default {
       activeName: "first",
       isOpen1: false,
       isOpen2: false,
+      isOpen3: false,
     };
   },
   methods: {
@@ -51,10 +59,15 @@ export default {
         if (!nV.search("second")) {
          
           this.isOpen1 = true;
+          this.$bus.$emit("mark",2)
         }
         if (!nV.search("third")) {
           this.isOpen2 = true;
         }
+         if (!nV.search("four")) {
+          this.isOpen3 = true;
+        }
+
       },
     },
   },
@@ -69,10 +82,10 @@ export default {
            padding: 0 200px;
         }
         >>>#tab-first{
-          margin-left:200px;
+          margin-left:70px;
         }
         >>>.el-tabs__active-bar{
-           margin-left:200px;
+           margin-left:70px;
         }
 /* .w {
   width: 1290px;

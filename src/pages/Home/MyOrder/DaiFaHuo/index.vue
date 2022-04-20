@@ -1,10 +1,11 @@
 <template>
-  <div>
+  <div :getProps="getProps">
     <!-- <el-button :plain="true" @click="open2">成功</el-button>
 
     <el-button :plain="true" @click="open4">错误</el-button> -->
     <!-- <el-table :data="SpListInfo.list" stripe style="width: 100%"> -->
-    <el-table :data="getOrderInfo.list" stripe style="width: 100%">
+    <!-- <el-table :data="getMarkOrderInfo.fenedList" stripe style="width: 100%"> -->
+         <el-table :data="getOrderInfo.list" stripe style="width: 100%">
        <!-- <el-table-column prop="user_id" label="用户ID" width="70">
       </el-table-column> -->
        <el-table-column prop="order_number" label="订单号" width="120">
@@ -22,6 +23,7 @@
       <el-table-column prop="address.phone" label="电话号码" width="120">
       </el-table-column>
       <el-table-column prop="address.address" label="地址" width="150">
+       
       </el-table-column>
      
       <el-table-column prop="createdAt" label="下单时间" width="180">
@@ -80,10 +82,16 @@ export default {
       getUnvali: [],
     };
   },
+  props:['mark'],
   mounted() {
     //获取数据
     this.getdata();
-   
+    this.$bus.$on("mark",(value)=>{
+      this.getMarkOrderInfo(value)
+
+    }
+      )
+    // this.getMarkOrderInfo()
   },
   methods: {
     async getdata(pageNum=1,pageSize=6){
@@ -108,6 +116,42 @@ export default {
         
 
     },
+     getMarkOrderInfo(mark){
+        const list1=this.getOrderInfo.list
+        const list=Array.from(list1)
+        const total=0
+       
+        
+        // console.log("mark")
+        // console.log(mark)
+        const fenedList=[]
+        console.log(mark)
+        list.forEach(item=>{
+           if(item.status==mark){
+             //已发货
+              total++;
+              fenedList.push(item)
+
+           }
+           else if(item.status==3){
+             //已签收
+           }
+           else if(item.status==4){
+             //已取消
+           }
+
+
+        })
+        
+        console.log(total)
+        console.log("total")
+        console.log()
+        return {
+            total,
+            fenedList
+        }
+
+    },
   
 
     changePnum(val){
@@ -121,15 +165,65 @@ export default {
 
       return upTime;
     },
+    getProps(){
+       console.log("的教导")
+       const mark=this.props.mark
+       console.log(mark)
+    }
     
   },
   computed: {
     //mapGetters里面的写法：传递的数组，因为getters计算是没有划分模块【home,search】
     // ...mapGetters(["SpListInfo"]),
     ...mapGetters(["getOrderInfo","getOrderTotal"]),
+    // getMarkOrderInfo(mark){
+    //     const list1=this.getOrderInfo.list
+
+    //     // const list=Array.from(list1)
+    //     // const total=[0,0,0,0,0]
+       
+        
+    //     // console.log("mark")
+    //     // console.log(mark)
+    //     // const fenedList=[]
+    //     // list.forEach(item=>{
+    //     //    if(item.status==mark){
+    //     //      //已发货
+    //     //       total[item.status]++;
+    //     //       fenedList.push(item)
+
+    //     //    }
+    //     //   //  else if(item.status==3){
+    //     //   //    //已签收
+    //     //   //  }
+    //     //   //  else if(item.status==4){
+    //     //   //    //已取消
+    //     //   //  }
+
+
+    //     // })
+    //     // return {
+    //     //     total,
+    //     //     fenedList
+    //     // }
+
+    // },
+   
+ 
   },
   components:{
      Pagination,
+  },
+  watch:{
+    'mark':{
+      handler(mark,oV){
+        //  console.log(nV)
+       
+      },
+       deep:true,
+      immediate:true
+     
+    }
   }
 };
 </script>
