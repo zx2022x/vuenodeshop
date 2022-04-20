@@ -5,8 +5,8 @@
     <el-button :plain="true" @click="open4">错误</el-button> -->
     <!-- <el-table :data="SpListInfo.list" stripe style="width: 100%"> -->
     <el-table :data="getOrderInfo.list" stripe style="width: 100%">
-       <el-table-column prop="user_id" label="用户ID" width="70">
-      </el-table-column>
+       <!-- <el-table-column prop="user_id" label="用户ID" width="70">
+      </el-table-column> -->
        <el-table-column prop="order_number" label="订单号" width="120">
          
       </el-table-column>
@@ -21,7 +21,7 @@
       </el-table-column>
       <el-table-column prop="address.phone" label="电话号码" width="120">
       </el-table-column>
-      <el-table-column prop="address.address" label="地址" width="120">
+      <el-table-column prop="address.address" label="地址" width="150">
       </el-table-column>
      
       <el-table-column prop="createdAt" label="下单时间" width="180">
