@@ -13,6 +13,10 @@ export default [
     {
         path:'/adminHome',
         component:()=>import('@/pages/admin/adminHome'),
+        meta:{
+           showHeader:false,
+           showFooter:false,
+        },
         children:[
            
             //上传商品
