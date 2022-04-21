@@ -1,5 +1,5 @@
 <template>
-  <div :getProps="getProps">
+  <div>
     <!-- <el-button :plain="true" @click="open2">成功</el-button>
 
     <el-button :plain="true" @click="open4">错误</el-button> -->
@@ -14,10 +14,13 @@
       <el-table-column prop="goods_name" label="名称" width="180">
       </el-table-column>
 
+       <el-table-column prop="goods_num" label="数量" width="80">
+      </el-table-column>
+
+
       <el-table-column prop="total" label="总价" width="100">
       </el-table-column>
-      <el-table-column prop="goods_num" label="数量" width="80">
-      </el-table-column>
+     
       <el-table-column prop="address.consignee" label="收件人" width="80">
       </el-table-column>
       <el-table-column prop="address.phone" label="电话号码" width="120">
@@ -44,19 +47,27 @@
       <!-- 图片框 start -->
 
       
-    <el-table-column align="left" label="操作" width="100">
+    <el-table-column align="left" label="操作" width="100" v-if="mark==3|| mark==4 ? false:true">
         <template slot-scope="scope">
           <el-button
+            v-if="mark==0 ? true:false"
             size="mini"
             type="danger"
             @click="handleSj(scope.$index, scope.row)"
             >取消订单</el-button
           >
+           <el-button
+            v-if="mark==2 ? true:false"
+            size="mini"
+            type="success"
+            @click="hasReeied(scope.$index, scope.row)"
+            >收到货物</el-button
+          >
         </template>
       </el-table-column> 
     </el-table>
      <div class="pa">
-    <Pagination :total="getOrderTotal" target="getOrderList" @changePnum='changePnum' :pageSize="6"/>
+    <Pagination :total="getOrderTotal" target="getOrderList"  @changePnum='changePnum' :pageSize="6"/>
     </div>
   </div>
 </template>
@@ -64,6 +75,7 @@
 <script>
 import { mapGetters } from "vuex";
 import Pagination from "@/pages/admin/Pagination"
+import {getID} from "@/utils/token"
 export default {
 
   data() {
@@ -80,39 +92,31 @@ export default {
      
       urla: 1,
       getUnvali: [],
+      status:0,
     };
   },
   props:['mark'],
   mounted() {
-    //获取数据
-    this.getdata();
-    this.$bus.$on("mark",(value)=>{
-      this.getMarkOrderInfo(value)
-
-    }
-      )
-    // this.getMarkOrderInfo()
+    
   },
   methods: {
-    async getdata(pageNum=1,pageSize=6){
-   
+    async getdata(pageNum=1,pageSize=6,mark){
+       const user_id=getID()
+
        
 
-        const message = await this.$store.dispatch("getOrderList");
+        const message = await this.$store.dispatch("getOrderList",{pageNum,pageSize,status:mark,user_id});
         
      
     },
+    //取消订单
     async handleSj(index,row){
-        try {
-        const message=await this.$store.dispatch('sangJia',row.id)
-          this.getdata()
-        //   this.$message({
-        //   message: message,
-        //   type: "success",
-        // });
-        } catch (error) {
-          //  this.$message.error(error.message);
-        }
+       
+       console.log("id"+row.id)
+       await this.$store.dispatch('updateStatus',{id:row.id,status:4})
+       await this.getdata(1,6,row.status)
+       this.status=4
+       
         
 
     },
@@ -152,11 +156,20 @@ export default {
         }
 
     },
+    //收到货物
+    async hasReeied(index,row){
+       await this.$store.dispatch('updateStatus',{id:row.id,status:3})
+       await this.getdata(1,6,row.status)
+    },
   
 
-    changePnum(val){
-       
-        this.getdata(val,6)
+   async changePnum(val){
+    //  console.log(this.mark)
+        // const status=this.props.mark
+        // console.log("status"+status)
+        const status=this.status
+        
+        await this.getdata(val,6,status)
     },
      //处理时间
     handelUaTime(index, row) {
@@ -165,49 +178,15 @@ export default {
 
       return upTime;
     },
-    getProps(){
-       console.log("的教导")
-       const mark=this.props.mark
-       console.log(mark)
-    }
+    
+
     
   },
   computed: {
     //mapGetters里面的写法：传递的数组，因为getters计算是没有划分模块【home,search】
     // ...mapGetters(["SpListInfo"]),
     ...mapGetters(["getOrderInfo","getOrderTotal"]),
-    // getMarkOrderInfo(mark){
-    //     const list1=this.getOrderInfo.list
-
-    //     // const list=Array.from(list1)
-    //     // const total=[0,0,0,0,0]
-       
-        
-    //     // console.log("mark")
-    //     // console.log(mark)
-    //     // const fenedList=[]
-    //     // list.forEach(item=>{
-    //     //    if(item.status==mark){
-    //     //      //已发货
-    //     //       total[item.status]++;
-    //     //       fenedList.push(item)
-
-    //     //    }
-    //     //   //  else if(item.status==3){
-    //     //   //    //已签收
-    //     //   //  }
-    //     //   //  else if(item.status==4){
-    //     //   //    //已取消
-    //     //   //  }
-
-
-    //     // })
-    //     // return {
-    //     //     total,
-    //     //     fenedList
-    //     // }
-
-    // },
+    
    
  
   },
@@ -216,8 +195,11 @@ export default {
   },
   watch:{
     'mark':{
-      handler(mark,oV){
-        //  console.log(nV)
+      async handler(mark,oV){
+       this.status=mark
+      
+       await this.getdata(1,6,mark)
+      
        
       },
        deep:true,

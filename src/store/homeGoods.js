@@ -7,7 +7,8 @@ import {
     reqSetCheckAll,
     reqUnSetCheckAll,
     reqJieSuan,
-    reqGetOrderList
+    reqGetOrderList,
+    reqUpdateStatus
 
   } from '@/api/index'
 
@@ -92,6 +93,10 @@ const actions={
          if(res.code==0){
              commit('GETORDERLIST',res.result)
          }
+     },
+     //更新订单状态
+     async updateStatus({commit},{status,id}){
+         await reqUpdateStatus(id,status)
      }
     
      

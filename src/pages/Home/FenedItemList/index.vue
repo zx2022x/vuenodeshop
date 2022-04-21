@@ -95,7 +95,9 @@ export default {
     //跳转到详情页
      goDetail(item){
       this.$router.push({path:'/itemdetail',query:item})
-    }
+    },
+    
+
   },
   computed: {
     

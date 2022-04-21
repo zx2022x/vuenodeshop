@@ -4,7 +4,7 @@
       <el-tabs v-model="activeName" @tab-click="handleClick" class="tabPlane">
         <el-tab-pane label="待发货" name="first" class="tabPlane">
           <div class="tab">
-          <DaiFaHuo :mark="0"/>
+          <DaiFaHuo :mark="mark"/>
           </div>
           
 
@@ -13,19 +13,25 @@
         </el-tab-pane>
         <el-tab-pane label="代收货" name="second">
           <div class="tab">
-          <DaiFaHuo v-if="isOpen1" :mark="2"/>
+            <keep-alive>
+          <DaiFaHuo1 v-if="isOpen1" :mark="mark"/>
+           </keep-alive>
           </div>
         </el-tab-pane>
       
           <el-tab-pane label="已完成订单" name="four">
            <div class="tab">
-          <DaiFaHuo v-if="isOpen3" />
+             <keep-alive>
+          <DaiFaHuo3 v-if="isOpen3" :mark="mark" />
+           </keep-alive>
            </div>
         </el-tab-pane>
 
           <el-tab-pane label="已取消订单" name="third">
            <div class="tab">
-          <DaiFaHuo v-if="isOpen2" />
+             <keep-alive>
+          <DaiFaHuo2 v-if="isOpen2"  :mark="mark"/>
+          </keep-alive>
            </div>
         </el-tab-pane>
       </el-tabs>
@@ -35,6 +41,9 @@
 
 <script>
 import DaiFaHuo from "@/pages/Home/MyOrder/DaiFaHuo";
+import DaiFaHuo1 from "@/pages/Home/MyOrder/DaiFaHuo";
+import DaiFaHuo2 from "@/pages/Home/MyOrder/DaiFaHuo";
+import DaiFaHuo3 from "@/pages/Home/MyOrder/DaiFaHuo";
 export default {
   name: "order",
   data() {
@@ -43,6 +52,7 @@ export default {
       isOpen1: false,
       isOpen2: false,
       isOpen3: false,
+      mark:0,
     };
   },
   methods: {
@@ -51,21 +61,32 @@ export default {
   },
   components: {
     DaiFaHuo,
+    DaiFaHuo1,
+    DaiFaHuo2,
+    DaiFaHuo3
   },
   watch: {
     activeName: {
       handler(nV, oV) {
+         if (!nV.search("first")) {
          
+         
+          
+          this.mark=0
+        }
         if (!nV.search("second")) {
          
           this.isOpen1 = true;
-          this.$bus.$emit("mark",2)
+          
+          this.mark=2
         }
         if (!nV.search("third")) {
           this.isOpen2 = true;
+          this.mark=4
         }
          if (!nV.search("four")) {
           this.isOpen3 = true;
+          this.mark=3
         }
 
       },

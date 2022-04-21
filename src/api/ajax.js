@@ -49,8 +49,9 @@ requests.interceptors.response.use(
     const a=res.data.message
     const a1=a.search("商品列表")
     const a2=a.search("更新购物车")
+    const a3=a.search("订单列表成功")
 
-    if(!(a1!=-1 || a2!=-1)){
+    if(!(a1!=-1 || a2!=-1 || a3!=-1) ){
       Message({
         message:res.data.message,
         type: 'success',

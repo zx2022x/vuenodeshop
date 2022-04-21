@@ -65,3 +65,5 @@ export const  reqSetCheckAll=()=>requests({url:'/carts/selectAll',method:'post'}
 export const reqJieSuan=(list)=>requests({url:`/orders`,data:{list},method:'post'})
 //请求订单列表
 export const reqGetOrderList=(pageNum,pageSize,status,user_id)=>requests({url:`/orders?pageNum=${pageNum}&pageSize=${pageSize}&status=${status}&user_id=${user_id}`,method:'get'})
+//更新订单状态
+export const reqUpdateStatus=(id,status)=>requests({url:`/orders/${id}`,data:{status},method:'patch'})
