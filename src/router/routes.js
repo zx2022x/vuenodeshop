@@ -14,12 +14,7 @@ export default [
         path:'/adminHome',
         component:()=>import('@/pages/admin/adminHome'),
         children:[
-            // 订单列表
-            {   
-                name:'orderInfo',
-                path:'/orderInfo',
-                component:()=>import('@/pages/admin/adminHome/orderInfo')
-            },
+           
             //上传商品
             {
                 name:'upload',
@@ -55,6 +50,12 @@ export default [
                 name:'changepw',
                 path:'/changepw/:id/:user_name/:mark',
                 component:()=>import('@/pages/admin/adminHome/UserMage/Changepw')
+            },
+            //订单列表
+            {
+                name:'orderInfo',
+                path:'/orderInfo',
+                component:()=>import("@/pages/admin/adminHome/orderInfo/MyOrder")
             }
 
 

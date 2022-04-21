@@ -57,8 +57,7 @@
   </div>
 </template>
 <script>
-//订单信息
-import OrderInfo from "@/pages/admin/adminHome/orderInfo";
+
 export default {
   data(){
     return{
@@ -87,7 +86,7 @@ export default {
     },
   },
   components: {
-    OrderInfo,
+   
   },
 
   // mounted() {
