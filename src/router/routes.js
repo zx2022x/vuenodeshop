@@ -8,14 +8,18 @@ export default [
     //管理员登录
     {
         path:'/adminLogin',
-        component:()=>import('@/pages/admin/Login')
+        component:()=>import('@/pages/admin/Login'),
+        meta:{
+            showHeader:true,
+            showFooter:true,
+         },
     },
     {
         path:'/adminHome',
         component:()=>import('@/pages/admin/adminHome'),
         meta:{
-           showHeader:false,
-           showFooter:false,
+           showHeader:true,
+           showFooter:true,
         },
         children:[
            
@@ -23,43 +27,71 @@ export default [
             {
                 name:'upload',
                 path:'/uploadshop',
-                component:()=>import('@/pages/admin/adminHome/ShopMage/UploadShop')
+                component:()=>import('@/pages/admin/adminHome/ShopMage/UploadShop'),
+                meta:{
+                    showHeader:true,
+                    showFooter:true,
+                 },
             },
             //商品列表
             {
                 name:'items',
                 path:'/items',
-                component:()=>import('@/pages/admin/adminHome/ShopMage/Items')
+                component:()=>import('@/pages/admin/adminHome/ShopMage/Items'),
+                meta:{
+                    showHeader:true,
+                    showFooter:true,
+                 },
             },
             //编辑商品
             {
                 name:'edititem',
                 path:'/edititem/:goods_name/:goods_price/:goods_num/:goods_img/:goods_fm/:goods_detail',
-                component:()=>import('@/pages/admin/adminHome/ShopMage/EditItem')
+                component:()=>import('@/pages/admin/adminHome/ShopMage/EditItem'),
+                meta:{
+                    showHeader:true,
+                    showFooter:true,
+                 },
             },
             //上架商品
             {
                 name:'validitem',
                 path:'/validitem',
-                component:()=>import('@/pages/admin/adminHome/ShopMage/ItemsValid')
+                component:()=>import('@/pages/admin/adminHome/ShopMage/ItemsValid'),
+                meta:{
+                    showHeader:true,
+                    showFooter:true,
+                 },
             },
             //用户列表
             {
                 name:'usermage',
                 path:'/usermage',
-                component:()=>import('@/pages/admin/adminHome/UserMage')
+                component:()=>import('@/pages/admin/adminHome/UserMage'),
+                meta:{
+                    showHeader:true,
+                    showFooter:true,
+                 },
             },
             //修改用户的密码
             {
                 name:'changepw',
                 path:'/changepw/:id/:user_name/:mark',
-                component:()=>import('@/pages/admin/adminHome/UserMage/Changepw')
+                component:()=>import('@/pages/admin/adminHome/UserMage/Changepw'),
+                meta:{
+                    showHeader:true,
+                    showFooter:true,
+                 },
             },
             //订单列表
             {
                 name:'orderInfo',
                 path:'/orderInfo',
-                component:()=>import("@/pages/admin/adminHome/orderInfo/MyOrder")
+                component:()=>import("@/pages/admin/adminHome/orderInfo/MyOrder"),
+                meta:{
+                    showHeader:true,
+                    showFooter:true,
+                 },
             }
 
 
@@ -71,7 +103,11 @@ export default [
    {
        name:'home',
        path:'/home',
-       component:()=>import('@/pages/Home')
+       component:()=>import('@/pages/Home'),
+    //    meta:{
+    //     showHeader:true,
+    //     showFooter:true,
+    //  },
    },
    //用户登录
    {

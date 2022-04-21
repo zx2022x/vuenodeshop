@@ -111,7 +111,7 @@ export default {
     
     float: left;
     width: 200px;
-    height:93.8vh;
+    height:100vh;
     background-color: #545c64;
     .eit {
       width: 200px;

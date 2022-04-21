@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     
-    <Header v-if="this.$route.meta.showHeader"/>
+    <Header v-if="!this.$route.meta.showHeader"/>
     
     <router-view></router-view>
   
-    <Footer v-if="this.$route.meta.showFooter"/>
+    <Footer v-if="!this.$route.meta.showFooter"/>
   </div>
 </template>
 
