@@ -1,10 +1,6 @@
 <template>
   <div>
-    <!-- <el-button :plain="true" @click="open2">成功</el-button>
-
-    <el-button :plain="true" @click="open4">错误</el-button> -->
-    <!-- <el-table :data="SpListInfo.list" stripe style="width: 100%"> -->
-    <!-- <el-table :data="getMarkOrderInfo.fenedList" stripe style="width: 100%"> -->
+  
          <el-table :data="getOrderInfo.list" stripe style="width: 100%">
        <!-- <el-table-column prop="user_id" label="用户ID" width="70">
       </el-table-column> -->

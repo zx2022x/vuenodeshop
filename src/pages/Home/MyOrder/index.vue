@@ -1,8 +1,8 @@
 <template>
   <div class="myOrder">
-    <div class="w">
-      <el-tabs v-model="activeName" @tab-click="handleClick" class="tabPlane">
-        <el-tab-pane label="待发货" name="first" class="tabPlane">
+    <div>
+      <el-tabs v-model="activeName" @tab-click="handleClick" class="tabPlane" >
+        <el-tab-pane label="待发货" name="first" class="tabPlane" >
           <div class="tab">
           <DaiFaHuo :mark="mark"/>
           </div>
@@ -19,7 +19,7 @@
           </div>
         </el-tab-pane>
       
-          <el-tab-pane label="已完成订单" name="four">
+          <el-tab-pane label="已完成订单" name="four" :style="mark==3 || mark==4 ? styleObj:'w'">
            <div class="tab">
              <keep-alive>
           <DaiFaHuo3 v-if="isOpen3" :mark="mark" />
@@ -27,7 +27,7 @@
            </div>
         </el-tab-pane>
 
-          <el-tab-pane label="已取消订单" name="third">
+          <el-tab-pane label="已取消订单" name="third" :style="mark==3 || mark==4 ? styleObj:'w'">
            <div class="tab">
              <keep-alive>
           <DaiFaHuo2 v-if="isOpen2"  :mark="mark"/>
@@ -53,6 +53,9 @@ export default {
       isOpen2: false,
       isOpen3: false,
       mark:0,
+      styleObj:{
+        'margin-left':'78px'
+      }
     };
   },
   methods: {
@@ -105,11 +108,13 @@ export default {
         >>>#tab-first{
           margin-left:70px;
         }
+        /* 变化后的tab-first */
+
         >>>.el-tabs__active-bar{
            margin-left:70px;
         }
 /* .w {
-  width: 1290px;
+  width: 1200px;
 
   margin: 0 auto;
 } */
