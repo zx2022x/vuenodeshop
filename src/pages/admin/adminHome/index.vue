@@ -43,6 +43,10 @@
               <span slot="title">修改密码</span>
             </el-menu-item>
             <!-- 补全缺陷 -->
+             <el-menu-item index="" class="eit" @click="exitLogin">
+              <i class="el-icon-menu"></i>
+              <span slot="title">退出登录</span>
+            </el-menu-item>
           
           </el-menu>
         </el-col>
@@ -57,7 +61,7 @@
   </div>
 </template>
 <script>
-
+import {clearToken,clearID} from "@/utils/token"
 export default {
   data(){
     return{
@@ -84,6 +88,11 @@ export default {
     handleClose(key, keyPath) {
       console.log(key, keyPath);
     },
+   exitLogin(){
+         clearToken()
+         clearID()
+         this.$router.push("/adminLogin")
+    }
   },
   components: {
    

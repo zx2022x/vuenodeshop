@@ -110,11 +110,41 @@ export default {
     },
     goDetail(item){
       this.$router.push({path:'/itemdetail',query:item})
+    },
+    //随机整数，返回数组
+    getRandomNumber(n,min,max){
+    let arr=[];
+    for(let i = 0; i < n; i ++){
+        arr[i] = parseInt(Math.random() * (max - min + 1) + min);
     }
+    for(let i = 0; i < n; i++){
+        for(let j = i + 1; j < n; j ++){
+            if(arr[i] === arr[j]){
+                this.getRandomNumber(n,min,max);
+                return false;
+            }
+        }
+    }
+    return arr
+},
+
   },
   computed: {
     ...mapGetters(["getItemList1","getItemList2","getItemList3"]),
+
   },
+  watch:{
+      'getItemList1':{
+          handler(nV,oV){
+            // const arr= this.getRandomNumber(4,1,13)
+             console.log("新数据")
+             this.$bus.$emit('arr',nV)
+            //  const a=nV.length
+            //  console.log(nV[a-1],nV[a-2])
+            //  console.log(arr)
+          }
+      }
+  }
 };
 </script>
 

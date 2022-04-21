@@ -50,8 +50,8 @@ requests.interceptors.response.use(
     const a1=a.search("商品列表")
     const a2=a.search("更新购物车")
     const a3=a.search("订单列表成功")
-
-    if(!(a1!=-1 || a2!=-1 || a3!=-1) ){
+    const a4=a.search("获取列表成功")
+    if(!(a1!=-1 || a2!=-1 || a3!=-1 || a4!=-1) ){
       Message({
         message:res.data.message,
         type: 'success',
