@@ -66,7 +66,7 @@ export default {
        const {id,num}=this
        const user_id=parseInt(getID())
        const id1=parseInt(id)
-       console.log('输入是'+num)
+      //  console.log('输入是'+num)
        await this.$store.dispatch('addShopCart',{goods_id:id1,user_id,number:num})
        
     }

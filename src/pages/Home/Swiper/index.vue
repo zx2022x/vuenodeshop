@@ -2,13 +2,13 @@
 <div class="swiper">
   <div class="block">
    
-    <el-carousel height="420px">
-      <el-carousel-item v-for="(item, index) in list" :key="item.id">
+    <el-carousel height="420px" type="card">
+      <el-carousel-item v-for="(item, index) in list" :key="item.id" >
         <!-- <h3 class="small">{{ item }}</h3> -->
          <el-image
       style="width: 100%; height: 420px"
-      :src="url"
-       fit="fit"></el-image>
+      :src="api1+item.goods_img"
+       fit="fit" @click="goItemDetail(item)"></el-image>
       </el-carousel-item>
     </el-carousel>
   </div>
@@ -19,6 +19,7 @@
 export default{
   data(){
     return{
+      api1:'http://localhost:3000/',
        url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
        list:[],
        
@@ -44,7 +45,11 @@ export default{
     })
   },
   methods:{
-     
+     goItemDetail(item){
+         console.log("轮播图")
+         console.log(item)
+         this.$router.push({name:'itemdetail',query:item})
+     }
   }
 }
 </script>
@@ -64,7 +69,7 @@ export default{
   }
   
   .el-carousel__item:nth-child(2n+1) {
-     background-color: #d3dce6;
+     background-color: #adc3dc;
   }
   
 

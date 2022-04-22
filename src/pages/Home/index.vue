@@ -8,15 +8,16 @@
     <Search />
     <div class="xiong">
       <div class="leftbord">
-        <ul>
-          <!-- <li>水果 <span class="iconfont">&#xe622;</span>  </li>
+        <!-- <ul>
+          <!-li>水果 <span class="iconfont">&#xe622;</span>  </li>
           <li>肉类 <span class="iconfont">&#xe622;</span>  </li>
           <li>粗粮 <span class="iconfont">&#xe622;</span>  </li> -->
 
-          <li>水果</li>
+          <!-- <li>水果</li>
           <li>肉类</li>
           <li>粗粮</li>
-        </ul>
+        </ul> --> 
+        <Tavbar />
       </div>
       <div class="rightbord">
         <Swiper />
@@ -37,6 +38,7 @@ import Swiper from "@/pages/Home/Swiper";
 import ItemList from "@/pages/Home/ItemList";
 
 import Footer from "@/components/Footer"
+import Tavbar from "@/pages/Home/Tavbar"
 export default {
   data() {
     return {};
@@ -47,7 +49,8 @@ export default {
     Swiper,
     ItemList,
     Header,
-    Footer 
+    Footer,
+    Tavbar 
   },
 };
 </script>
@@ -129,7 +132,7 @@ export default {
       float: left;
       height: 100%;
       width: 994px;
-      background-color: #ff6700;
+     
     }
   }
 }
