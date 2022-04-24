@@ -3,7 +3,7 @@
   <div class="block">
    
     <el-carousel height="420px" type="card">
-      <el-carousel-item v-for="(item, index) in list" :key="item.id" >
+      <el-carousel-item v-for="(item, index) in list" :key="item.id+'zz'" >
         <!-- <h3 class="small">{{ item }}</h3> -->
          <el-image
       style="width: 100%; height: 420px"
@@ -20,15 +20,15 @@ export default{
   data(){
     return{
       api1:'http://localhost:3000/',
-       url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+      
        list:[],
        
     }
   },
   mounted(){
     this.$bus.$on('arr',(arr)=>{
-         console.log("arr++++++")
-          //  console.log(this.list)
+        //  console.log("arr++++++")
+        //   //  console.log(this.list)
            const a=arr.length
            let count=0
            for(let i=a-4;i<a;i++){
@@ -41,13 +41,13 @@ export default{
            }
          
           //    console.log(nV[a-1],nV[a-2])
-             console.log(this.list)
+            //  console.log(this.list)
     })
   },
   methods:{
      goItemDetail(item){
-         console.log("轮播图")
-         console.log(item)
+        //  console.log("轮播图")
+        //  console.log(item)
          this.$router.push({name:'itemdetail',query:item})
      }
   }

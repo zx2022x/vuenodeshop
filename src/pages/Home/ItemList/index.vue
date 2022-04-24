@@ -5,14 +5,20 @@
         <h1>水果</h1>
         <div class="more">
           <!-- <router-view to="/FenedItemList">查看更多</router-view> -->
-          <router-link :to="{name:'FenedItemList',params:{goods_fm:1}}" class="goDetail"
+          <router-link
+            :to="{ name: 'FenedItemList', params: { goods_fm: 1 } }"
+            class="goDetail"
             >查看更多</router-link
           >
         </div>
       </div>
       <div class="itemlist">
         <ul>
-          <li v-for="(item, index) in getItemList1" :key="item.id" @click="goDetail(item)">
+          <li
+            v-for="(item, index) in getItemList1"
+            :key="item.id"
+            @click="goDetail(item)"
+          >
             <el-image
               style="width: 160px; height: 160px"
               :src="api1 + item.goods_img"
@@ -27,19 +33,25 @@
       </div>
     </div>
 
-     <div class="item">
+    <div class="item">
       <div class="itemHeader">
         <h1>肉类</h1>
         <div class="more">
           <!-- <router-view to="/FenedItemList">查看更多</router-view> -->
-          <router-link :to="{name:'FenedItemList',params:{goods_fm:2}}" class="goDetail"
+          <router-link
+            :to="{ name: 'FenedItemList', params: { goods_fm: 2 } }"
+            class="goDetail"
             >查看更多</router-link
           >
         </div>
       </div>
       <div class="itemlist">
         <ul>
-          <li v-for="(item, index) in getItemList2" :key="item.id" @click="goDetail(item)">
+          <li
+            v-for="(item, index) in getItemList2"
+            :key="item.id"
+            @click="goDetail(item)"
+          >
             <el-image
               style="width: 160px; height: 160px"
               :src="api1 + item.goods_img"
@@ -54,19 +66,25 @@
       </div>
     </div>
 
-     <div class="item">
+    <div class="item">
       <div class="itemHeader">
         <h1>粗粮</h1>
         <div class="more">
           <!-- <router-view to="/FenedItemList">查看更多</router-view> -->
-          <router-link :to="{name:'FenedItemList',params:{goods_fm:3}}" class="goDetail"
+          <router-link
+            :to="{ name: 'FenedItemList', params: { goods_fm: 3 } }"
+            class="goDetail"
             >查看更多</router-link
           >
         </div>
       </div>
       <div class="itemlist">
         <ul>
-          <li v-for="(item, index) in getItemList3" :key="item.id" @click="goDetail(item)">
+          <li
+            v-for="(item, index) in getItemList3"
+            :key="item.id"
+            @click="goDetail(item)"
+          >
             <el-image
               style="width: 160px; height: 160px"
               :src="api1 + item.goods_img"
@@ -93,9 +111,9 @@ export default {
     };
   },
   mounted() {
-    this.getData(1, 10, 1, "getItemList1");
-    this.getData(1, 10, 2, "getItemList2");
-    this.getData(1, 10, 3, "getItemList3");
+    this.getData(1, 15, 1, "getItemList1");
+    this.getData(1, 15, 2, "getItemList2");
+    this.getData(1, 15, 3, "getItemList3");
     //  this.getData(1,10,3)
   },
   methods: {
@@ -108,43 +126,62 @@ export default {
       //  await this.$store.dispatch('getItemList',pageNum,pageSize,goods_fm)
       //  await this.$store.dispatch('getItemList',pageNum,pageSize,goods_fm)
     },
-    goDetail(item){
-      this.$router.push({path:'/itemdetail',query:item})
+    goDetail(item) {
+      this.$router.push({ path: "/itemdetail", query: item });
     },
     //随机整数，返回数组
-    getRandomNumber(n,min,max){
-    let arr=[];
-    for(let i = 0; i < n; i ++){
+    getRandomNumber(n, min, max) {
+      let arr = [];
+      for (let i = 0; i < n; i++) {
         arr[i] = parseInt(Math.random() * (max - min + 1) + min);
-    }
-    for(let i = 0; i < n; i++){
-        for(let j = i + 1; j < n; j ++){
-            if(arr[i] === arr[j]){
-                this.getRandomNumber(n,min,max);
-                return false;
-            }
+      }
+      for (let i = 0; i < n; i++) {
+        for (let j = i + 1; j < n; j++) {
+          if (arr[i] === arr[j]) {
+            this.getRandomNumber(n, min, max);
+            return false;
+          }
         }
-    }
-    return arr
-},
-
+      }
+      return arr;
+    },
   },
   computed: {
-    ...mapGetters(["getItemList1","getItemList2","getItemList3"]),
-
+    ...mapGetters(["getItemList1", "getItemList2", "getItemList3"]),
   },
-  watch:{
-      'getItemList1':{
-          handler(nV,oV){
-            // const arr= this.getRandomNumber(4,1,13)
-             console.log("新数据")
-             this.$bus.$emit('arr',nV)
-            //  const a=nV.length
-            //  console.log(nV[a-1],nV[a-2])
-            //  console.log(arr)
-          }
-      }
-  }
+  watch: {
+    getItemList1: {
+      handler(nV, oV) {
+        // const arr= this.getRandomNumber(4,1,13)
+        console.log("新数据");
+        this.$bus.$emit("arr", nV);
+        
+        //  const a=nV.length
+        //  console.log(nV[a-1],nV[a-2])
+        //  console.log(arr)
+      },
+    },
+    // getItemList2: {
+    //   handler(nV, oV) {
+    //     // const arr= this.getRandomNumber(4,1,13)
+    //     console.log("新数据");
+    //     this.$bus.$emit("getItemList2", nV);
+    //     //  const a=nV.length
+    //     //  console.log(nV[a-1],nV[a-2])
+    //     //  console.log(arr)
+    //   },
+    // },
+    // getItemList3: {
+    //   handler(nV, oV) {
+    //     // const arr= this.getRandomNumber(4,1,13)
+    //     console.log("新数据");
+    //     this.$bus.$emit("getItemList3", nV);
+    //     //  const a=nV.length
+    //     //  console.log(nV[a-1],nV[a-2])
+    //     //  console.log(arr)
+    //   },
+    // },
+  },
 };
 </script>
 
@@ -177,7 +214,6 @@ export default {
 }
 
 .item {
-  
   margin-top: 20px;
   width: 100%;
   .itemHeader {
@@ -216,7 +252,8 @@ export default {
     .clearfix;
     margin-top: 15px;
     width: 100%;
-
+    height:600px;
+    overflow: hidden;
     li {
       list-style: none;
       float: left;
