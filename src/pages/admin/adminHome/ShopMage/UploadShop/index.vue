@@ -112,11 +112,8 @@ export default {
           goods_fm,
           goods_img,
         });
-          this.$message({
-          message: message,
-          type: "success",
-        });
-        // this.reload()
+         
+        this.reload()
       
         
       } catch (error) {

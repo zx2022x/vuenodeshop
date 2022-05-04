@@ -98,11 +98,25 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.clearfix {
+  &::before,
+  &::after {
+    content: "";
+    display: table;
+  }
+  &::after {
+    clear: both;
+  }
+  & {
+    *zoom: 1;
+  }
+}
 .w {
 
   width: 1290px;
 
   margin: 0 auto;
+  .clearfix;
 }
 .demo-image__preview{
      

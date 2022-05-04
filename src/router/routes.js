@@ -156,6 +156,10 @@ export default [
        name:'userinfo',
        path:'/userinfo',
        component:()=>import('@/pages/Home/changeUserInFo'),
+       meta:{
+        showHeader:true,
+        showFooter:true,
+     },
        children:[
             {
                 name:'additem',

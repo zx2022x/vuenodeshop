@@ -110,10 +110,7 @@ export default {
           goods_fm,
           goods_img
         });
-          this.$message({
-          message: "修改商品成功",
-          type: "success",
-        });
+         
          
 
 

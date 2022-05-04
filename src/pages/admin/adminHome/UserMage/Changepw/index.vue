@@ -81,10 +81,10 @@ export default {
             console.log(id,password)
             const message = await this.$store.dispatch("changeUserPw", {id,password});
             
-            this.$message({
-              message: message,
-              type: "success",
-            });
+            // this.$message({
+            //   message: message,
+            //   type: "success",
+            // });
             if(mark==0){
               this.$router.push("/usermage");
             }else{
@@ -94,7 +94,7 @@ export default {
           //  
             
           } catch (error) {
-            this.$message.error(error.message);
+            // this.$message.error(error.message);
           }
         } else {
           console.log("error submit!!");

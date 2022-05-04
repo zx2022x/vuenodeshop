@@ -107,7 +107,7 @@ export default {
         
      
     },
-    //取消订单
+    //发货
     async handleSj(index,row){
        
        console.log("id"+row.id)

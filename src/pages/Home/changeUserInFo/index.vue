@@ -180,13 +180,13 @@ export default {
     getData() {
       this.$store.dispatch("getAccrptInFo");
     },
-    changeChoice(id,is_default){
-       console.log("is_default值"+is_default)
+   async changeChoice(id,is_default){
+      //  console.log("is_default值"+is_default)
            if(!is_default){
               
-               this.$store.dispatch('ChangeTai',id)
+             await  this.$store.dispatch('ChangeTai',id)
              
-                this.getData()
+              await  this.getData()
               
              
 
@@ -279,6 +279,7 @@ export default {
   width: 1290px;
 
   margin: 0 auto;
+  .clearfix ;
 }
 .userInFo {
   .clearfix;
@@ -286,9 +287,9 @@ export default {
   margin-bottom: 74px;
 
   //   transform:translateX(-50%)
-  .Info {
-
-  }
+  // .Info {
+  //        .clearfix ;
+  // }
 
   .title {
     line-height: 40px;

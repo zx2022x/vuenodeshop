@@ -1,7 +1,7 @@
 <template>
 <div class="w">
   <div>
-    <Header />
+    <!-- <Header /> -->
     <div class="item">
       <div class="itemHeader">
         <h1>{{this.$route.query.goods_name}}</h1>
@@ -25,7 +25,7 @@
     <div class="pagination">
     <Pagination  :total='getSearchTotal' :pageSize="10" @changePnum="changePnum"/>
     </div>
-    <Footer />
+   
   </div>
   </div>
 </template>
@@ -220,9 +220,11 @@ export default {
   }
 }
 .pagination{
-   position:absolute;
-   top:710px;
-   left:50%;
-   transform:translateX(-50%)
+  //  position:absolute;
+  //  top:710px;
+  //  left:50%;
+  //  transform:translateX(-50%)
+  margin-left:500px;
 }
+
 </style>

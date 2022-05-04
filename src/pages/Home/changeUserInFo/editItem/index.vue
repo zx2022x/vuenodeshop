@@ -112,7 +112,7 @@ export default {
   watch: {
     item: {
       handler(nV, oV) {
-        console.log("新的值"+nV)
+    
         this.numberValidateForm.phone = nV.phone;
         this.numberValidateForm.consignee = nV.consignee;
         this.numberValidateForm.address = nV.address;

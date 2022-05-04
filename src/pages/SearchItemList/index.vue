@@ -24,7 +24,8 @@
     <div class="pagination">
     <Pagination  :total='getItemListTotal' :pageSize="10" @changePnum="changePnum"/>
     </div>
-    <Footer />
+   
+   
   </div>
 </template>
 
@@ -237,10 +238,14 @@ export default {
     }
   }
 }
-.pagination{
-   position:absolute;
-   top:710px;
-   left:50%;
-   transform:translateX(-50%)
-}
+
+// .pagination{
+//    position:absolute;
+//    top:710px;
+//    left:50%;
+//    transform:translateX(-50%)
+   
+// }
+
+
 </style>
