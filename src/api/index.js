@@ -63,7 +63,9 @@ export const reqUnSetCheckAll=()=>requests({url:'/carts/unselectAll',method:'pos
 export const  reqSetCheckAll=()=>requests({url:'/carts/selectAll',method:'post'})
 //结算
 export const reqJieSuan=(list)=>requests({url:`/orders`,data:{list},method:'post'})
-//请求订单列表
+//用户请求订单列表
 export const reqGetOrderList=(pageNum,pageSize,status,user_id)=>requests({url:`/orders?pageNum=${pageNum}&pageSize=${pageSize}&status=${status}&user_id=${user_id}`,method:'get'})
 //更新订单状态
 export const reqUpdateStatus=(id,status)=>requests({url:`/orders/${id}`,data:{status},method:'patch'})
+//管理员获取用户列表
+export const  reqGetOrderListAll=(pageNum,pageSize,status)=>requests({url:`/orders/all?pageNum=${pageNum}&pageSize=${pageSize}&status=${status}`,method:'get'})

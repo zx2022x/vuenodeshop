@@ -87,7 +87,7 @@ const actions={
      async jieSuan({commit},list){
          await reqJieSuan(list)
      },
-     //获取订单列表 未发货
+     //获取订单列表
      async getOrderList({commit},{pageNum,pageSize,status,user_id}){
          const res=await reqGetOrderList(pageNum,pageSize,status,user_id)
          if(res.code==0){

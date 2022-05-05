@@ -189,28 +189,3 @@ export default [
 
     
 ]
-    //admin后台路由
-    // {
-    //     name: 'admin',
-    //     path: '/admin',
-    //     component: () => import('@/pages/admin'),
-    //     children: [
-    //         //默认显示
-    //         {
-    //             path: '',
-    //             redirect: () => import('@/pages/admin/Login')
-
-    //         },
-
-    //         //子路由login
-
-    //         {
-    //             name: 'login',
-    //             path: '/login',
-    //             component: () => import('@/pages/admin/Login')
-                
-    //         }
-    //     ]
-
-    // }
-

@@ -1,7 +1,7 @@
 <template>
   <div >
   
-         <el-table :data="getOrderInfo.list" stripe style="width: 100%">
+         <el-table :data="getAllOrderInfo.list" stripe style="width: 100%">
        <!-- <el-table-column prop="user_id" label="用户ID" width="70">
       </el-table-column> -->
        <el-table-column prop="order_number" label="订单号" width="120">
@@ -65,7 +65,7 @@
       </el-table-column> 
     </el-table>
      <div class="pa">
-    <Pagination :total="getOrderTotal" target="getOrderList"  @changePnum='changePnum' :pageSize="6"/>
+    <Pagination :total="getAllOrderTotal" target="getOrderList"  @changePnum='changePnum' :pageSize="6"/>
     </div>
   </div>
 </template>
@@ -103,7 +103,7 @@ export default {
 
        
 
-        const message = await this.$store.dispatch("getOrderList",{pageNum,pageSize,status:mark,user_id});
+        const message = await this.$store.dispatch("getOrderListAll",{pageNum,pageSize,status:mark});
         
      
     },
@@ -119,7 +119,7 @@ export default {
 
     },
      getMarkOrderInfo(mark){
-        const list1=this.getOrderInfo.list
+        const list1=this.getAllOrderInfo.list
         const list=Array.from(list1)
         const total=0
        
@@ -175,7 +175,7 @@ export default {
   computed: {
     //mapGetters里面的写法：传递的数组，因为getters计算是没有划分模块【home,search】
     // ...mapGetters(["SpListInfo"]),
-    ...mapGetters(["getOrderInfo","getOrderTotal"]),
+    ...mapGetters(["getAllOrderInfo","getAllOrderTotal"]),
     
    
  

@@ -8,7 +8,7 @@ import {
     reqGetRuGoodsList,
     reqSangJia,
     reqChangeUserPw,
-    
+    reqGetOrderListAll,
     reqGetItemList
 } from '@/api'
 const state = {
@@ -23,8 +23,8 @@ const state = {
     itemInfo2: {},
 
     //分类过后的商品信息  粗粮
-    itemInfo3: {}
-
+    itemInfo3: {},
+    allOrderInfo:{}
 }
 const actions = {
     //商品图片上传
@@ -196,7 +196,14 @@ const actions = {
             commit('GETITEMLIST3', res.result)
         }
 
-    }
+    },
+    //管理员获取全部订单列表
+    async getOrderListAll({commit},{pageNum,pageSize,status}){
+        const res=await reqGetOrderListAll(pageNum,pageSize,status)
+        if(res.code==0){
+            commit('GETORDERLISTALL',res.result)
+        }
+    },
 
 
 
@@ -232,7 +239,12 @@ const mutations = {
          
         state.itemInfo3 = result
 
-    }
+    },
+
+     //管理员获取全部订单列表
+     GETORDERLISTALL(state,result){
+         state.allOrderInfo=result
+     }
 
 
 }
@@ -288,6 +300,14 @@ const getters = {
 
         return state.itemInfo3.list
     
+    },
+    //获取全部订单列表
+    getAllOrderInfo(state){
+        return state.allOrderInfo
+    },
+    //获取全部订单
+    getAllOrderTotal(state){
+        return state.allOrderInfo.total
     }
 
 

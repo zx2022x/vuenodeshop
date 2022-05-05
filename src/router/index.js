@@ -4,33 +4,28 @@ import Vue from "vue"
 import routes from '@/router/routes'
 //引入 store 
 import store from '@/store'
+import {getID } from '@/utils/token'
 Vue.use(VueRouter);
+
 let router = new VueRouter({
     routes,
 })
-//重写push
+router.beforeEach((to,from,next)=>{
+     const token=getID()
+     console.log("上课就上课"+token)
+    const toPath=to.path
+     if(!token){
+          if(toPath.indexOf('/shopcartlist')!=-1){
+              console.log("购物车·看")
+              next('/home')
+          
+          }else{
+              next()
+          }
+     }
+     else{
+         next()
+     }
+})
 
-
-// router.beforeEach((to, from, next) => {
-//     let token = store.state.user.token
-//     // console.log('测试' + to.path)
-//     // console.log('测试' + token)
-    
-//     if (token) {
-//         console.log('路由token' + to.path)
-//         if (to.path == '/userlogin/1' || to.path == '/userlogin/2') {
-
-//             next('/home')
-
-//         }
-
-//         else {
-//             next();
-//         }
-
-//     }
-//     next();
-// }
-
-// )
 export default router;
